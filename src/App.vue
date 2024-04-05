@@ -1,22 +1,18 @@
 <script>
+import AppFooter from './components/AppFooter.vue';
 
-/*
-    Importazione componente
-*/
 
 import { store } from './store';
 
 export default {
     data() {
         return { 
-            
             store
-            
         }
-    }
-    /*
-        Dichiarazione dei componenti all'interno dell'oggetto
-    */
+    },
+    components: {
+        AppFooter,
+    },
     
 }
 </script>
@@ -24,7 +20,7 @@ export default {
 <template>
     <router-view></router-view>
     <footer>
-        
+        <AppFooter/>
     </footer>
 </template>
 

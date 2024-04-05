@@ -131,7 +131,7 @@
         
     }
         button {
-                background-color: #008CBA;
+                background-color: #3498DB;
                 border: none;
                 color: white;
                 padding: 7px 10px;
@@ -147,8 +147,8 @@
 
                 button:hover {
                 background-color: white;
-                color: #008CBA;
-                border:1px solid #008CBA;
+                color: #3498DB;
+                border:1px solid #3498DB;
                 }
 
 
