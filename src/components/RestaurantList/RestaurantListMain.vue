@@ -18,9 +18,7 @@
 </script>
 
 <template>
-    <main class="main-title">
-        
-    </main>
+    
 </template>
 
 <style lang="scss" scoped>
