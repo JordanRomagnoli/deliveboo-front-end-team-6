@@ -60,7 +60,7 @@
                 <div v-if="restaurant.img !=null">
                     <img :src="'http://127.0.0.1:8000/storage/' + restaurant.img" :alt="restaurant.company_name">
                 </div>
-                <div class="myrestaurantcardbody">
+                <div class="myrestaurantcardbody p-4">
                     <h2>
                         {{ restaurant.company_name }}
                     </h2> 
