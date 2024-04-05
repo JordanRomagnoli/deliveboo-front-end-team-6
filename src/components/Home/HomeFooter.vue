@@ -9,9 +9,11 @@
     </script>
 
 <template>
-    
+    <main class="main-title">
+        
+    </main>
 </template>
 
 <style lang="scss" scoped>
-    @use '../assets/scss/header.scss' as *;
+    @use '../../assets/scss/footer.scss' as *;
 </style>
