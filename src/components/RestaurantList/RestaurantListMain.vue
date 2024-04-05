@@ -128,28 +128,28 @@
         bottom: 0;
         }
 
-        
-            button {
-            background-color: #008CBA;
-            border: none;
-            color: white;
-            padding: 7px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 13px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-            }
+    }
+
+    button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    }
 
 
-            button:hover {
-            background-color: white;
-            color: #008CBA;
-            border:1px solid #008CBA;
-            }
-        }
+    button:hover {
+    background-color: white;
+    color: #008CBA;
+    border:1px solid #008CBA;
+    }
 
 
 </style>
