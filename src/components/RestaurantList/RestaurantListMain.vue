@@ -61,13 +61,11 @@
                 </div>
                 <div class="myrestaurantcardbody">
                     <h2>
-                    {{ restaurant.company_name }}
+                        {{ restaurant.company_name }}
                     </h2> 
-                    <ul>
-                        <li v-for="typology in restaurant.typologies" :key="typology.id">
-                            Ristorante: {{ typology.name }}
-                        </li>
-                    </ul>
+                    <h6 v-for="typology in restaurant.typologies" :key="typology.id">
+                        Ristorante: {{ typology.name }}
+                    </h6>
                     <!-- <button class="specialbutton">
                         <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
                             Vedi post completo 
@@ -75,16 +73,17 @@
                     </button> -->
                 </div>
             </div>
+            <div class="button p-4">
+                <button @click="prevPage()">
+                    Precedente
+                </button>
+            </div>
+            <div class="button p-4">
+                <button @click="nextPage()">
+                    Successivo
+                </button>
+            </div>
         </div>
-        <div class="sectionpage">
-            <button @click="prevPage()">
-                Precedente
-            </button>
-            <button @click="nextPage()">
-                Successivo
-            </button>
-        </div>
-
     </div>
 
 </template>
@@ -96,7 +95,7 @@
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
-        padding: 30px;
+        padding: 40px;
     }
 
     .containerflex{
@@ -107,13 +106,14 @@
     }
 
     .myrestaurantcard{
-        border: 2px solid black;
+        // border: 2px solid black;
         height: 300px; 
         width: calc(100% / 3 - 20px);
         padding: 10px;
         margin: 10px;
         border-radius: 20px;
         position: relative;
+        box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
 
         &>img{
             width: 100%;
@@ -121,14 +121,34 @@
             object-fit: cover;
             object-position: center;
         }
-    }
 
-    .myrestaurantcardbody{
+        .myrestaurantcardbody{
         position: absolute;
-        ul{
-            li{
-                list-style: none;
+        bottom: 0;
+        }
+
+        
+            button {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 7px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 13px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            }
+
+
+            button:hover {
+            background-color: white;
+            color: #008CBA;
+            border:1px solid #008CBA;
             }
         }
-    }
+
+
 </style>
