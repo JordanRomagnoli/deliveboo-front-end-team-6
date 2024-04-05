@@ -10,7 +10,7 @@
 
 <template>
     <h1>
-        About
+        Single Restaurant
     </h1>
 </template>
 

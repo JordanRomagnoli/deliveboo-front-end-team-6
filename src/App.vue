@@ -23,6 +23,9 @@ export default {
 
 <template>
     <router-view></router-view>
+    <footer>
+        
+    </footer>
 </template>
 
 <style lang="scss">

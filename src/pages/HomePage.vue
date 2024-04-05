@@ -1,7 +1,6 @@
 <script>
     import HomeHeader from '../components/Home/HomeHeader.vue';
     import HomeMain from '../components/Home/HomeMain.vue';
-    import HomeFooter from '../components/Home/HomeFooter.vue';
 
     export default {
         data() {
@@ -13,7 +12,6 @@
 
             HomeHeader,
             HomeMain,
-            HomeFooter
         },
     }
     </script>
@@ -25,9 +23,6 @@
     <main>
         <HomeMain/>
     </main>
-    <footer>
-        <HomeFooter/>
-    </footer>
 </template>
 
 <style lang="scss" scoped>
