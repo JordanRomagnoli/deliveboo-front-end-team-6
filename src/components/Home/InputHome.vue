@@ -45,14 +45,14 @@
                 
     width: 25%;
     height: 250px;
-    border: 1px solid black;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     h1{
         color: white;
         font-weight: 700;
+        margin-bottom: 20px;
     }
     .input-container{
 
@@ -60,14 +60,17 @@
         background-color: white;
         height: 56px;
         border-radius: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px 0 16px;
         overflow: hidden;
         input{
             width: 80%;
             height: 100%;
             border: none;
-            :focus-visible {
-                outline: 2px solid var(--bs-primary); /* Evidenzia l'elemento con un bordo di 2px solid del colore primario */
-            }
+            outline: none !important;
+            box-shadow: none !important;
         }
         button{
             width: 15%;

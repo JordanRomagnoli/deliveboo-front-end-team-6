@@ -5,7 +5,10 @@
 
     export default {
         data() {
-            return { 
+            return {
+
+                JumbotronCounter: 0,
+
                 carousell: [
                     'burger.jpg',
                     'pizza.jpg',
@@ -21,9 +24,24 @@
                 return new URL(imgPath, import.meta.url).href;
             },
 
+            autoPlay(){
+                setInterval(() => {
+                    if(this.JumbotronCounter < this.carousell.length - 1){
+                
+                    this.JumbotronCounter ++;
+            
+                    }else{
+                        this.JumbotronCounter = 0;
+                    }
+                }, 5000);
+            }
+
         },
         components:{
             InputHome,
+        },
+        mounted(){
+            this.autoPlay();
         }
     }
     </script>
@@ -36,7 +54,11 @@
                 <InputHome/>
             </div>
 
-            <img :src="getImagePath('../../assets/img/food-home-carousell/' + carousell[0])" alt="">
+            <transition name="fade" mode="out-in"> 
+
+                <img :src="getImagePath('../../assets/img/food-home-carousell/' + carousell[JumbotronCounter])" alt="">
+            
+            </transition>
 
         </div>
     </section>
