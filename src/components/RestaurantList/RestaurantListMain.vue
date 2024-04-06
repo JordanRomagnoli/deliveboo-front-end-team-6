@@ -133,7 +133,8 @@ export default {
         position: absolute;
         bottom: 0;
         width: 100%;
-        height: 30%;
+        left: 0;
+        bottom: 10%;
         padding: 0 !important;
         .text-h2 {
             text-shadow: 2px 2px 4px rgba(211, 211, 211, 0.613);
