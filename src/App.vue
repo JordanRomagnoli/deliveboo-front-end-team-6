@@ -1,13 +1,10 @@
 <script>
 import AppFooter from './components/AppFooter.vue';
 
-
-import { store } from './store';
-
 export default {
     data() {
         return { 
-            store
+            
         }
     },
     components: {

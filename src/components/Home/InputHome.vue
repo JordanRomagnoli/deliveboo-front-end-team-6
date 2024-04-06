@@ -32,7 +32,9 @@
         <div class="input-container">
             <input type="text" placeholder="Nome Ristorante">
             <button>
-                Cerca
+                <router-link :to="{ name: 'list' }">
+                    Cerca
+                </router-link>
             </button>
         </div>
     </div>
@@ -79,7 +81,11 @@
             border: none;
             font-weight: 500;
             background-color: #6aaed7;
-            color: white;
+            >*{
+                width: 100%;
+                color: white;
+                text-decoration: none;
+            }
             
         }
     }
