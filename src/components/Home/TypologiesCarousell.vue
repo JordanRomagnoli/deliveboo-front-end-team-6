@@ -6,15 +6,55 @@
     export default {
         data() {
             return {
-                store,      
+                store,   
+                minIndexCarousell: 0,
+                maxIndexCarousell: 5,
             }
         },
         methods:{
 
-            selectTypology(typology){
+            selectTypology(typology, i){
 
-                this.store.selectedTypology.push(typology);
-                console.log(this.store.selectedTypology);
+                if(!this.store.selectedTypology.includes(typology)){
+
+                    this.store.selectedTypology.push(typology);
+                }
+                else{
+                    const indexToRemove = this.store.selectedTypology.indexOf(typology);
+                    if (indexToRemove !== -1) { // Assicurati che l'elemento sia stato trovato
+                        this.store.selectedTypology.splice(indexToRemove, 1); // Rimuovi l'elemento dall'array
+                    }
+                }
+                
+                console.log(this.store.selectedTypology)
+            },
+
+            nextButton(){
+
+                if(this.maxIndexCarousell < this.store.typologies.length && this.minIndexCarousell < this.store.typologies.length - 5){
+                    this.maxIndexCarousell += 1;
+                    this.minIndexCarousell += 1;
+                }else{
+                    this.maxIndexCarousell = 5;
+                    this.minIndexCarousell = 0;
+                }
+
+            },
+
+            prevButton(){
+
+                if(this.maxIndexCarousell == 5 && this.minIndexCarousell == 0){
+                    
+                    this.maxIndexCarousell = this.store.typologies.length;
+                    this.minIndexCarousell = this.store.typologies.length - 5;
+                    
+                }else{
+
+                    this.maxIndexCarousell -= 1;
+                    this.minIndexCarousell -= 1;
+                    
+                }
+
             },
 
         },
@@ -37,16 +77,24 @@
 
 <template>
     
-    <div class="container-tipology"> 
-        <div class="single-typology" v-for="index in 5" :key="index">
+    <div class="container-tipology">
+        <button @click="prevButton()">
+            <
+        </button>
+        <div class="single-typology" v-for="(elem, i) in store.typologies.slice(minIndexCarousell, maxIndexCarousell)" :key="i">
             <h3>
-                <!-- {{ elem.name }} -->
-                {{store.typologies[index - 1].name}}
+                {{ elem.name }}
             </h3>
-            <div @click="selectTypology(store.typologies[index - 1].name)" class="img-container">
-                <img :src="'http://127.0.0.1:8000/storage/images/' + store.typologies[index - 1].img" alt="">
+            <div @click="selectTypology(elem.name, i)" class="img-container"
+                :class="{
+                'selected' : store.selectedTypology.includes(elem.name)
+            }">
+                <img :src="'http://127.0.0.1:8000/storage/images/' + elem.img" alt="">
             </div>
         </div>
+        <button @click="nextButton()">
+            >
+        </button>
     </div>
 
 </template>
@@ -57,12 +105,22 @@
         width: 60%;
         max-width: 60%;
         display: flex;
+        align-items: center;
         position: absolute;
         margin: 0 auto;
         bottom: - 170px;
         left: 0;
         right: 0;
         z-index: 3;
+        button{
+
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: none;
+            font-size: 3rem;
+            color: #6AAED7;
+        }
         .single-typology{
 
             width: calc((100% / 5) - 16px);
@@ -70,6 +128,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            
             h3{
                 font-size: 1.2rem;
                 color: white;
@@ -85,6 +144,9 @@
                 border-radius: 20px;
                 overflow: hidden;
                 cursor: pointer;
+                &.selected{
+                    border: 4px solid #6AAED7;
+                }
                 img{
                     height: 100%;
                     object-fit: cover;
