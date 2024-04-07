@@ -1,84 +1,84 @@
 <script>
-    export default {
-        data() {
-            return { 
-            deliveboofooter:[
-            {
-              link:'Investitori',
-            },
-            {
-              link:'Chi siamo',
-            },
-            {
-              link:'Ristoranti',
-            },
-            {
-              link:'Altro',
-            },
-            {
-              link:'Pressroom',
-            },
-            {
-              link:'Programmazione',
-            },
-            {
-              link:'Design',
-            },
-            {
-              link:'Lavora con noi',
-            },
-            {
-              link:'Diventa nostro partner',
-            },
+export default {
+    data() {
+        return {
+            deliveboofooter: [
+                {
+                    link: "Investitori",
+                },
+                {
+                    link: "Chi siamo",
+                },
+                {
+                    link: "Ristoranti",
+                },
+                {
+                    link: "Altro",
+                },
+                {
+                    link: "Pressroom",
+                },
+                {
+                    link: "Programmazione",
+                },
+                {
+                    link: "Design",
+                },
+                {
+                    link: "Lavora con noi",
+                },
+                {
+                    link: "Diventa nostro partner",
+                },
             ],
             note: [
-            {
-            link:'Termini & Condizioni',
-            },
-            {
-            link:'Informativa sulla privacy',
-            },
-            {
-            link:'Cookies',
-            },
-            {
-            link:'Classificazione dei partner',
-            },
-            {
-            link:'Classificazione dei partner',
-            },
+                {
+                    link: "Termini & Condizioni",
+                },
+                {
+                    link: "Informativa sulla privacy",
+                },
+                {
+                    link: "Cookies",
+                },
+                {
+                    link: "Classificazione dei partner",
+                },
+                {
+                    link: "Classificazione dei partner",
+                },
             ],
-            aiuto:[
-            {
-              link:'Contatti',
-            },
-            {
-              link:'FAQ',
-            },
-            {
-              link:'Tipi di cucina',
-            },
+            aiuto: [
+                {
+                    link: "Contatti",
+                },
+                {
+                    link: "FAQ",
+                },
+                {
+                    link: "Tipi di cucina",
+                },
             ],
-            icons:[
-            {
-              img:"./src/assets/img/footer-facebook.png",
-            },
-            {
-              img:"./src/assets/img/footer-periscope.png",
-            },
-            {
-              img:"./src/assets/img/footer-pinterest.png",
-            },
-            {
-              img:"./src/assets/img/footer-twitter.png",
-            },
-            {
-              img:"./src/assets/img/footer-twitter.png",
-            },
-          ],
+            icons: [
+                {
+                    img: "./src/assets/img/footer-facebook.png",
+                },
+                {
+                    img: "./src/assets/img/footer-periscope.png",
+                },
+                {
+                    img: "./src/assets/img/footer-pinterest.png",
+                },
+                {
+                    img: "./src/assets/img/footer-twitter.png",
+                },
+                {
+                    img: "./src/assets/img/footer-twitter.png",
+                },
+            ],
         };
-    },  
-}
+    },
+};
 </script>
 
 <template>
@@ -86,47 +86,51 @@
         <div class="bg_footer">
             <div class="mycontainer">
                 <div class="top_footer">
-                    <div class="column p-3"> 
-                        <ul>
-                            <li><h4>DELIVEBOO</h4></li>
-                            <li v-for="(link, index) in deliveboofooter">
-                                <a href="">{{ deliveboofooter[index].link }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="column p-3"> 
-                        <ul>
-                            <li><h4>NOTE LEGALI</h4></li>
-                            <li v-for="(link, index) in note">
-                                <a href="">{{ note[index].link }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="column p-3">
-                        <ul>
-                            <li><h4>AIUTO</h4></li>
-                            <li v-for="(link, index) in aiuto">
-                                <a href="">{{ aiuto[index].link }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="column p-3">
-                        <h4 class="mb-3">PORTA DEVIVEBOO CON TE</h4>
-                        <div class="mobile p-2 mb-3">
-                            <div class="p-2">
-                                <i class="fa-brands fa-apple"></i>
-                            </div>
-                            <div>
-                                <p>scarica su APPLE STORE</p>
-                            </div> 
+                    <div class="row">
+                        <div class="col p-3">
+                            <ul>
+                                <li><h4>DELIVEBOO</h4></li>
+                                <li v-for="(link, index) in deliveboofooter">
+                                    <a href="">{{
+                                        deliveboofooter[index].link
+                                    }}</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="mobile p-2">
-                            <div class="p-2">
-                                <i class="fa-brands fa-android"></i>
+                        <div class="col p-3">
+                            <ul>
+                                <li><h4>NOTE LEGALI</h4></li>
+                                <li v-for="(link, index) in note">
+                                    <a href="">{{ note[index].link }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col p-3">
+                            <ul>
+                                <li><h4>AIUTO</h4></li>
+                                <li v-for="(link, index) in aiuto">
+                                    <a href="">{{ aiuto[index].link }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col p-3">
+                            <h4 class="mb-3">PORTA DEVIVEBOO CON TE</h4>
+                            <div class="mobile p-2 mb-3">
+                                <div class="button-container">
+                                    <i class="fa-brands fa-apple icon"></i>
+                                    <a href="#" class="button"
+                                        >Scarica su APPLE STORE</a
+                                    >
+                                </div>
                             </div>
-                            <div>
-                                <p>scarica su ANDROID</p>
-                            </div> 
+                            <div class="mobile p-2">
+                                <div class="button-container">
+                                    <i class="fa-brands fa-android icon"></i>
+                                    <a href="#" class="button"
+                                        >Scarica su ANDROID</a
+                                    >
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,54 +140,56 @@
 </template>
 
 <style lang="scss" scoped>
-
-
-    .mycontainer{
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 40px;
-        }
-
-    .bg_footer{
-        background-color: #3498DB;
-        color: white;
-
-        .top_footer{
+.bg_footer {
+    background-color: #84898b;
+    color: white;
+    .mycontainer {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 40px;
+        .top_footer {
             display: flex;
-        }
+            ul {
+                padding: 0;
+                li {
+                    list-style: none;
 
-        ul{
-            padding: 0;
-            li{
-            list-style: none;
-            
-                > a {
-                    text-decoration: none;
-                    color: white;
+                    > a {
+                        text-decoration: none;
+                        color: white;
+                    }
                 }
             }
         }
-
-        .column{
-            background-color: #2a7cb3;
-            margin: 10px;
-            padding: 10px;
-            height: 300px;
-            width: 250px;
-        }
-
-        .mobile{
-            height: 70px;
-            width: 160px;
-            border-radius: 20px;
-            background-color: lightgray;
+        .mobile {
             display: flex;
-            box-shadow: 10px 10px 5px rgba(47, 47, 47, 0.117);
-            i{
-                font-size: 30px;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            border-radius: 20px;
+            &:hover {
+                background-color: #0056b3;
+            }
+            .button-container {
+                display: flex;
+                align-items: center;
+                padding: 5px 10px;
+                .icon {
+                    font-size: 30px;
+                    margin-right: 10px; 
+                }
+                .button {
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 16px;
+                    transition: background-color 0.3s ease; 
+                }
             }
         }
+    }
 }
-
 </style>
