@@ -21,7 +21,7 @@
                 </div>
             </button>
 
-            <a href="">
+            <a href="http://127.0.0.1:8000" target="_blank">
                 Accedi come membro
             </a>
         </nav>
