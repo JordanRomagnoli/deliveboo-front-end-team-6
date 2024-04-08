@@ -49,17 +49,12 @@ export default {
         <div class="p-4">carosello tipologie img</div>
         <div class="containerflex">
             <div
-                v-for="restaurant in restaurants"
+                v-for="restaurant in store.currentRestaurants"
                 :key="restaurant.id"
                 class="myrestaurantcard"
             >
                 <div v-if="restaurant.img != null" class="myrestaurantimg">
-                    <img
-                        :src="
-                            'http://127.0.0.1:8000/storage/images/' +
-                            restaurant.img
-                        "
-                        :alt="restaurant.company_name"
+                    <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
                     />
                 </div>
                 <div class="myrestaurantcardbody p-4">

@@ -38,6 +38,7 @@ const router = createRouter({
                         },
                     }).then((res) => {
                         console.log(res.data, "ristorante");
+                            store.currentRestaurants = res.data.results;
                     });
                     next()
             }
