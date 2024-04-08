@@ -122,7 +122,6 @@ export default {
         left: 0;
         bottom: 10%;
         padding: 0 !important;
-        background-color: black;
         .text-h2 {
             text-shadow: 2px 2px 4px rgba(211, 211, 211, 0.613);
             color: white;
