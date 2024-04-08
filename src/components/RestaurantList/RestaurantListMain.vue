@@ -54,7 +54,7 @@ export default {
                             <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name">
                         </div>
                         <div class="myrestaurantcardbody p-4">
-                            <h2 class="text-h2">
+                            <h2 class="text-h2 p-2">
                                 {{ restaurant.company_name }}
                             </h2>
                         </div>
