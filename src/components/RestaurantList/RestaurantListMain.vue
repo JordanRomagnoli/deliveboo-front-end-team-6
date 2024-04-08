@@ -191,6 +191,8 @@ export default {
                     </h6>
                 </div>
             </div>
+        </div>
+        <div class="mycontainerbutton">
             <div class="button p-4">
                 <button @click="prevPage()">Precedente</button>
             </div>
@@ -322,25 +324,6 @@ export default {
         }
     }
 }
-button {
-    background-color: #3498db;
-    border: none;
-    color: white;
-    padding: 7px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: white;
-    color: #3498db;
-    border: 1px solid #3498db;
-}
 
 .mybadge{
     width: 100%;
@@ -350,6 +333,35 @@ button:hover {
     display: inline;
     padding: 2px 6px;
     font-size: 12px;
-    
 }
+
+
+.mycontainerbutton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        background-color: #3498db;
+        border: none;
+        color: white;
+        padding: 7px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #3498db;
+        border: 1px solid #3498db;
+    }
+
+}
+
+
 </style>
