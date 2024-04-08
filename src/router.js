@@ -44,7 +44,7 @@ const router = createRouter({
             }
         },
         {
-            path: '/single-restaurant',
+            path: '/single-restaurant/:slug',
             name: 'restaurant',
             component: SingleRestaurant,
         },
