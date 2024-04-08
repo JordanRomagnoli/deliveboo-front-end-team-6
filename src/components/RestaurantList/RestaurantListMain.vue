@@ -13,33 +13,33 @@ export default {
         };
     },
     methods: {
-        // getRestaurants(page) {
-        //     Axios.get("http://127.0.0.1:8000/api/restaurant", {
-        //         params: {
-        //             page: page,
-        //             company_name: this.store.InputHome,
-        //             typologies: this.store.selectedTypology,
-        //         },
-        //     }).then((res) => {
-        //         console.log(res.data, "ristorante");
-        //         this.restaurants = res.data.results.data;
-        //         this.currentPage = res.data.results.current_page;
-        //         this.lastPage = res.data.results.last_page;
-        //     });
-        // },
+         getRestaurants(page) {
+            Axios.get("http://127.0.0.1:8000/api/restaurant", {
+                params: {
+                page: page,
+                company_name: this.store.InputHome,
+                typologies: this.store.selectedTypology,
+                },
+             }).then((res) => {
+                console.log(res.data, "ristorante");
+                this.store.currentRestaurants = res.data.results.data;
+                this.currentPage = res.data.results.current_page;
+                this.lastPage = res.data.results.last_page;
+             });
+         },
         prevPage() {
             if (this.currentPage > 1) {
                 this.getRestaurants(this.currentPage - 1);
             }
+            console.log(this.currentPage, "pagina precedente");
+
         },
         nextPage() {
             if (this.currentPage < this.lastPage) {
                 this.getRestaurants(this.currentPage + 1);
             }
+            console.log(this.currentPage, "ultima pagina");
         },
-    },
-    updated() {
-        this.getRestaurants(this.currentPage);
     },
 };
 </script>
