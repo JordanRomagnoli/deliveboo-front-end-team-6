@@ -85,10 +85,12 @@
 
             <div @click="selectTypology(elem.name, i)" class="img-container"
                 :class="{
-                'selected' : store.selectedTypology.includes(elem.name)
+                'selected' : store.selectedTypology.includes(elem.name),
+                'small' : this.$route.name == 'list'  
             }">
                 
-                <img :src="'http://127.0.0.1:8000/storage/images/' + elem.img" alt="">
+                
+                <img :src="'http://127.0.0.1:8000/storage/images/' + elem.img" alt="" v-if="this.$route.name != 'list'">
 
                 <div class="color-layer">
                 </div>
@@ -151,6 +153,10 @@
                 border: 0px solid transparent;
                 transition: all .2s ease-in-out;
                 position: relative;
+                &.small{
+
+                    height: 90px;
+                }
                 &.selected{
                     border: 6px solid #6AAED7;
                 }
