@@ -47,11 +47,7 @@ export default {
     <div class="mycontainer">
         <div class="p-4">carosello tipologie img</div>
         <div class="containerflex">
-            <div
-                v-for="(restaurant, i) in store.currentRestaurants"
-                :key="i"
-                class="myrestaurantcard"
-            >
+            <div v-for="(restaurant, i) in store.currentRestaurants" :key="i" class="myrestaurantcard">
                 <div v-if="restaurant.img != null" class="myrestaurantimg">
                     <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
                     />
@@ -60,17 +56,16 @@ export default {
                     <h2 class="text-h2">
                         {{ restaurant.company_name }}
                     </h2>
-                    <h6
-                        v-for="typology in restaurant.typologies"
-                        :key="typology.id"
-                    >
-                        Ristorante: {{ typology.name }}
-                    </h6>
                     <!-- <button class="specialbutton">
                         <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
                             Vedi post completo 
                         </router-link>
                     </button> -->
+                </div>
+                <div class="badge" >
+                    <h6 v-for="typology in restaurant.typologies" :key="typology.id">
+                        {{ typology.name }}
+                    </h6>
                 </div>
             </div>
             <div class="button p-4">
@@ -102,8 +97,8 @@ export default {
 
 .myrestaurantcard {
     height: 200px;
-    width: calc(100% / 3 - 20px);
-    margin: 10px;
+    width: calc(100% / 3 - 40px);
+    margin: 20px;
     position: relative;
     box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
     border-radius: 30px; /* Imposta il raggio dell'arrotondamento */
@@ -127,6 +122,7 @@ export default {
         left: 0;
         bottom: 10%;
         padding: 0 !important;
+        background-color: black;
         .text-h2 {
             text-shadow: 2px 2px 4px rgba(211, 211, 211, 0.613);
             color: white;
