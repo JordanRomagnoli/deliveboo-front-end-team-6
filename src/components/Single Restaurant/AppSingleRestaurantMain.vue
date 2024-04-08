@@ -1,11 +1,15 @@
 <script>
     import Axios from 'axios';
+    import RestaurantListHeader from '../RestaurantList/RestaurantListHeader.vue';
 
     export default {
         data() {
             return { 
                 restaurant: null,
             }
+        },
+        components: {
+            RestaurantListHeader,
         },
         methods: {
             getSingleRestaurant() {
@@ -23,11 +27,21 @@
 </script>
 
 <template>
-    <section>
-        <div class="restaurant-container">
-            NO VABBE
-        </div>
-    </section>
+    <header>
+        <RestaurantListHeader/>
+    </header>
+    <main>
+        <section>
+            <div v-if="restaurant != null" class="restaurant-container">
+                <div v-if="restaurant.img != null" class="jumbotrom">
+                    <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"/>
+                </div>
+                <div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
 </template>
 
 <style lang="scss" scoped>
