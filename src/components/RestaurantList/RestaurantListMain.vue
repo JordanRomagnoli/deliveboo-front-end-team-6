@@ -52,8 +52,7 @@ export default {
                 :key="i"
                 class="myrestaurantcard"
             >
-                <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
-                        Vedi post completo
+                <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
                     <div v-if="restaurant.img != null" class="myrestaurantimg">
                         <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
                         />
