@@ -6,27 +6,27 @@ export default {
     data() {
         return {
             store,
-            restaurants: [],
-            typologies: [],
+            // restaurants: [],
+            // typologies: [],
             currentPage: 1,
             lastPage: 1,
         };
     },
     methods: {
-        getRestaurants(page) {
-            Axios.get("http://127.0.0.1:8000/api/restaurant", {
-                params: {
-                    page: page,
-                    company_name: this.store.InputHome,
-                    typologies: this.store.selectedTypology,
-                },
-            }).then((res) => {
-                console.log(res.data, "ristorante");
-                this.restaurants = res.data.results.data;
-                this.currentPage = res.data.results.current_page;
-                this.lastPage = res.data.results.last_page;
-            });
-        },
+        // getRestaurants(page) {
+        //     Axios.get("http://127.0.0.1:8000/api/restaurant", {
+        //         params: {
+        //             page: page,
+        //             company_name: this.store.InputHome,
+        //             typologies: this.store.selectedTypology,
+        //         },
+        //     }).then((res) => {
+        //         console.log(res.data, "ristorante");
+        //         this.restaurants = res.data.results.data;
+        //         this.currentPage = res.data.results.current_page;
+        //         this.lastPage = res.data.results.last_page;
+        //     });
+        // },
         prevPage() {
             if (this.currentPage > 1) {
                 this.getRestaurants(this.currentPage - 1);

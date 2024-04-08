@@ -22,7 +22,7 @@ const router = createRouter({
             name: 'list',
             component: RestaurantList,
             beforeEnter: (to, from, next) => {
-
+                    
                     const slug = store.InputHome.replace(/ /g, '-').toLowerCase();
 
                     Axios.get("http://127.0.0.1:8000/api/restaurant", {
