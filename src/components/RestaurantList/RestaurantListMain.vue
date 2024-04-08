@@ -91,6 +91,7 @@ export default {
     margin: 0 auto;
     width: 100%;
     padding: 40px;
+    padding-top: 120px;
 }
 
 .containerflex {
@@ -106,8 +107,8 @@ export default {
     margin: 10px;
     position: relative;
     box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
-    border-radius: 30px; /* Imposta il raggio dell'arrotondamento */
-    overflow: hidden; /* Assicura che l'immagine non superi i bordi arrotondati */
+    border-radius: 30px;
+    overflow: hidden;
     img {
         width: 100%;
         height: 100%;

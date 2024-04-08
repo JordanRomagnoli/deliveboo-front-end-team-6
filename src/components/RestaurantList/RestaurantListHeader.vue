@@ -1,17 +1,63 @@
 <script>
+    import { RouterLink } from 'vue-router';
+import { store } from '../../store.js';
+
+
     export default {
         data() {
             return { 
-                 
+                store,
             }
         },
+        computed: {
+            inputHomeWithoutSpaces: function() {
+                return this.store.InputHome.replace(/\s/g, "");
+            }
+        },
+        methods:{
+
+            getImagePath: function (imgPath) {
+                return new URL(imgPath, import.meta.url).href;
+            },
+
+            navigateToList() {
+                
+                if (this.inputHomeWithoutSpaces === '' && this.store.selectedTypology.length === 0) {
+
+                } else {
+                    
+                    this.$router.push({ name: 'list' });
+                }
+                
+            },
+        }
     }
     </script>
 
 <template>
     <div class="header"> 
+        
         <div class="img-container">
-             <img src="..\..\assets\img\logo-restaurant-list-page.png" alt="">
+            <router-link :to="{ name: 'home' }">
+                <img src="..\..\assets\img\logo-restaurant-list-page.png" alt="">
+            </router-link>
+        </div>
+
+        <div class="input-container">
+            <input v-model="store.InputHome" type="text" @keyup.enter="navigateToList()" placeholder="Nome Ristorante">
+            <button :class="{
+                'disable': inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0,
+            }"
+            >
+                
+                <span v-if=" inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+
+                <router-link :to="{ name: 'list' }" v-else>
+                    Cerca
+                </router-link>
+            </button>
         </div>
         
         <nav>
@@ -33,12 +79,14 @@
     z-index: 1;
     display: flex;
     justify-content: space-between;
-    padding: 16px 16px;
+    padding: 16px 32px;
     align-items: center;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
+    background-color: #999;    
+    background: linear-gradient(to bottom, rgba(153, 153, 153, 0.43), rgba(153, 153, 153, 0));
     backdrop-filter: blur(2.6px);
     .img-container{
 
@@ -48,6 +96,43 @@
                 height: 100%;
                 width: 100%;
             }
+    }
+
+    .input-container{
+
+        width: 30%;
+        background-color: white;
+        height: 56px;
+        border-radius: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px 0 16px;
+        overflow: hidden;
+        input{
+            width: 80%;
+            height: 100%;
+            border: none;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        button{
+            width: 15%;
+            height: 40px;
+            border-radius: 19px;
+            border: none;
+            font-weight: 500;
+            background-color: #6aaed7;
+            transition: all .3s ease-in-out;
+            &.disable{
+                width: 40px;
+            }
+            >*{
+                width: 100%;
+                color: white;
+                text-decoration: none;
+            }
+        }
     }
     
     nav{
