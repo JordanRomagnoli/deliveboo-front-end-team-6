@@ -79,27 +79,43 @@
     
     <div class="container-tipology">
         <button @click="prevButton()">
-            <
+            <i class="fa-solid fa-chevron-left"></i>
         </button>
         <div class="single-typology" v-for="(elem, i) in store.typologies.slice(minIndexCarousell, maxIndexCarousell)" :key="i">
-            <h3>
+            
+            <h3 class="fade-enter-active fade-enter-to">
                 {{ elem.name }}
             </h3>
+            
+
             <div @click="selectTypology(elem.name, i)" class="img-container"
                 :class="{
                 'selected' : store.selectedTypology.includes(elem.name)
             }">
+                
                 <img :src="'http://127.0.0.1:8000/storage/images/' + elem.img" alt="">
+
+                <div class="color-layer">
+                </div>
+                
             </div>
         </div>
         <button @click="nextButton()">
-            >
+            <i class="fa-solid fa-chevron-right"></i>
         </button>
     </div>
 
 </template>
 
 <style lang="scss" scoped>
+
+    .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s;
+    }
+    .fade-enter, .fade-leave-to {
+    opacity: 0;
+    }
+
     .container-tipology{
 
         width: 60%;
@@ -118,7 +134,8 @@
             height: 50px;
             background-color: transparent;
             border: none;
-            font-size: 3rem;
+            font-size: 2.5rem;
+            font-weight: bold;
             color: #6AAED7;
         }
         .single-typology{
@@ -128,7 +145,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            
             h3{
                 font-size: 1.2rem;
                 color: white;
@@ -144,8 +160,11 @@
                 border-radius: 20px;
                 overflow: hidden;
                 cursor: pointer;
+                border: 0px solid transparent;
+                transition: all .2s ease-in-out;
+                position: relative;
                 &.selected{
-                    border: 4px solid #6AAED7;
+                    border: 6px solid #6AAED7;
                 }
                 img{
                     height: 100%;
@@ -153,6 +172,17 @@
                     width: 100%;
                     filter: grayscale(0.5);
                     
+                }
+                .color-layer{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #007bff;
+                    background: linear-gradient(to top, #007bff, rgba(0, 123, 255, 0));
+                    opacity: 0.1;
+                    z-index: 4;
                 }
             }            
         }

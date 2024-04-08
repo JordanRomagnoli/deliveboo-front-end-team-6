@@ -1,36 +1,30 @@
 <script>
 import Axios from "axios";
+import { store } from '../../store.js';
 
 export default {
     data() {
         return {
+            store,
             restaurants: [],
             typologies: [],
             currentPage: 1,
             lastPage: 1,
         };
     },
-    created() {
-        this.getRestaurants(this.currentPage);
-        this.getTypologies();
-    },
     methods: {
         getRestaurants(page) {
             Axios.get("http://127.0.0.1:8000/api/restaurant", {
                 params: {
                     page: page,
+                    company_name: this.store.InputHome,
+                    typologies: this.store.selectedTypology,
                 },
             }).then((res) => {
                 console.log(res.data, "ristorante");
                 this.restaurants = res.data.results.data;
                 this.currentPage = res.data.results.current_page;
                 this.lastPage = res.data.results.last_page;
-            });
-        },
-        getTypologies() {
-            Axios.get("http://127.0.0.1:8000/api/typology").then((res) => {
-                console.log(res.data, "tipologia");
-                this.typologies = res.data.typologies;
             });
         },
         prevPage() {
@@ -43,6 +37,9 @@ export default {
                 this.getRestaurants(this.currentPage + 1);
             }
         },
+    },
+    updated() {
+        this.getRestaurants(this.currentPage);
     },
 };
 </script>

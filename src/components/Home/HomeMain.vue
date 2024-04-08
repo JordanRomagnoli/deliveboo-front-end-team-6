@@ -41,7 +41,6 @@
 
                 Axios.get('http://127.0.0.1:8000/api/typology')
                 .then(res => {
-                    //console.log(res);
                     this.store.typologies = res.data.results;
                     console.log(store.typologies);
                 });
@@ -52,7 +51,7 @@
             TypologiesCarousell,
             InputHome,
         },
-        mounted(){
+        created(){
             this.autoPlay();
             this.getTypologies();
         }

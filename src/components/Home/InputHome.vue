@@ -1,9 +1,11 @@
 <script>
     import Axios from 'axios';
+    import { store } from '../../store.js';
 
     export default {
         data() {
             return { 
+                store,
                 carousell: [
                     'burger.jpg',
                     'pizza.jpg',
@@ -19,6 +21,8 @@
                 return new URL(imgPath, import.meta.url).href;
             },
 
+            
+
         }
     }
     </script>
@@ -30,13 +34,25 @@
             Cerca il tuo ristorante ...
         </h1>
         <div class="input-container">
-            <input type="text" placeholder="Nome Ristorante">
-            <button>
-                <router-link :to="{ name: 'list' }">
+            <input v-model="store.InputHome" type="text" placeholder="Nome Ristorante">
+            <button :class="{
+                'disable': store.InputHome === '' && store.selectedTypology.length === 0,
+            }">
+                
+                <span v-if="store.InputHome === '' && store.selectedTypology.length === 0">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+
+                <router-link :to="{ name: 'list' }" v-else>
                     Cerca
                 </router-link>
             </button>
         </div>
+    </div>
+    <div class="typology-selected">
+        <span v-for="(elem, i) in store.selectedTypology">
+            {{ elem }}
+        </span>
     </div>
                 
 </template>
@@ -50,7 +66,8 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:end;
+
     h1{
         color: white;
         font-weight: 700;
@@ -67,6 +84,7 @@
         align-items: center;
         padding: 0 8px 0 16px;
         overflow: hidden;
+        margin-bottom: 24px;
         input{
             width: 80%;
             height: 100%;
@@ -81,6 +99,10 @@
             border: none;
             font-weight: 500;
             background-color: #6aaed7;
+            transition: all .3s ease-in-out;
+            &.disable{
+                width: 40px;
+            }
             >*{
                 width: 100%;
                 color: white;
@@ -91,4 +113,17 @@
     }
 }
 
+.typology-selected{
+    width: 25%;
+    span{
+        display: inline-block;
+        color: white;
+        margin-bottom: 8px;
+        margin-left: 4px;
+        margin-right: 4px;
+        padding: 8px;
+        border: 1.8px solid white;
+        border-radius: 10px;
+    }
+}
 </style>

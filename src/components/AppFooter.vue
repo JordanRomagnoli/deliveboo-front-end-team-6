@@ -89,7 +89,7 @@ export default {
                     <div class="row">
                         <div class="col p-3">
                             <ul>
-                                <li><h4>DELIVEBOO</h4></li>
+                                <li><h4>Deliveboo</h4></li>
                                 <li v-for="(link, index) in deliveboofooter">
                                     <a href="">{{
                                         deliveboofooter[index].link
@@ -99,7 +99,7 @@ export default {
                         </div>
                         <div class="col p-3">
                             <ul>
-                                <li><h4>NOTE LEGALI</h4></li>
+                                <li><h4>Note Legali</h4></li>
                                 <li v-for="(link, index) in note">
                                     <a href="">{{ note[index].link }}</a>
                                 </li>
@@ -107,14 +107,14 @@ export default {
                         </div>
                         <div class="col p-3">
                             <ul>
-                                <li><h4>AIUTO</h4></li>
+                                <li><h4>Aiuto</h4></li>
                                 <li v-for="(link, index) in aiuto">
                                     <a href="">{{ aiuto[index].link }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col p-3">
-                            <h4 class="mb-3">PORTA DEVIVEBOO CON TE</h4>
+                            <h4 class="mb-3">Porta Deliveboo con te</h4>
                             <div class="mobile p-2 mb-3">
                                 <div class="button-container">
                                     <i class="fa-brands fa-apple icon"></i>
@@ -141,7 +141,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg_footer {
-    background-color: #84898b;
+    background-color: #292c2d;
     color: white;
     .mycontainer {
         max-width: 1200px;
@@ -150,14 +150,20 @@ export default {
         padding: 40px;
         .top_footer {
             display: flex;
+            justify-content: center;
             ul {
                 padding: 0;
+                width: calc(100% / 4);
                 li {
                     list-style: none;
-
                     > a {
                         text-decoration: none;
+                        font-size: 0.9rem;
+                        font-weight: 300;
                         color: white;
+                        &:hover{
+                            color: #6AAED7;
+                        }
                     }
                 }
             }

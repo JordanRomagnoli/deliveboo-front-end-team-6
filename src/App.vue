@@ -29,15 +29,15 @@ export default {
         font-weight: 500;
         font-style: normal;
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 8px;
         }
         
         ::-webkit-scrollbar-track {
-            background-color: #cccccc;
+            background-color: #cccccc00;
         }
         
         ::-webkit-scrollbar-thumb {
-            background-color: #000000;
+            background-color: #00000083;
         }
     }
 </style>

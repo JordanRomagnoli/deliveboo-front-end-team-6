@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { store } from './store.js';
+import Axios from "axios";
+
+
 
 import HomePage from './pages/HomePage.vue';
 import RestaurantList from './pages/RestaurantList.vue';
@@ -17,6 +21,24 @@ const router = createRouter({
             path: '/restaurant-list',
             name: 'list',
             component: RestaurantList,
+            beforeEnter: (to, from, next) => {
+
+                    const slug = store.InputHome.replace(/ /g, '-').toLowerCase();
+
+                    Axios.get("http://127.0.0.1:8000/api/restaurant", {
+                        params: {
+                            page: 1,
+                            slug: slug,
+                            typologies: store.selectedTypology,
+                        },
+                    }).then((res) => {
+                        console.log(res.data, "ristorante");
+                        console.log(store.InputHome);
+                        console.log(store.selectedTypology);
+                    });
+                    // Chiamata next() per consentire il caricamento della rotta
+                    next()
+            }
         },
         {
             path: '/single-restaurant',

@@ -16,6 +16,7 @@
         
         <nav>
             <button class="cart">
+                <i class="fa-solid fa-cart-shopping"></i>
                 <div class="notify">
                 </div>
             </button>
