@@ -46,6 +46,14 @@ const router = createRouter({
             path: '/single-restaurant',
             name: 'restaurant',
             component: SingleRestaurant,
+            beforeEnter: (to, from, next) => {
+                Axios.get('http://127.0.0.1:8000/api/restaurant'+ store.slugSingleRestaurant)
+                .then(response => {
+                    console.log(response.data);
+                }
+            )  
+                
+            }
         },
         {
             path: '/:pathMatch(.*)*',

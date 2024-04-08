@@ -1,4 +1,6 @@
 <script>
+    import { Axios } from 'axios';
+
     export default {
         data() {
             return { 
@@ -6,21 +8,8 @@
             }
         },
         methods: {
-            getSingleRestaurant() {
-                axios.get('http://127.0.0.1:8000/api/restaurant'+ this.$route.params.slug)
-                    .then(response => {
-                        console.log(response.data);
-                        if (response.data.success) {
-                            this.restaurant = response.data.results;
-                        }
-                        else {
-                            // redirect alla pagina 404
-                            this.$router.push({ name: 'not-found' })
-                        }
-                    }
-                )
-            },
-        }
+            
+        },
     }
     </script>
 
