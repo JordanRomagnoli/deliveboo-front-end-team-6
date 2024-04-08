@@ -6,10 +6,8 @@ export default {
     data() {
         return {
             store,
-            // restaurants: [],
-            // typologies: [],
             currentPage: 1,
-            lastPage: 1,
+            lastPage: 2,
         };
     },
     methods: {
@@ -32,6 +30,7 @@ export default {
                 this.getRestaurants(this.currentPage - 1);
             }
             console.log(this.currentPage, "pagina precedente");
+            console.log(this.store.currentRestaurants);
 
         },
         nextPage() {
@@ -49,8 +48,8 @@ export default {
         <div class="p-4">carosello tipologie img</div>
         <div class="containerflex">
             <div
-                v-for="restaurant in store.currentRestaurants"
-                :key="restaurant.id"
+                v-for="(restaurant, i) in store.currentRestaurants"
+                :key="i"
                 class="myrestaurantcard"
             >
                 <div v-if="restaurant.img != null" class="myrestaurantimg">

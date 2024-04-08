@@ -1,7 +1,5 @@
 <script>
     import { store } from '../../store.js';
-    //import { Swiper, SwiperSlide } from 'swiper/vue';
-    import { Pagination } from 'swiper/modules';
 
     export default {
         data() {
@@ -59,14 +57,11 @@
 
         },
         components:{
-            // Swiper,
-            // SwiperSlide,
+           
         },
         setup() {
             return {
-                // modules:[
-                //     Pagination
-                // ]
+                
             };
         },
         mounted(){
@@ -108,13 +103,6 @@
 </template>
 
 <style lang="scss" scoped>
-
-    .fade-enter-active, .fade-leave-active {
-    transition: opacity 1s;
-    }
-    .fade-enter, .fade-leave-to {
-    opacity: 0;
-    }
 
     .container-tipology{
 

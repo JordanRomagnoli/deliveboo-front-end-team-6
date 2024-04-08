@@ -37,8 +37,7 @@ const router = createRouter({
                             typologies: store.selectedTypology,
                         },
                     }).then((res) => {
-                        console.log(res.data, "ristorante");
-                            store.currentRestaurants = res.data.results;
+                        store.currentRestaurants = res.data.results.data;
                     });
                     next()
             }
