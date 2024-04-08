@@ -32,11 +32,10 @@ const router = createRouter({
                             typologies: store.selectedTypology,
                         },
                     }).then((res) => {
-                        console.log(res.data, "ristorante");
                         console.log(store.InputHome);
                         console.log(store.selectedTypology);
+                        console.log(res.data, "ristorante");
                     });
-                    // Chiamata next() per consentire il caricamento della rotta
                     next()
             }
         },

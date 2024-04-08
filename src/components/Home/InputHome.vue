@@ -15,13 +15,16 @@
                 ],
             }
         },
+        computed: {
+            inputHomeWithoutSpaces: function() {
+                return this.store.InputHome.replace(/\s/g, "");
+            }
+        },
         methods:{
 
             getImagePath: function (imgPath) {
                 return new URL(imgPath, import.meta.url).href;
             },
-
-            
 
         }
     }
@@ -36,10 +39,10 @@
         <div class="input-container">
             <input v-model="store.InputHome" type="text" placeholder="Nome Ristorante">
             <button :class="{
-                'disable': store.InputHome === '' && store.selectedTypology.length === 0,
+                'disable': inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0,
             }">
                 
-                <span v-if="store.InputHome === '' && store.selectedTypology.length === 0">
+                <span v-if=" inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
 
