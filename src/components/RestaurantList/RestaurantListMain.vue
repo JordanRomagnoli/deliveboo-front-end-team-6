@@ -52,26 +52,29 @@ export default {
                 :key="i"
                 class="myrestaurantcard"
             >
-                <div v-if="restaurant.img != null" class="myrestaurantimg">
-                    <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
-                    />
-                </div>
-                <div class="myrestaurantcardbody p-4">
-                    <h2 class="text-h2">
-                        {{ restaurant.company_name }}
-                    </h2>
-                    <h6
-                        v-for="typology in restaurant.typologies"
-                        :key="typology.id"
-                    >
-                        Ristorante: {{ typology.name }}
-                    </h6>
-                    <!-- <button class="specialbutton">
-                        <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
-                            Vedi post completo 
-                        </router-link>
-                    </button> -->
-                </div>
+                <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
+                        Vedi post completo
+                    <div v-if="restaurant.img != null" class="myrestaurantimg">
+                        <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
+                        />
+                    </div>
+                    <div class="myrestaurantcardbody p-4">
+                        <h2 class="text-h2">
+                            {{ restaurant.company_name }}
+                        </h2>
+                        <h6
+                            v-for="typology in restaurant.typologies"
+                            :key="typology.id"
+                        >
+                            Ristorante: {{ typology.name }}
+                        </h6>
+                        <!-- <button class="specialbutton">
+                            <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
+                                Vedi post completo 
+                            </router-link>
+                        </button> -->
+                    </div>
+                </router-link>    
             </div>
             <div class="button p-4">
                 <button @click="prevPage()">Precedente</button>

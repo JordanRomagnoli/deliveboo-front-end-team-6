@@ -5,5 +5,4 @@ export const store = reactive({
     selectedTypology: [],
     InputHome: '',
     currentRestaurants: [],
-    slugSingleRestaurant: '',
 });
