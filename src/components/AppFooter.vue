@@ -152,8 +152,6 @@ export default {
             display: flex;
             justify-content: center;
             ul {
-                padding: 0;
-                width: calc(100% / 4);
                 li {
                     list-style: none;
                     > a {

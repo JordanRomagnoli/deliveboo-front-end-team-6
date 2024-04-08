@@ -79,7 +79,7 @@
     
     <div class="container-tipology">
         <button @click="prevButton()">
-            <i class="fa-solid fa-chevron-left"></i>
+            <img src="../../assets/img/left.png" alt="">
         </button>
         <div class="single-typology" v-for="(elem, i) in store.typologies.slice(minIndexCarousell, maxIndexCarousell)" :key="i">
             
@@ -101,7 +101,7 @@
             </div>
         </div>
         <button @click="nextButton()">
-            <i class="fa-solid fa-chevron-right"></i>
+            <img src="../../assets/img/right.png" alt="">
         </button>
     </div>
 

@@ -21,10 +21,19 @@ const router = createRouter({
             path: '/restaurant-list',
             name: 'list',
             component: RestaurantList,
+            /*
+                Prima di entrare  nella rotta esegue il codice seguente
+            */
             beforeEnter: (to, from, next) => {
-
+                    /*
+                        Inizializza una variabile slug che è uguale all'input inserito dall'utente
+                        ( presente nello store con il nome di InputHome ), al quale vengono sostituiti
+                        gli spazi con i - , per poi essere reso interamente in lower case.
+                    */
                     const slug = store.InputHome.replace(/ /g, '-').toLowerCase();
-
+                    /*
+                        Si esegue una chiamata Axios con i parametri, corrispettavemte 'slug' e 'typologies'
+                    */
                     Axios.get("http://127.0.0.1:8000/api/restaurant", {
                         params: {
                             page: 1,
@@ -32,8 +41,6 @@ const router = createRouter({
                             typologies: store.selectedTypology,
                         },
                     }).then((res) => {
-                        console.log(store.InputHome);
-                        console.log(store.selectedTypology);
                         console.log(res.data, "ristorante");
                     });
                     next()
