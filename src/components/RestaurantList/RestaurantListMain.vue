@@ -47,33 +47,24 @@ export default {
     <div class="mycontainer">
         <div class="p-4">carosello tipologie img</div>
         <div class="containerflex">
-            <div
-                v-for="(restaurant, i) in store.currentRestaurants"
-                :key="i"
-                class="myrestaurantcard"
-            >
+            <div v-for="(restaurant, i) in store.currentRestaurants" :key="i" class="mycardcontainer">
                 <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
-                    <div v-if="restaurant.img != null" class="myrestaurantimg">
-                        <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name"
-                        />
-                    </div>
-                    <div class="myrestaurantcardbody p-4">
-                        <h2 class="text-h2">
-                            {{ restaurant.company_name }}
-                        </h2>
-                        <h6
-                            v-for="typology in restaurant.typologies"
-                            :key="typology.id"
-                        >
-                            Ristorante: {{ typology.name }}
-                        </h6>
-                        <!-- <button class="specialbutton">
-                            <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }" class="btn btn-primary">
-                                Vedi post completo 
-                            </router-link>
-                        </button> -->
+                    <div class="myrestaurantcard">
+                        <div v-if="restaurant.img != null" class="myrestaurantimg">
+                            <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name">
+                        </div>
+                        <div class="myrestaurantcardbody p-4">
+                            <h2 class="text-h2">
+                                {{ restaurant.company_name }}
+                            </h2>
+                        </div>
                     </div>
                 </router-link>    
+                <div class="p-3">
+                    <h6 v-for="typology in restaurant.typologies" :key="typology.id" class="mybadge" > 
+                        {{ typology.name }}
+                    </h6>
+                </div>
             </div>
             <div class="button p-4">
                 <button @click="prevPage()">Precedente</button>
@@ -103,10 +94,13 @@ export default {
     flex-wrap: wrap;
 }
 
+.mycardcontainer{
+    width: calc(100% / 3 - 40px);
+}
+
 .myrestaurantcard {
     height: 200px;
-    width: calc(100% / 3 - 40px);
-    margin: 20px;
+    width: 100%;
     position: relative;
     box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
     border-radius: 30px;
@@ -155,5 +149,16 @@ button:hover {
     background-color: white;
     color: #3498db;
     border: 1px solid #3498db;
+}
+
+.mybadge{
+    width: 100%;
+    color: white;
+    background-color: #3498db;
+    border-radius: 20px;
+    display: inline;
+    padding: 2px 6px;
+    font-size: 12px;
+    
 }
 </style>
