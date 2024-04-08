@@ -116,21 +116,31 @@ export default {
     .myrestaurantimg {
         width: 100%;
         height: 100%;
-        opacity: 0.9;
-        filter: blur(1px);
     }
     .myrestaurantcardbody {
+
         position: absolute;
         bottom: 0;
         width: 100%;
+        height: 100%;
+        backdrop-filter: blur(0.9px);
+        background-color: #000;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.67), rgba(0, 0, 0, 0));
         left: 0;
-        bottom: 10%;
-        padding: 0 !important;
+        padding: 0 16px !important;
+        padding-bottom: 8px !important;
+        display: flex;
+        align-items: end;
+        justify-content: center;
         .text-h2 {
+            max-width: 100%;
             text-shadow: 2px 2px 4px rgba(211, 211, 211, 0.613);
+            font-size: 1.7rem;
             color: white;
             text-align: center;
-            padding: 0 8px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 }
