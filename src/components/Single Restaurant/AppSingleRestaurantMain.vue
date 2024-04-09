@@ -56,16 +56,16 @@
                         Indirizzo: {{ currentSingleRestaurant.address }}
                     </div>                    
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
-                        <div class="card" style="width: 18rem;" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                            <div>
+                        <div class="card my-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
+                            <div class="dish-container-img">
                                 <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name" class="card-img-top">
                             </div>
                             <div class="card-body">
-                                <ul>
-                                    <li>{{ dish.name }}</li>
+                                <div>
+                                    <h4>{{ dish.name }}</h4>
                                     <p class="card-text"> {{ dish.description }}</p>
-                                    <li>{{ dish.price }} </li>
-                                </ul>
+                                    <div>{{ dish.price }} </div>
+                                </div>
                                 <button class="btn btn-primary" @click="addToCart">
                                     Aggiungi al carrello
                                 </button>
@@ -157,19 +157,24 @@
         justify-content: space-between;
         flex-wrap: wrap;
 
-        .dish-card {
-            background-color: #ddff00;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .my-card {
             width: calc(100% / 2 - 20px);
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 10px;
+            margin: 10px;
+        }
+
+        // .dish-card {
+        //     background-color: #ddff00;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     width: calc(100% / 2 - 20px);
+        //     border: 1px solid #ccc;
+        //     border-radius: 5px;
+        //     padding: 20px;
+        //     margin-bottom: 10px;
 
             .dish-container-img {
-                width: 180px;
+                width: 100%;
                 height: 250px;
 
                 img{
@@ -180,15 +185,15 @@
                 }
             }
 
-            .cart-add {
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-                cursor: pointer;
-            }
-        }
+        //     .cart-add {
+        //         background-color: #007bff;
+        //         color: #fff;
+        //         border: none;
+        //         padding: 5px 10px;
+        //         border-radius: 3px;
+        //         cursor: pointer;
+        //     }
+        // }
         
 
     }
