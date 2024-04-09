@@ -57,7 +57,7 @@
                     </div>                    
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
                         <div class="dish-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                            <div class="dish-img">
+                            <div class="dish-container-img">
                                 <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
                             </div>
                             <div>
@@ -160,15 +160,15 @@
 
         .dish-card {
             background-color: #ddff00;
-            width: calc(100% / 2 - 20px);
+            width: calc(100% / 4 - 20px);
             height: 350px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 10px;
+            padding: 20px;
             margin-bottom: 10px;
 
-            .dish-img {
-                width: 200px;
+            .dish-container-img {
+                width: 180px;
                 height: 250px;
 
                 img{
