@@ -2,6 +2,7 @@ import { reactive } from "vue";
 
 export const store = reactive({
     typologies: [],
+    dishes: [],
     selectedTypology: [],
     InputHome: '',
     currentRestaurants: [],
@@ -11,4 +12,5 @@ export const store = reactive({
         fare il controllo sul ristorante dei piatti già presenti nell'array
     */
     totalPrice: null,
+    currentSingleRestaurant: null
 });
