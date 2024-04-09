@@ -55,28 +55,25 @@
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
                         Indirizzo: {{ currentSingleRestaurant.address }}
                     </div>                    
-                    <div class="dish-container">  
-                        <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
-                            <div class="dish-container-in-flex">
-                                <div class="dish-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                                    <div class="dish-img">
-                                        <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
-                                    </div>
-                                    <div>
-                                        {{ dish.name }}
-                                    </div>
-                                    <div>
-                                        {{ dish.price }} 
-                                    </div>
-                                    <div>
-                                        <button class="cart-add" @click="addToCart">
-                                            Aggiungi al carrello
-                                        </button>
-                                    </div>
-                                </div>
+                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
+                        <div class="dish-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
+                            <div class="dish-img">
+                                <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                            </div>
+                            <div>
+                                {{ dish.name }}
+                            </div>
+                            <div>
+                                {{ dish.price }} 
+                            </div>
+                            <div>
+                                <button class="cart-add" @click="addToCart">
+                                    Aggiungi al carrello
+                                </button>
                             </div>
                         </div>
                     </div>
+                   
                 </div>
 
                 <Cart/>
@@ -156,6 +153,10 @@
         overflow: auto;
         background-color: aqua;
         padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
 
         .dish-card {
             background-color: #ddff00;
