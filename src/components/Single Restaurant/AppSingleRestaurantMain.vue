@@ -68,7 +68,7 @@
                             </div>
                             <div class="mybuttoncontainer">
                                     <div class="p-2 mt-1">
-                                        <h5><strong>{{ dish.price }}</strong></h5>
+                                        <h5><strong>{{ dish.price }} <span>&euro;</span> </strong></h5>
                                     </div>
                                     <div>
                                         <button class="btn btn-primary mybutton" @click="addToCart">
@@ -193,7 +193,7 @@
                 h5{
                     color: red;
                 }
-                
+
                 .mybutton{
                 width: 50px;
                 height: 50px;
