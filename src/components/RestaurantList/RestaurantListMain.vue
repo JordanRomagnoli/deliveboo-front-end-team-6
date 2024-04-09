@@ -252,6 +252,9 @@ export default {
             border: 0px solid transparent;
             transition: all .2s ease-in-out;
             position: relative;
+            -webkit-box-shadow: 1px 18px 36px -13px rgba(0,0,0,0.49);
+            -moz-box-shadow: 1px 18px 36px -13px rgba(0,0,0,0.49);
+            box-shadow: 1px 18px 36px -13px rgba(0,0,0,0.49);
             &.selected{
                 background-color: #6aaed7;
             }

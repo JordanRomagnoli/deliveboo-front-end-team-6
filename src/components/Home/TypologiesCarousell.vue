@@ -160,6 +160,9 @@
                 &.selected{
                     border: 6px solid #6AAED7;
                 }
+                &:hover{
+                    transform: scale(1.05);
+                }
                 img{
                     height: 100%;
                     object-fit: cover;

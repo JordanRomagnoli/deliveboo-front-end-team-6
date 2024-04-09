@@ -86,18 +86,26 @@
                     </div>
 
                     <div class="col-6">
-                        <h2>
-                            Scarica l'app
-                        </h2>
+                        <h3>
+                            Scarica l'app e segui il tuo ordine tramite ogni tuo dispositivo
+                        </h3>
+
+                        <p>
+                            I piatti e i prodotti che ami, consegnati in pochissimo tempo. Vedrai quando il rider ha ritirato l'ordine, che potrai seguire passo passo, e riceverai una notifica quando sarà quasi da te.
+                        </p>
 
                         <div class="buttons-container">
                             
                             <div class="single-button">
-                                <!-- <img src="../../assets/img/apple-store-badge.png" alt=""> -->
+                                <a href="#nogo">
+                                    <img src="../../assets/img/apple-store-badge.png" alt="">
+                                </a>
                             </div>
 
                             <div class="single-button">
-                                <img src="../../assets/img/google-play-badge.png" alt="">
+                                <a href="#nogo">
+                                    <img src="../../assets/img/google-play-badge.png" alt="">
+                                </a>
                             </div>
                             
                         </div>
