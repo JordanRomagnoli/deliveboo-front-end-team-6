@@ -58,7 +58,7 @@
                     <div class="dish-container">  
                         <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
                             <div class="dish-container-in-flex">
-                                <div class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
+                                <div class="dish-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
                                     <div class="dish-img">
                                         <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
                                     </div>
@@ -148,24 +148,27 @@
     box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.613);
 
     .restaurant-info {
-        height: 20%;
+        padding: 20px;
         background-color: red;
     }
 
     .dish-container {
         overflow: auto;
         background-color: aqua;
+        padding: 10px;
 
         .dish-card {
+            background-color: #ddff00;
             width: calc(100% / 2 - 20px);
+            height: 350px;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 10px;
 
             .dish-img {
-                width: 100%;
-                height: 50px;
+                width: 200px;
+                height: 250px;
 
                 img{
                     width: 100%;
