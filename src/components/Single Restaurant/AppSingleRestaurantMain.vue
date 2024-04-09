@@ -121,7 +121,7 @@
     .info-container {
         position: absolute;
         width: 100%;
-        padding: 0 !important;
+        padding: 32px;
         left: 0;
         bottom: 0px;
 
