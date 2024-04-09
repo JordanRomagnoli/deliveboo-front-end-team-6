@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import RestaurantList from "./pages/RestaurantList.vue";
 
 export const store = reactive({
     typologies: [],
@@ -12,4 +13,5 @@ export const store = reactive({
         fare il controllo sul ristorante dei piatti già presenti nell'array
     */
     totalPrice: null,
+    restaurantPreview: [],
 });

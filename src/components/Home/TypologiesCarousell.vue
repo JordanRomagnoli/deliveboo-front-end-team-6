@@ -1,5 +1,7 @@
 <script>
     import { store } from '../../store.js';
+    import Axios from 'axios';
+
 
     export default {
         data() {
@@ -24,7 +26,8 @@
                     }
                 }
                 
-                console.log(this.store.selectedTypology)
+                this.getRestaurantByTypology();
+                //console.log(this.store.selectedTypology)
             },
 
             nextButton(){
@@ -52,6 +55,28 @@
                     this.minIndexCarousell -= 1;
                     
                 }
+
+            },
+
+            getRestaurantByTypology(){
+                Axios.get("http://127.0.0.1:8000/api/restaurant", {
+                    params: {
+                        typologies: this.store.selectedTypology,
+                    },
+                }).then((res) => {
+                    
+                    if(this.store.selectedTypology.length > 0){
+
+                        this.store.restaurantPreview = res.data.results.data;
+                        console.log(res)
+                        console.log(this.store.restaurantPreview)
+
+                    }else{
+
+                        this.store.restaurantPreview = [];
+
+                    }
+                });
 
             },
 

@@ -42,9 +42,10 @@
                 Axios.get('http://127.0.0.1:8000/api/typology')
                 .then(res => {
                     this.store.typologies = res.data.results;
-                    console.log(store.typologies);
+                    //console.log(store.typologies);
+
                 });
-            }
+            },
 
         },
         components:{
@@ -80,9 +81,25 @@
         </div>
     </section>
     <section class="bottom-main">
-
         <div class="restaurant-result">
 
+            
+            <div v-for="(restaurant, i) in store.restaurantPreview" :key="i" class="mycardcontainer">
+                <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
+                    <div class="myrestaurantcard">
+                        <div v-if="restaurant.img != null" class="myrestaurantimg">
+                            <div class="color-layer">
+                            </div>
+                            <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name">
+                        </div>
+                        <div class="myrestaurantcardbody">
+                            <h2 class="text-h2">
+                                {{ restaurant.company_name }}
+                            </h2>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
 
         </div>
         
