@@ -38,7 +38,7 @@
     <main>
         <section>
             <!-- v-if=" store.currentSingleRestaurant.img != null " -->
-            <div v-if=" currentSingleRestaurant.img != null" class="single-restaurant">
+            <div v-if="currentSingleRestaurant && currentSingleRestaurant.img != null" class="single-restaurant">
                 <div class="restaurant-img">
                     <img :src="'http://127.0.0.1:8000/storage/images/' + currentSingleRestaurant.img" :alt="currentSingleRestaurant.company_name"/>
                     <div class="img-overlay"></div>
@@ -52,31 +52,33 @@
 
             <section class="bottom">    
                 <div class="menu-container p-3">
-                    <div class="restaurant-info">
-                        Indirizzo: {{ currentSingleRestaurant.address }}
-                    </div>     
+                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
+                    Indirizzo: {{ currentSingleRestaurant.address }}
+                    </div>                    
                     <div class="title-menu">
                         Menù:
                     </div>
-                    <div class="dish-container">                       
-                        <ul class="d-flex-wrap justify-content-space-between p-0 row">
-                            <li class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                                <div class="dish-img">
-                                    <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                    <div class="dish-container">  
+                        <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
+                            <div class="d-flex-wrap justify-content-space-between p-0 row">
+                                <div class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
+                                    <div class="dish-img">
+                                        <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                                    </div>
+                                    <div>
+                                        {{ dish.name }}
+                                    </div>
+                                    <div>
+                                        {{ dish.price }} 
+                                    </div>
+                                    <div>
+                                        <button class="cart-add" @click="addToCart">
+                                            Aggiungi al carrello
+                                        </button>
+                                    </div>
                                 </div>
-                                <div>
-                                    {{ dish.name }}
-                                </div>
-                                <div>
-                                    {{ dish.price }} 
-                                </div>
-                                <div>
-                                    <button class="cart-add" @click="addToCart">
-                                        Aggiungi al carrello
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
