@@ -160,8 +160,10 @@
 
         .dish-card {
             background-color: #ddff00;
-            width: calc(100% / 4 - 20px);
-            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: calc(100% / 2 - 20px);
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
