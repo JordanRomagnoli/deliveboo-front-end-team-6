@@ -50,17 +50,14 @@
                 </div>
             </div>
 
-            <section class="bottom">    
+            <section class="main-page">    
                 <div class="menu-container p-3">
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
-                    Indirizzo: {{ currentSingleRestaurant.address }}
+                        Indirizzo: {{ currentSingleRestaurant.address }}
                     </div>                    
-                    <div class="title-menu">
-                        Menù:
-                    </div>
                     <div class="dish-container">  
                         <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
-                            <div class="d-flex-wrap justify-content-space-between p-0 row">
+                            <div class="dish-container-in-flex">
                                 <div class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
                                     <div class="dish-img">
                                         <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
@@ -135,38 +132,35 @@
     }
 }
 
-.bottom{
-
+.main-page{
     justify-content: space-between;
     display: flex;
+    background-color: violet;
+    padding: 30px;
+
     .menu-container {
     width: 70%;
-    height: 700px;
+    // height: 700px;
     display: flex;
     flex-direction: column;
-    //justify-content: end;
-    overflow: hidden;
     border-radius: 20px;
-    background-color: white;
-    box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
+    background-color: blue;
+    box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.613);
 
     .restaurant-info {
         height: 20%;
+        background-color: red;
     }
 
-    .title-menu {
-        //text-align: center;
-    }
     .dish-container {
-        height: 60%;
         overflow: auto;
+        background-color: aqua;
 
         .dish-card {
-            width: calc(100% / 2);
-            list-style: none;
+            width: calc(100% / 2 - 20px);
             border: 1px solid #ccc;
             border-radius: 5px;
-            //padding: 10px;
+            padding: 10px;
             margin-bottom: 10px;
 
             .dish-img {
