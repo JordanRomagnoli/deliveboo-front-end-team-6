@@ -1,6 +1,7 @@
 <script>
     import Axios from 'axios';
     import RestaurantListHeader from '../RestaurantList/RestaurantListHeader.vue';
+    import Cart from './Cart.vue';
     import { store } from '../../store.js'
 
     export default {
@@ -11,6 +12,7 @@
         },
         components: {
             RestaurantListHeader,
+            Cart,
         },
         methods: {
             getSingleRestaurant() {
@@ -34,18 +36,20 @@
     </header>
     <main>
         <section>
-            <div v-if="store.currentSingleRestaurant != null" class="restaurant-container">
-                <div v-if="store.currentSingleRestaurant.img != null" class="single-restaurant">
-                    <div class="restaurant-img">
-                        <img :src="'http://127.0.0.1:8000/storage/images/' + store.currentSingleRestaurant.img" :alt="store.currentSingleRestaurant.company_name"/>
-                        <div class="img-overlay"></div>
-                    </div>
-                    <div class="info-container">
-                        <h2 class="company-name">
-                            {{ store.currentSingleRestaurant.company_name }}
-                        </h2>
-                    </div>
+            <!-- v-if=" store.currentSingleRestaurant.img != null " -->
+            <div v-if=" store.currentSingleRestaurant.img != null" class="single-restaurant">
+                <div class="restaurant-img">
+                    <img :src="'http://127.0.0.1:8000/storage/images/' + store.currentSingleRestaurant.img" :alt="store.currentSingleRestaurant.company_name"/>
+                    <div class="img-overlay"></div>
                 </div>
+                <div class="info-container">
+                    <h2 class="company-name">
+                        {{ store.currentSingleRestaurant.company_name }}
+                    </h2>
+                </div>
+            </div>
+
+            <section class="bottom">    
                 <div class="menu-container p-3">
                     <div class="restaurant-info">
                         Indirizzo: {{ store.currentSingleRestaurant.address }}
@@ -58,7 +62,6 @@
                             <li class="dish-card col-6" v-for="dish in store.currentSingleRestaurant.dishes" :key="dish.id">
                                 <div class="dish-img">
                                     <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
-                                    <!-- {{ dish.img }} -->
                                 </div>
                                 <div>
                                     {{ dish.name }}
@@ -75,17 +78,16 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+
+                <Cart/>
+
+            </section>
         </section>
+
     </main>
 </template>
 
 <style lang="scss" scoped>
-.restaurant-container {
-    margin: 0 auto;
-    width: 100%;
-}
-
 .single-restaurant {
     width: 100%;
     height: 400px;
@@ -130,8 +132,12 @@
     }
 }
 
-.menu-container {
-    width: 900px;
+.bottom{
+
+    justify-content: space-between;
+    display: flex;
+    .menu-container {
+    width: 70%;
     height: 700px;
     display: flex;
     flex-direction: column;
@@ -185,5 +191,8 @@
 
     }
 }
+}
+
+
 
 </style>

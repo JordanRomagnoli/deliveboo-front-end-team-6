@@ -54,6 +54,9 @@
         created(){
             this.autoPlay();
             this.getTypologies();
+        },
+        updated(){
+            
         }
     }
     </script>
@@ -77,6 +80,11 @@
         </div>
     </section>
     <section class="bottom-main">
+
+        <div class="restaurant-result">
+
+
+        </div>
         
         <div class="bg">
             <div class="my-container">
