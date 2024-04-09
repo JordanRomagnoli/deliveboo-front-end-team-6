@@ -53,7 +53,7 @@
             <section class="main-page">    
                 <div class="menu-container p-3">
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
-                        Indirizzo: {{ currentSingleRestaurant.address }}
+                        <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
                     </div>                    
                     <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
                         <div class="card my-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
@@ -62,13 +62,19 @@
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <h4>{{ dish.name }}</h4>
+                                    <h4><strong>{{ dish.name }}</strong></h4>
                                     <p class="card-text"> {{ dish.description }}</p>
-                                    <div>{{ dish.price }} </div>
                                 </div>
-                                <button class="btn btn-primary" @click="addToCart">
-                                    Aggiungi al carrello
-                                </button>
+                                <div class="mybuttoncontainer">
+                                    <div class="p-2 mt-1">
+                                        <h5><strong>{{ dish.price }}</strong></h5>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary mybutton" @click="addToCart">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +136,7 @@
 .main-page{
     justify-content: space-between;
     display: flex;
-    background-color: violet;
+    // background-color: violet;
     padding: 30px;
 
     .menu-container {
@@ -139,17 +145,23 @@
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    background-color: blue;
-    box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.613);
+    // background-color: blue;
+    box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.225);
 
     .restaurant-info {
         padding: 20px;
-        background-color: red;
+        span{
+            i{
+                color: red;
+            }
+        }
+        // background-color: red;
     }
 
     .dish-container {
         overflow: auto;
-        background-color: aqua;
+        background-color: rgba(246, 245, 245, 0.252);
+        height: 100vh;
         padding: 10px;
         margin: 10px;
         display: flex;
@@ -160,6 +172,13 @@
         .my-card {
             width: calc(100% / 2 - 20px);
             margin: 10px;
+            border-radius: 30px;
+            // box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.193);
+            .card-body{
+                h5{
+                    color: red;
+                }
+            }
         }
 
         // .dish-card {
@@ -185,6 +204,19 @@
                 }
             }
 
+            .mybuttoncontainer{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                    .mybutton{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+
+            }
+            
         //     .cart-add {
         //         background-color: #007bff;
         //         color: #fff;
