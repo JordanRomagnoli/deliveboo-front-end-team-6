@@ -136,16 +136,13 @@
 .main-page{
     justify-content: space-between;
     display: flex;
-    // background-color: violet;
     padding: 30px;
 
     .menu-container {
     width: 70%;
-    // height: 700px;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    // background-color: blue;
     box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.225);
 
     .restaurant-info {
@@ -155,7 +152,6 @@
                 color: red;
             }
         }
-        // background-color: red;
     }
 
     .dish-container {
@@ -173,25 +169,14 @@
             width: calc(100% / 2 - 20px);
             margin: 10px;
             border-radius: 30px;
-            // box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.193);
+            overflow: hidden;
+
             .card-body{
                 h5{
                     color: red;
                 }
             }
         }
-
-        // .dish-card {
-        //     background-color: #ddff00;
-        //     display: flex;
-        //     flex-direction: column;
-        //     justify-content: center;
-        //     width: calc(100% / 2 - 20px);
-        //     border: 1px solid #ccc;
-        //     border-radius: 5px;
-        //     padding: 20px;
-        //     margin-bottom: 10px;
-
             .dish-container-img {
                 width: 100%;
                 height: 250px;
@@ -216,18 +201,6 @@
                 }
 
             }
-            
-        //     .cart-add {
-        //         background-color: #007bff;
-        //         color: #fff;
-        //         border: none;
-        //         padding: 5px 10px;
-        //         border-radius: 3px;
-        //         cursor: pointer;
-        //     }
-        // }
-        
-
     }
 }
 }
