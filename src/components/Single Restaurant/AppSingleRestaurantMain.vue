@@ -38,7 +38,7 @@
     <main>
         <section>
             <!-- v-if=" store.currentSingleRestaurant.img != null " -->
-            <div v-if=" currentSingleRestaurant.img != null" class="single-restaurant">
+            <div v-if="currentSingleRestaurant && currentSingleRestaurant.img != null" class="single-restaurant">
                 <div class="restaurant-img">
                     <img :src="'http://127.0.0.1:8000/storage/images/' + currentSingleRestaurant.img" :alt="currentSingleRestaurant.company_name"/>
                     <div class="img-overlay"></div>
@@ -50,35 +50,35 @@
                 </div>
             </div>
 
-            <section class="bottom">    
+            <section class="main-page">    
                 <div class="menu-container p-3">
-                    <div class="restaurant-info">
-                        Indirizzo: {{ currentSingleRestaurant.address }}
-                    </div>     
-                    <div class="title-menu">
-                        Menù:
+                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
+                        <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
+                    </div>                    
+                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
+                        <div class="card my-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
+                            <div class="dish-container-img">
+                                <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name" class="card-img-top">
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <h4><strong>{{ dish.name }}</strong></h4>
+                                    <p class="card-text"> {{ dish.description }}</p>
+                                </div>
+                            </div>
+                            <div class="mybuttoncontainer">
+                                    <div class="p-2 mt-1">
+                                        <h5><strong>{{ dish.price }} <span>&euro;</span> </strong></h5>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary mybutton" @click="addToCart">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="dish-container">                       
-                        <ul class="d-flex-wrap justify-content-space-between p-0 row">
-                            <li class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                                <div class="dish-img">
-                                    <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
-                                </div>
-                                <div>
-                                    {{ dish.name }}
-                                </div>
-                                <div>
-                                    {{ dish.price }} 
-                                </div>
-                                <div>
-                                    <button class="cart-add" @click="addToCart">
-                                        Aggiungi al carrello
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <Cart/>
 
@@ -121,7 +121,7 @@
     .info-container {
         position: absolute;
         width: 100%;
-        padding: 0 !important;
+        padding: 32px;
         left: 0;
         bottom: 0px;
 
@@ -133,43 +133,48 @@
     }
 }
 
-.bottom{
-
+.main-page{
     justify-content: space-between;
     display: flex;
+    padding: 30px;
+
     .menu-container {
     width: 70%;
-    height: 700px;
     display: flex;
     flex-direction: column;
-    //justify-content: end;
-    overflow: hidden;
     border-radius: 20px;
-    background-color: white;
-    box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
+    box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.225);
 
     .restaurant-info {
-        height: 20%;
+        padding: 20px;
+        span{
+            i{
+                color: red;
+            }
+        }
     }
 
-    .title-menu {
-        //text-align: center;
-    }
     .dish-container {
-        height: 60%;
         overflow: auto;
+        background-color: rgba(246, 245, 245, 0.252);
+        height: 100vh;
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
 
-        .dish-card {
-            width: calc(100% / 2);
-            list-style: none;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            //padding: 10px;
-            margin-bottom: 10px;
-
-            .dish-img {
+        .my-card {
+            width: calc(100% / 2 - 20px);
+            margin: 10px;
+            border-radius: 30px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+            .dish-container-img {
                 width: 100%;
-                height: 50px;
+                height: 250px;
 
                 img{
                     width: 100%;
@@ -179,17 +184,23 @@
                 }
             }
 
-            .cart-add {
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-                cursor: pointer;
-            }
-        }
-        
+            .mybuttoncontainer{
+                padding: 20px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
 
+                h5{
+                    color: red;
+                }
+
+                .mybutton{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+            }
     }
 }
 }
