@@ -7,7 +7,7 @@ export const store = reactive({
     selectedTypology: [],
     InputHome: '',
     currentRestaurants: [],
-    selectedDishes: ['piatto-1', 'piatto-2'],
+    selectedDishes: ['ciao', 'ciao', 'ciao', 'ciao'],
     /*
         Se l'utente prova ad aggiungere un piatto di un altro ristorante,
         fare il controllo sul ristorante dei piatti già presenti nell'array

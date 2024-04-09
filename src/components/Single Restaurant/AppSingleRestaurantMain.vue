@@ -81,7 +81,6 @@
                     </div>
 
                 <Cart/>
-
             </section>
         </section>
 
@@ -137,6 +136,8 @@
     justify-content: space-between;
     display: flex;
     padding: 30px;
+    max-width: 1600px;
+    margin: 0 auto;
 
     .menu-container {
     width: 70%;
