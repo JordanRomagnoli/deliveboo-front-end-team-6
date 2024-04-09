@@ -65,7 +65,8 @@
                                     <h4><strong>{{ dish.name }}</strong></h4>
                                     <p class="card-text"> {{ dish.description }}</p>
                                 </div>
-                                <div class="mybuttoncontainer">
+                            </div>
+                            <div class="mybuttoncontainer">
                                     <div class="p-2 mt-1">
                                         <h5><strong>{{ dish.price }}</strong></h5>
                                     </div>
@@ -78,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <Cart/>
 
@@ -170,12 +170,7 @@
             margin: 10px;
             border-radius: 30px;
             overflow: hidden;
-
-            .card-body{
-                h5{
-                    color: red;
-                }
-            }
+            flex-direction: column;
         }
             .dish-container-img {
                 width: 100%;
@@ -190,15 +185,20 @@
             }
 
             .mybuttoncontainer{
+                padding: 20px;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
 
-                    .mybutton{
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
+                h5{
+                    color: red;
                 }
+                
+                .mybutton{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
 
             }
     }
