@@ -7,7 +7,8 @@
     export default {
         data() {
             return { 
-                store
+                store,
+                currentSingleRestaurant: null,
             }
         },
         components: {
@@ -18,13 +19,13 @@
             getSingleRestaurant() {
                 Axios.get("http://127.0.0.1:8000/api/restaurant/" + this.$route.params.slug)
                 .then(response => {
-                    this.store.currentSingleRestaurant = response.data.results;
+                    this.currentSingleRestaurant = response.data.results;
                     console.log(response);
                     console.log(this.$route.params.slug);
                 });
             }
         },
-        created(){
+        mounted(){
             this.getSingleRestaurant();
         }
     }
@@ -37,14 +38,14 @@
     <main>
         <section>
             <!-- v-if=" store.currentSingleRestaurant.img != null " -->
-            <div v-if=" store.currentSingleRestaurant.img != null" class="single-restaurant">
+            <div v-if=" currentSingleRestaurant.img != null" class="single-restaurant">
                 <div class="restaurant-img">
-                    <img :src="'http://127.0.0.1:8000/storage/images/' + store.currentSingleRestaurant.img" :alt="store.currentSingleRestaurant.company_name"/>
+                    <img :src="'http://127.0.0.1:8000/storage/images/' + currentSingleRestaurant.img" :alt="currentSingleRestaurant.company_name"/>
                     <div class="img-overlay"></div>
                 </div>
                 <div class="info-container">
                     <h2 class="company-name">
-                        {{ store.currentSingleRestaurant.company_name }}
+                        {{ currentSingleRestaurant.company_name }}
                     </h2>
                 </div>
             </div>
@@ -52,14 +53,14 @@
             <section class="bottom">    
                 <div class="menu-container p-3">
                     <div class="restaurant-info">
-                        Indirizzo: {{ store.currentSingleRestaurant.address }}
+                        Indirizzo: {{ currentSingleRestaurant.address }}
                     </div>     
                     <div class="title-menu">
                         Menù:
                     </div>
                     <div class="dish-container">                       
                         <ul class="d-flex-wrap justify-content-space-between p-0 row">
-                            <li class="dish-card col-6" v-for="dish in store.currentSingleRestaurant.dishes" :key="dish.id">
+                            <li class="dish-card col-6" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
                                 <div class="dish-img">
                                     <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
                                 </div>

@@ -12,5 +12,4 @@ export const store = reactive({
         fare il controllo sul ristorante dei piatti già presenti nell'array
     */
     totalPrice: null,
-    currentSingleRestaurant: null
 });
