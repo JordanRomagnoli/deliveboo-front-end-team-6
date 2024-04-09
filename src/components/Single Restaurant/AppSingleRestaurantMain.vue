@@ -47,31 +47,32 @@
                     </div>
                 </div>
                 <div class="menu-container p-3">
-                    <div class="menu p-3">
-                        <div class="title-menu">
-                            Menù:
-                        </div>
-                        <div class="dish-container">
-                            <ul class="d-flex">
-                                <li class="dish" v-for="dish in store.currentSingleRestaurant.dishes" :key="dish.id">
-                                    <div>
-                                        <img :src="'http://127.0.0.1:8000/storage/images/' + dish.img" :alt="dish.name">
-                                        <!-- {{ dish.img }} -->
-                                    </div>
-                                    <div class="col-6">
-                                        {{ dish.name }}
-                                    </div>
-                                    <div class="col-6">
-                                        {{ dish.price }}
-                                    </div>
-                                    <div>
-                                        <button class="cart-add" @click="addToCart">
-                                            Aggiungi al carrello
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="restaurant-info">
+                        Indirizzo: {{ store.currentSingleRestaurant.address }}
+                    </div>     
+                    <div class="title-menu">
+                        Menù:
+                    </div>
+                    <div class="dish-container">                       
+                        <ul class="d-flex-wrap justify-content-space-between p-0 row">
+                            <li class="dish-card col-6" v-for="dish in store.currentSingleRestaurant.dishes" :key="dish.id">
+                                <div class="dish-img">
+                                    <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                                    <!-- {{ dish.img }} -->
+                                </div>
+                                <div>
+                                    {{ dish.name }}
+                                </div>
+                                <div>
+                                    {{ dish.price }} 
+                                </div>
+                                <div>
+                                    <button class="cart-add" @click="addToCart">
+                                        Aggiungi al carrello
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -83,15 +84,12 @@
 .restaurant-container {
     margin: 0 auto;
     width: 100%;
-    padding: 40px;
-    padding-top: 120px;
 }
 
 .single-restaurant {
     width: 100%;
-    height: 500px;
-    margin: 20px;
-    //position: relative;
+    height: 400px;
+    position: relative;
     overflow: hidden;
 
     .restaurant-img {
@@ -119,44 +117,60 @@
 
     .info-container {
         position: absolute;
-        bottom: 0;
         width: 100%;
-        left: 0;
-        bottom: 10%;
         padding: 0 !important;
+        left: 0;
+        bottom: 0px;
+
         .company-name {
             text-shadow: 2px 2px 4px rgba(46, 46, 46, 0.491);
             color: white;
-            position: absolute;
             font-size: 100px;
-            left: 120px;
-            bottom: 50px;
         }
     }
 }
 
 .menu-container {
-    width: 700px;
+    width: 900px;
     height: 700px;
-    .menu {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        background-color: white;
-        box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
+    display: flex;
+    flex-direction: column;
+    //justify-content: end;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 10px 10px 5px rgba(211, 211, 211, 0.613);
+
+    .restaurant-info {
+        height: 20%;
     }
+
     .title-menu {
-        text-align: center;
+        //text-align: center;
     }
     .dish-container {
+        height: 60%;
+        overflow: auto;
 
-        .dish {
-            //width: calc(100% / 2);
+        .dish-card {
+            width: calc(100% / 2);
             list-style: none;
             border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 10px;
+            //padding: 10px;
             margin-bottom: 10px;
+
+            .dish-img {
+                width: 100%;
+                height: 50px;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
 
             .cart-add {
                 background-color: #007bff;
@@ -167,6 +181,7 @@
                 cursor: pointer;
             }
         }
+        
 
     }
 }
