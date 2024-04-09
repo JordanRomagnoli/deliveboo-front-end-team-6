@@ -78,6 +78,33 @@
     </section>
     <section class="bottom-main">
         
+        <div class="bg">
+            <div class="my-container">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="../../assets/img/DESKTOP-E-CELL.png" alt="">
+                    </div>
+
+                    <div class="col-6">
+                        <h2>
+                            Scarica l'app
+                        </h2>
+
+                        <div class="buttons-container">
+                            
+                            <div class="single-button">
+                                <!-- <img src="../../assets/img/apple-store-badge.png" alt=""> -->
+                            </div>
+
+                            <div class="single-button">
+                                <img src="../../assets/img/google-play-badge.png" alt="">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
 </template>

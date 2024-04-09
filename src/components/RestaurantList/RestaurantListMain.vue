@@ -220,6 +220,7 @@ export default {
         height: 40px;
         background-color: transparent;
         border: none;
+        transition: all .2s ease-in-out;
         &:hover{
             transform: scale(1.3);
             border: none;
@@ -252,7 +253,7 @@ export default {
             transition: all .2s ease-in-out;
             position: relative;
             &.selected{
-                background-color: #6ad7c1;
+                background-color: #6aaed7;
             }
             h3{
                 font-size: 1.2rem;
