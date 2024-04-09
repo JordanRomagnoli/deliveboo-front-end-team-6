@@ -115,23 +115,6 @@ export default {
                         </div>
                         <div class="col p-3">
                             <h4 class="mb-3">Porta Deliveboo con te</h4>
-                            <!-- <div class="mobile p-2 mb-3">
-                                <div class="button-container">
-                                    <i class="fa-brands fa-apple icon"></i>
-                                    <a href="#" class="button"
-                                        >Scarica su APPLE STORE</a
-                                    >
-                                </div>
-                            </div>
-                            <div class="mobile p-2">
-                                <div class="button-container">
-                                    <i class="fa-brands fa-android icon"></i>
-                                    <a href="#" class="button"
-                                        >Scarica su ANDROID</a
-                                    >
-                                </div>
-                            </div> -->
-
                             <div class="buttons-container">
                                 <div class="single-button">
                                     <a href="#nogo">

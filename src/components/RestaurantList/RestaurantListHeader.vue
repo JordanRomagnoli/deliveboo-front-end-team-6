@@ -1,6 +1,8 @@
 <script>
     import { RouterLink } from 'vue-router';
-import { store } from '../../store.js';
+    import { store } from '../../store.js';
+    import Axios from 'axios';
+
 
 
     export default {
@@ -28,8 +30,24 @@ import { store } from '../../store.js';
                     
                     this.$router.push({ name: 'list' });
                 }
-                
             },
+
+            getImageRestaurant(){
+
+                const slug = store.InputHome.replace(/ /g, '-').toLowerCase();
+
+                Axios.get("http://127.0.0.1:8000/api/restaurant", {
+                    params: {
+                        page: 1,
+                        slug: slug,
+                        typologies: store.selectedTypology,
+                    },
+                }).then((res) => {
+                    store.currentRestaurants = res.data.results.data;
+                    console.log(res)
+                });
+                next()
+            }
         }
     }
     </script>
@@ -54,9 +72,9 @@ import { store } from '../../store.js';
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
 
-                <router-link :to="{ name: 'list' }" v-else>
+                <span @click="getImageRestaurant()" v-else>
                     Cerca
-                </router-link>
+                </span>
             </button>
         </div>
         
