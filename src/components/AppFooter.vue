@@ -115,7 +115,7 @@ export default {
                         </div>
                         <div class="col p-3">
                             <h4 class="mb-3">Porta Deliveboo con te</h4>
-                            <div class="mobile p-2 mb-3">
+                            <!-- <div class="mobile p-2 mb-3">
                                 <div class="button-container">
                                     <i class="fa-brands fa-apple icon"></i>
                                     <a href="#" class="button"
@@ -129,6 +129,26 @@ export default {
                                     <a href="#" class="button"
                                         >Scarica su ANDROID</a
                                     >
+                                </div>
+                            </div> -->
+
+                            <div class="buttons-container">
+                                <div class="single-button">
+                                    <a href="#nogo">
+                                        <img
+                                            src="../assets/img/apple-store-badge.png"
+                                            alt=""
+                                        />
+                                    </a>
+                                </div>
+
+                                <div class="single-button">
+                                    <a href="#nogo">
+                                        <img
+                                            src="../assets/img/google-play-badge.png"
+                                            alt=""
+                                        />
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -159,38 +179,26 @@ export default {
                         font-size: 0.9rem;
                         font-weight: 300;
                         color: white;
-                        &:hover{
-                            color: #6AAED7;
+                        &:hover {
+                            color: #6aaed7;
                         }
                     }
                 }
             }
         }
-        .mobile {
+        .buttons-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: black;
-            border-radius: 20px;
-            &:hover {
-                background-color: #0056b3;
-            }
-            .button-container {
-                display: flex;
-                align-items: center;
-                padding: 5px 10px;
-                .icon {
-                    font-size: 30px;
-                    margin-right: 10px; 
-                }
-                .button {
-                    color: #fff;
-                    border: none;
-                    cursor: pointer;
-                    text-align: center;
-                    text-decoration: none;
-                    font-size: 16px;
-                    transition: background-color 0.3s ease; 
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            padding-top: 25px;
+            .single-button {
+                width: 180px;
+                margin-bottom: 20px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    
                 }
             }
         }
