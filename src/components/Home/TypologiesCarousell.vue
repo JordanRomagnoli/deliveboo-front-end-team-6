@@ -210,7 +210,7 @@
     }
 }
 
-    /* Regole CSS per dispositivi con larghezza massima di 600px */
+/* Regole CSS per dispositivi con larghezza massima di 600px */
 @media only screen and (max-width: 600px) {
   
 }
@@ -223,6 +223,10 @@
 
 /* Regole CSS per dispositivi con larghezza minima di 768px */
 @media only screen and (min-width: 768px) {
+
+    .container-tipology{
+        display: none;
+    }
 
 }
 

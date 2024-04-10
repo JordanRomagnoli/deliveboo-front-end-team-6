@@ -112,29 +112,27 @@
                                         {{ dish.name }}
                                     </h4>
 
+                                    <h6 class="price">
+                                        <strong>{{dish.price + '€'}}</strong>
+                                    </h6>
 
                                     <div class="button-container">
-                                        <div>
-                                            <h6 class="price p-2">
-                                                <strong>{{dish.price + '€'}}</strong>
-                                            </h6>
-                                        </div>
 
-                                        <div>
-                                            <button @click="selectDishes(dish, i)" 
-                                            :class="{
-                                                'trash' : this.store.selectedDishes.includes(dish),
-                                            }"
-                                            >
-                                                <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </div>
+                                        <button @click="selectDishes(dish, i)" 
+                                        :class="{
+                                            'trash' : this.store.selectedDishes.includes(dish),
+                                        }"
+                                        >
+                                            <span v-if="!this.store.selectedDishes.includes(dish)">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
 
-                                                <div v-else class="carticon">
-                                                    <i class="fa-solid fa-minus"></i>
-                                                </div>
-                                            </button>
-                                        </div>
+                                            <span v-else>
+                                                Rimuovi dal carrello
+                                            </span>
+
+                                        </button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -214,9 +212,6 @@
         -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
-        // &::-webkit-scrollbar-track {
-        //     border-radius: 20px !important;
-        // }
             .restaurant-info{
             padding: 25px;
             i{
@@ -258,43 +253,49 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 15px; 
+                gap: 8px; 
                 justify-content: end;
                 padding: 20px;
                 color: white;
                 background: rgb(0,0,0);
                 background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
                 
-                h3{
-                    white-space: nowrap;
+                h4{
+                    text-align: center;
                     text-overflow: ellipsis;
                     overflow: hidden;
+                }
+
+                h6{
+                    text-align: center;
                 }
 
                 .button-container{
 
                     display: flex;
-                    justify-content: flex-end;
+                    justify-content: center;
                     align-items: center;
-
-                    h6{
-                        color: white;
-                    }
-                    
                     button{
 
-                        padding: 8px 0;
-                        border-radius: 20px;
+                        border-radius: 25px;
                         border: 0;
                         background-color: #3498db;
                         color: white;
                         width: 50px;
                         height: 50px;
-                        transition: all .2s ease-in;
+                        overflow: hidden;
+                        transition: all .3s ease-in-out;
                         &.trash{
-
+                            width: 100%;
+                            border-radius: 15px;
                             color: #3498db;
                             background-color: white;
+                        }
+                        >span{
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            text-align: center;
                         }
                     }
                 }

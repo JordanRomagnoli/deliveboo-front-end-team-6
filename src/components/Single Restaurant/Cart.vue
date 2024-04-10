@@ -107,7 +107,8 @@
         width: 25%;
         .cart{
 
-            height: calc(100vh - 245px);
+            min-height: 200px;
+            max-height: calc(100vh - 245px);
             margin-bottom: 32px;
             width: 100%;
             //border: 1px solid black;

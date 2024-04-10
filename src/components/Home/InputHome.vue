@@ -157,6 +157,30 @@
 /* Regole CSS per dispositivi con larghezza minima di 768px */
 @media only screen and (min-width: 768px) {
 
+    .input{
+                
+        width: 70%;
+        height: 250px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+    }
+    
+    .typology-selected{
+        width: 60%;
+        span{
+            display: inline-block;
+            color: white;
+            margin-bottom: 8px;
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 8px;
+            border: 1.8px solid white;
+            border-radius: 10px;
+        }
+    }
+
 }
 
 /* Regole CSS per dispositivi con larghezza minima di 992px */
