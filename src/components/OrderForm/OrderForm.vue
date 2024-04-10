@@ -17,7 +17,7 @@ export default {
 
     },
     methods: {
-        getOrder() {
+        submitOrder() {
             if(
                 this.name != null && this.name != '' && this.name.length <= 128
                 &&
@@ -32,6 +32,8 @@ export default {
                 Axios.post("http://127.0.0.1:8000/api/restaurant/", {
                     name: this.name,
                     lastName: this.lastName,
+                    address: this.address,
+                    phone: this.phone,
                     email: this.email,
                 })
                 .then(response => {
@@ -42,6 +44,9 @@ export default {
                     alert('ERRORE : dati non validi');
                 });
             }
+            else{
+                alert('Inserisci dati validi')
+            }
         },
     }
     
@@ -50,32 +55,32 @@ export default {
 
 <template>
 
-    <main>
-        <section>
-            <form>
+    <main class="form-container">
+        <section class="form-container">
+            <form v-if="success != true" method="POST" @submit.prevent="submitOrder()">
                 <div class="mb-3">
                     <label for="name" class="form-label">
-                        Inserisci il tuo nome
+                        Nome
                     </label>
-                    <input type="name" class="form-control" id="name">
+                    <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" required class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="lastname" class="form-label">
-                        Inserisci il tuo cognome
+                        Cognome
                     </label>
-                    <input type="lastname" class="form-control" id="lastname">
+                    <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" required class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="phone-number" class="form-label">
+                    <label for="phone" class="form-label">
                         Inserisci il tuo numero di telefono
                     </label>
-                    <input type="phone-numbe" class="form-control" id="phone-numbe">
+                    <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" required class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="email1" class="form-label">
                         Indirizzo email
                     </label>
-                    <input type="email" class="form-control" id="mail1" aria-describedby="emailHelp">
+                    <input type="email" id="email" v-model="email" name="email" placeholder="Inserisci la tua eamil" required class="form-control" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">
                         Non condivideremo la tua email con nessuno
                     </div>
@@ -84,6 +89,11 @@ export default {
                     Esegui il checkout
                 </button>
             </form>
+            <div v-else>
+                <div>
+                    Messaggio inviato correttamente
+                </div>
+            </div>
         </section>
     </main>
 
@@ -93,6 +103,10 @@ export default {
 
 <style lang="scss">
     @import "bootstrap/scss/bootstrap";
+
+    // .form_container {
+    //     padding: 100px;
+    // }
 
 
 </style>
