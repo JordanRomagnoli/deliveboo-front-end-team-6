@@ -7,6 +7,8 @@ export default {
             store,
             name: '',
             lastName: '',
+            address: '',
+            phone: '',
             email: '',
             success: false,
         }
@@ -17,11 +19,15 @@ export default {
     methods: {
         getOrder() {
             if(
-                this.name != null && this.name != '' && this.name.length <= 64
+                this.name != null && this.name != '' && this.name.length <= 128
                 &&
-                this.email != null && this.email != '' && this.name.length <= 255
+                this.lastName != null && this.lastName != '' && this.lastName.length <= 128
                 &&
-                this.message.length <= 2048
+                this.address != null && this.address != '' && this.address.length <= 128
+                &&
+                this.phone != null && this.phone != '' && this.phone.length <= 20
+                &&
+                this.email != null && this.email != ''
             ){
                 Axios.post("http://127.0.0.1:8000/api/restaurant/", {
                     name: this.name,
