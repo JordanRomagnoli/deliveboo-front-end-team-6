@@ -7,6 +7,7 @@ import Axios from "axios";
 import HomePage from './pages/HomePage.vue';
 import RestaurantList from './pages/RestaurantList.vue';
 import SingleRestaurant from './pages/SingleRestaurant.vue';
+import OrderPage from './pages/OrderPage.vue'
 import NotFoundPage from './pages/NotFoundPage.vue';
 
 const router = createRouter({
@@ -47,6 +48,11 @@ const router = createRouter({
             path: '/single-restaurant/:slug',
             name: 'restaurant',
             component: SingleRestaurant,
+        },
+        {
+            path: '/checkout',
+            name: 'order',
+            component: OrderPage,
         },
         {
             path: '/:pathMatch(.*)*',
