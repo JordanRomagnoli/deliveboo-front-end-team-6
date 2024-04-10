@@ -42,6 +42,7 @@
                     totalPrice += parseFloat(dish.price) * quantity;
                 });
                 
+                this.store.totalPrice = totalPrice;
                 return totalPrice.toFixed(2);
             }
         },
