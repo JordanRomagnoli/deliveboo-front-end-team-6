@@ -235,8 +235,8 @@
 @media only screen and (min-width: 1200px) {
     .container-tipology{
 
-        width: 60%;
-        max-width: 60%;
+        width: 80%;
+        max-width: 80%;
         display: flex;
         align-items: center;
         position: absolute;
@@ -271,7 +271,7 @@
 
             .img-container{
 
-                width: 230px;
+                width: 100%;
                 height: 230px;
                 //border: 1px solid white;
                 border-radius: 20px;

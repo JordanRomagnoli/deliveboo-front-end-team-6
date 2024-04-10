@@ -275,7 +275,7 @@
                     align-items: center;
 
                     h6{
-                        color: red;
+                        color: white;
                     }
                     
                     button{
