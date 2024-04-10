@@ -77,48 +77,49 @@
             <section class="main-page">    
 
                 <div class="menu-container">
-                    <h3>
-                        Il Nostro Menu
-                    </h3>
+                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
+                        <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
+                    </div>
+                    
+                    <div class="mycontainerinoverflow">
+                        <div class="dish-container">
+                            <div class="dish" v-for="(dish, i) in currentSingleRestaurant.dishes" v-if="currentSingleRestaurant != null">
 
-                    <div class="dish-container">
-
-                        <div class="dish" v-for="(dish, i) in currentSingleRestaurant.dishes" v-if="currentSingleRestaurant != null">
-
-                            <div class="img-container">
-                                <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
-                            </div>
-
-                            <div class="card-body">
-
-                                <h4>
-                                    {{ dish.name }}
-                                </h4>
-
-                                <div>
-                                    <span>
-                                        {{dish.price + '€'}}
-                                    </span>
+                                <div class="img-container">
+                                    <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
                                 </div>
 
-                                <div class="button-container">
-                                    <button @click="selectDishes(dish, i)" 
-                                    :class="{
-                                        'trash' : this.store.selectedDishes.includes(dish),
-                                    }"
-                                    >
+                                <div class="card-body">
 
-                                        <span v-if="!this.store.selectedDishes.includes(dish)">
-                                            Aggiungi al Carrello
-                                        </span>
+                                    <h4>
+                                        {{ dish.name }}
+                                    </h4>
 
-                                        <span v-else>
-                                            Rimuovi dal Carrello
-                                        </span>
-                                    </button>
+
+                                    <div class="button-container">
+                                        <div>
+                                            <h6 class="price p-2">
+                                                <strong>{{dish.price + '€'}}</strong>
+                                            </h6>
+                                        </div>
+
+                                        <button @click="selectDishes(dish, i)" 
+                                        :class="{
+                                            'trash' : this.store.selectedDishes.includes(dish),
+                                        }"
+                                        >
+
+                                            <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+
+                                            <div v-else class="carticon">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -191,88 +192,96 @@
         width: 70%;
         padding: 40px 20px 20px 20px;
         height: 1000px;
-        overflow: hidden;
+        overflow-y: auto;
         -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
-        h3{
-            font-size: 1.5rem;
-            margin-left: 30px;
+            .restaurant-info{
+            padding: 25px;
+            i{
+                color:red;
+            }
         }
+            
         .dish-container{
-
             width: 100%;
             display: flex;
-            justify-content: start;
             flex-wrap: wrap;
-            .dish{
 
-                width: calc(100% / 3 - 60px);
-                margin: 15px 30px;
-                height: 370px;
-                border-radius: 20px;
-                position: relative;
-                overflow: hidden;
-                .img-container{
+        .dish{
 
-                    position: absolute;
-                    bottom: 0;
+            width: calc(100% / 3 - 60px);
+            margin: 15px 30px;
+            height: 370px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            .img-container{
+
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                top: 0;
+                img{
+
                     width: 100%;
-                    top: 0;
-                    img{
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
 
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                    }
+            .card-body{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px; 
+                justify-content: end;
+                padding: 20px;
+                color: white;
+                background: rgb(0,0,0);
+                background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
+                
+                h3{
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
                 }
 
-                .card-body{
-                    position: absolute;
-                    height: 100%;
-                    width: 100%;
+                .button-container{
+
+                    align-items: center;
                     display: flex;
-                    flex-direction: column;
-                    gap: 15px; 
-                    justify-content: end;
-                    padding: 20px;
-                    color: white;
-                    background: rgb(0,0,0);
-                    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
-                    
-                    h3{
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
+                    justify-content: flex-end;
+                    h6{
+                        color: red;
                     }
+                    button{
 
-                    .button-container{
+                        padding: 8px 0;
+                        border-radius: 20px;
+                        border: 0;
+                        background-color: #3498db;
+                        color: white;
+                        width: 50px;
+                        height: 50px;
+                        transition: all .2s ease-in;
+                        &.trash{
 
-                        align-items: center;
-                        display: flex;
-                        button{
-
-                            padding: 8px 0;
-                            border-radius: 20px;
-                            border: 0;
-                            background-color: #3498db;
-                            color: white;
-                            width: 100%;
-                            height: 100%;
-                            transition: all .2s ease-in;
-                            &.trash{
-
-                                color: #3498db;
-                                background-color: white;
-                            }
+                            color: #3498db;
+                            background-color: white;
                         }
                     }
                 }
             }
-        }
+    }    }
+
+
     }
 }
+
 
 
 
