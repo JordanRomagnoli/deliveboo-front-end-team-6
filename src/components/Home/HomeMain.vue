@@ -1,7 +1,6 @@
 <script>
     import Axios from 'axios';
     import InputHome from './InputHome.vue';
-    import TypologiesCarousell from './TypologiesCarousell.vue';
     import { store } from '../../store.js';
 
     export default {
@@ -49,7 +48,6 @@
 
         },
         components:{
-            TypologiesCarousell,
             InputHome,
         },
         created(){
@@ -76,7 +74,6 @@
             
             </transition>
 
-            <TypologiesCarousell/>
 
         </div>
     </section>

@@ -1,6 +1,8 @@
 <script>
     import Axios from 'axios';
     import { store } from '../../store.js';
+    import TypologiesCarousell from './TypologiesCarousell.vue';
+
 
     export default {
         data() {
@@ -14,6 +16,9 @@
                     'taco.jpg',
                 ],
             }
+        },
+        components:{
+            TypologiesCarousell,
         },
         computed: {
             inputHomeWithoutSpaces: function() {
@@ -64,11 +69,13 @@
             </button>
         </div>
     </div>
-    <div class="typology-selected">
+    <!-- <div class="typology-selected">
         <span v-for="(elem, i) in store.selectedTypology">
             {{ elem }}
         </span>
-    </div>
+    </div> -->
+    <TypologiesCarousell/>
+
                 
 </template>
 
@@ -126,6 +133,8 @@
             
         }
     }
+
+
 }
 
 .typology-selected{
