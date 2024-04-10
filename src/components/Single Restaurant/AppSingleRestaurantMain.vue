@@ -61,7 +61,7 @@
 
                     this.store.selectedDishes = cart;
                 }
-                
+
             }
         },
         mounted(){
@@ -126,9 +126,9 @@
                                         }"
                                         >
 
-                                        <span v-if="!this.store.selectedDishes.includes(dish)">
+                                        <!-- <span v-if="!this.store.selectedDishes.includes(dish)">
                                             <i class="fa-solid fa-plus"></i>
-                                        </span>
+                                        </span> -->
                                             <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
