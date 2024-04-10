@@ -107,29 +107,23 @@
         width: 25%;
         .cart{
 
-            min-height: 20%;
-            height: auto;
-            max-height: calc(100% - 92px);
+            height: calc(100vh - 245px);
             margin-bottom: 32px;
             width: 100%;
             //border: 1px solid black;
             border-radius: 40px;
-            display: flex;
             padding: 0 20px;
-            overflow: hidden;
             -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             .dish-list{
-                
                 overflow-y: auto;
                 display: flex;
                 flex-direction: column;
-                flex-grow: 1;
-                justify-content: start;
+                // flex-grow: 1;
+                // justify-content: start;
                 width: 100%;
                 height: 100%;
-                //background-color: aqua;
                 //max-height: 800px;
                 padding: 8px;
                 padding-top: 32px;
@@ -143,8 +137,6 @@
                     border-radius: 45px;
                     display: flex;
                     flex-direction: row;
-                    justify-content: start;
-                    overflow: hidden;
                     background-color: rgba(196, 196, 196, 0.333);
                     .left{
 

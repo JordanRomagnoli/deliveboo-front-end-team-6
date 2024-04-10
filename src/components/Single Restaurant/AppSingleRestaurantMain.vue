@@ -214,6 +214,9 @@
         -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
+        // &::-webkit-scrollbar-track {
+        //     border-radius: 20px !important;
+        // }
             .restaurant-info{
             padding: 25px;
             i{
