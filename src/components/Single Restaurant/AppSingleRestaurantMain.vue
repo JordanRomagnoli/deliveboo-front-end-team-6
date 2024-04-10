@@ -33,7 +33,6 @@
                     
                     dish['quantity'] = 1
                     this.store.selectedDishes.push(dish);
-
                     console.log('piatti selezionati', this.store.selectedDishes)
                 }
                 else{
@@ -45,11 +44,29 @@
                     }
                 }
 
+                this.saveCartToLocalStorage()
+
             },
+
+            saveCartToLocalStorage() {
+                
+                localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
+            },
+
+            getFromLocalStorage(){
+
+                if(localStorage.getItem('cart')){
+
+                    const cart = JSON.parse(localStorage.getItem('cart'));
+
+                    this.store.selectedDishes = cart;
+                }
+                
+            }
         },
         mounted(){
-
             this.getSingleRestaurant();
+            this.getFromLocalStorage();
         }
     }
 </script>
@@ -109,7 +126,7 @@
                                     >
 
                                         <span v-if="!this.store.selectedDishes.includes(dish)">
-                                            Aggiungi al Carrello
+                                            <i class="fa-solid fa-plus"></i>
                                         </span>
 
                                         <span v-else>
@@ -251,6 +268,7 @@
 
                         align-items: center;
                         display: flex;
+                        justify-content: center;
                         button{
 
                             padding: 8px 0;
@@ -258,11 +276,12 @@
                             border: 0;
                             background-color: #3498db;
                             color: white;
-                            width: 100%;
-                            height: 100%;
+                            width: 40px;
+                            height: 40px;
                             transition: all .2s ease-in;
+                            overflow: hidden;
                             &.trash{
-
+                                width: 100%;
                                 color: #3498db;
                                 background-color: white;
                             }

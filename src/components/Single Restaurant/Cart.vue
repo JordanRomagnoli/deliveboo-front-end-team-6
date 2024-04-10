@@ -12,6 +12,8 @@
             addQuantity(dish){                
 
                 dish['quantity'] ++;
+
+                this.saveCartToLocalStorage()
             },
 
             removeQuantity(dish){                
@@ -28,7 +30,14 @@
                         console.log('piatti selezionati', this.store.selectedDishes)
                     }
                 }
+
+                this.saveCartToLocalStorage()
             },
+
+            saveCartToLocalStorage() {
+
+                localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
+            }
         },
         computed: {
             totalPrice() {
