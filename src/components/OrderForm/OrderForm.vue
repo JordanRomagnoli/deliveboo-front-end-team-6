@@ -21,23 +21,23 @@ export default {
         submitOrder() {
             if(
                 this.name != null && this.name != '' && this.name.length <= 128
-                // &&
-                // this.lastName != null && this.lastName != '' && this.lastName.length <= 128
-                // &&
-                // this.address != null && this.address != '' && this.address.length <= 128
-                // &&
-                // this.phone != null && this.phone != '' && this.phone.length <= 20
-                // &&
-                // this.email != null && this.email != ''
+                &&
+                this.lastName != null && this.lastName != '' && this.lastName.length <= 128
+                &&
+                this.address != null && this.address != '' && this.address.length <= 128
+                &&
+                toString(this.phone) != null && toString(this.phone) != '' && toString(this.phone).length <= 20
+                &&
+                this.email != null && this.email != ''
             ){
                 Axios.post("http://127.0.0.1:8000/api/orders/", {
                     customer_name: this.name,
                     customer_lastname: this.lastName,
                     customer_address: this.address,
-                    customer_phone: this.phone,
+                    customer_phone: toString(this.phone),
                     customer_email: this.email,
-                    customer_total_price: this.store.totalPrice,
-
+                    customer_total_price: this.store.totalPrice
+                    //dishes: this.store.selectedDishes,
                 })
                 .then(response => {
                     this.success = response.data.success;
@@ -45,6 +45,7 @@ export default {
                 })
                 .catch((error) => {
                     alert('ERRORE : dati non validi');
+                    console.log(error);
                 });
             }
             else{
@@ -63,7 +64,7 @@ export default {
 
 <template>
 
-    <main class="form-container">
+    <main>
         <section class="form-container">
             <form v-if="success != true" method="POST" @submit.prevent="submitOrder()">
                 <div class="mb-3">
@@ -105,7 +106,7 @@ export default {
             </form>
             <div v-else>
                 <div>
-                    Messaggio inviato correttamente
+                    Ordire inviato correttamente
                 </div>
             </div>
         </section>
@@ -116,11 +117,7 @@ export default {
 </template>
 
 <style lang="scss">
-    @import "bootstrap/scss/bootstrap";
-
-    // .form_container {
-    //     padding: 100px;
-    // }
-
-
+    .form-container {
+        padding: 100px 50px;
+    }
 </style>
