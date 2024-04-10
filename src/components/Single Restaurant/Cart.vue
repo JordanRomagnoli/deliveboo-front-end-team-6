@@ -33,11 +33,16 @@
         computed: {
             totalPrice() {
                 
+                let totalPrice = 0;
+
                 this.store.selectedDishes.forEach(dish => {
                     
-                    //this.store.totalPrice += dish.price;
+                    const quantity = dish.quantity || 1;
+                    
+                    totalPrice += parseFloat(dish.price) * quantity;
                 });
-                return this.store.totalPrice;
+                
+                return totalPrice.toFixed(2);
             }
         },
     }
@@ -71,9 +76,8 @@
             </div>
             
             <div class="final-price">
-                <span>
+                <span v-if="this.store.selectedDishes.length > 0">
                     {{ totalPrice+'€' }}
-                    <!-- {{ store.totalPrice }} -->
                 </span>
             </div>
         </div>
@@ -96,7 +100,7 @@
 
             min-height: 20%;
             height: auto;
-            max-height: calc(100% - 60px);
+            max-height: calc(100% - 92px);
             margin-bottom: 32px;
             width: 100%;
             //border: 1px solid black;
@@ -183,9 +187,10 @@
 
                 padding: 16px;
                 height: auto;
+                width: 100%;
                 span{
 
-                    font-size: 1.9rem;
+                    font-size: 1.5rem;
                 }
             }
         }

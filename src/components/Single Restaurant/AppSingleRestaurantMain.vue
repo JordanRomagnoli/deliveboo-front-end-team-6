@@ -191,11 +191,13 @@
         width: 70%;
         padding: 40px 20px 20px 20px;
         height: 1000px;
+        overflow: hidden;
         -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
         h3{
-            font-size: 3rem;
+            font-size: 1.5rem;
+            margin-left: 30px;
         }
         .dish-container{
 
