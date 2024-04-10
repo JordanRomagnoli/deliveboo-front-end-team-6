@@ -120,23 +120,21 @@
                                             </h6>
                                         </div>
 
-                                        <button @click="selectDishes(dish, i)" 
-                                        :class="{
-                                            'trash' : this.store.selectedDishes.includes(dish),
-                                        }"
-                                        >
+                                        <div>
+                                            <button @click="selectDishes(dish, i)" 
+                                            :class="{
+                                                'trash' : this.store.selectedDishes.includes(dish),
+                                            }"
+                                            >
+                                                <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </div>
 
-                                        <span v-if="!this.store.selectedDishes.includes(dish)">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </span>
-                                            <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </div>
-
-                                            <div v-else class="carticon">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </div>
-                                        </button>
+                                                <div v-else class="carticon">
+                                                    <i class="fa-solid fa-minus"></i>
+                                                </div>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -272,25 +270,31 @@
 
                 .button-container{
 
-                        align-items: center;
-                        display: flex;
-                        button{
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
 
-                            padding: 8px 0;
-                            border-radius: 20px;
-                            border: 0;
-                            background-color: #3498db;
-                            color: white;
-                            width: 100%;
-                            height: 100%;
-                            transition: all .2s ease-in;
-                            &.trash{
+                    h6{
+                        color: red;
+                    }
+                    
+                    button{
 
-                                color: #3498db;
-                                background-color: white;
-                            }
+                        padding: 8px 0;
+                        border-radius: 20px;
+                        border: 0;
+                        background-color: #3498db;
+                        color: white;
+                        width: 50px;
+                        height: 50px;
+                        transition: all .2s ease-in;
+                        &.trash{
+
+                            color: #3498db;
+                            background-color: white;
                         }
                     }
+                }
                 }
             }
         }
