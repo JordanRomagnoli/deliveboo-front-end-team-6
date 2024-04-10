@@ -33,7 +33,6 @@
                     
                     dish['quantity'] = 1
                     this.store.selectedDishes.push(dish);
-
                     console.log('piatti selezionati', this.store.selectedDishes)
                 }
                 else{
@@ -45,11 +44,29 @@
                     }
                 }
 
+                this.saveCartToLocalStorage()
+
             },
+
+            saveCartToLocalStorage() {
+                
+                localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
+            },
+
+            getFromLocalStorage(){
+
+                if(localStorage.getItem('cart')){
+
+                    const cart = JSON.parse(localStorage.getItem('cart'));
+
+                    this.store.selectedDishes = cart;
+                }
+                
+            }
         },
         mounted(){
-
             this.getSingleRestaurant();
+            this.getFromLocalStorage();
         }
     }
 </script>
@@ -109,6 +126,9 @@
                                         }"
                                         >
 
+                                        <span v-if="!this.store.selectedDishes.includes(dish)">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
                                             <div v-if="!this.store.selectedDishes.includes(dish)" class="carticon">
                                                 <i class="fa-solid fa-plus"></i>
                                             </div>
@@ -252,33 +272,28 @@
 
                 .button-container{
 
-                    align-items: center;
-                    display: flex;
-                    justify-content: flex-end;
-                    h6{
-                        color: red;
-                    }
-                    button{
+                        align-items: center;
+                        display: flex;
+                        button{
 
-                        padding: 8px 0;
-                        border-radius: 20px;
-                        border: 0;
-                        background-color: #3498db;
-                        color: white;
-                        width: 50px;
-                        height: 50px;
-                        transition: all .2s ease-in;
-                        &.trash{
+                            padding: 8px 0;
+                            border-radius: 20px;
+                            border: 0;
+                            background-color: #3498db;
+                            color: white;
+                            width: 100%;
+                            height: 100%;
+                            transition: all .2s ease-in;
+                            &.trash{
 
-                            color: #3498db;
-                            background-color: white;
+                                color: #3498db;
+                                background-color: white;
+                            }
                         }
                     }
                 }
             }
-    }    }
-
-
+        }
     }
 }
 
