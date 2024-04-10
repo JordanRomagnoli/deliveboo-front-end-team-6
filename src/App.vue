@@ -34,10 +34,15 @@ export default {
         
         ::-webkit-scrollbar-track {
             background-color: #cccccc00;
+
         }
         
         ::-webkit-scrollbar-thumb {
             background-color: #00000083;
+            border-radius: 40px;
         }
+
     }
+
+
 </style>
