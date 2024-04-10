@@ -1,5 +1,6 @@
 <script>
 import { store } from '../../store';
+import Axios from 'axios';
 
 export default {
     data() {
@@ -20,32 +21,39 @@ export default {
         submitOrder() {
             if(
                 this.name != null && this.name != '' && this.name.length <= 128
-                &&
-                this.lastName != null && this.lastName != '' && this.lastName.length <= 128
-                &&
-                this.address != null && this.address != '' && this.address.length <= 128
-                &&
-                this.phone != null && this.phone != '' && this.phone.length <= 20
-                &&
-                this.email != null && this.email != ''
+                // &&
+                // this.lastName != null && this.lastName != '' && this.lastName.length <= 128
+                // &&
+                // this.address != null && this.address != '' && this.address.length <= 128
+                // &&
+                // this.phone != null && this.phone != '' && this.phone.length <= 20
+                // &&
+                // this.email != null && this.email != ''
             ){
-                Axios.post("http://127.0.0.1:8000/api/restaurant/", {
-                    name: this.name,
-                    lastName: this.lastName,
-                    address: this.address,
-                    phone: this.phone,
-                    email: this.email,
+                Axios.post("http://127.0.0.1:8000/api/orders/", {
+                    customer_name: this.name,
+                    customer_lastname: this.lastName,
+                    customer_address: this.address,
+                    customer_phone: this.phone,
+                    customer_email: this.email,
+                    customer_total_price: this.store.totalPrice,
+
                 })
                 .then(response => {
                     this.success = response.data.success;
-                    console.log(response,data);
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     alert('ERRORE : dati non validi');
                 });
             }
             else{
-                alert('Inserisci dati validi')
+                alert('Inserisci dati validi');
+                console.log(this.name);
+                console.log(this.lastName);
+                console.log(this.address);
+                console.log(this.phone);
+                console.log(this.email);
             }
         },
     }
@@ -71,13 +79,19 @@ export default {
                     <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" required class="form-control">
                 </div>
                 <div class="mb-3">
+                    <label for="address" class="form-label">
+                        Indirizzo
+                    </label>
+                    <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" required class="form-control">
+                </div>
+                <div class="mb-3">
                     <label for="phone" class="form-label">
                         Inserisci il tuo numero di telefono
                     </label>
                     <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" required class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="email1" class="form-label">
+                    <label for="email" class="form-label">
                         Indirizzo email
                     </label>
                     <input type="email" id="email" v-model="email" name="email" placeholder="Inserisci la tua eamil" required class="form-control" aria-describedby="emailHelp">
