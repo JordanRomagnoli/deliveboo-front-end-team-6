@@ -141,4 +141,53 @@
         border-radius: 10px;
     }
 }
+
+
+/* Regole CSS per dispositivi con larghezza massima di 600px */
+@media only screen and (max-width: 600px) {
+  
+}
+  
+/* Regole CSS per dispositivi con larghezza minima di 600px */
+@media only screen and (min-width: 600px) {
+
+}
+
+
+/* Regole CSS per dispositivi con larghezza minima di 768px */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Regole CSS per dispositivi con larghezza minima di 992px */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Regole CSS per dispositivi con larghezza minima di 1200px */
+@media only screen and (min-width: 1200px) {
+    .input{
+                
+        width: 50%;
+        height: 250px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+    }
+    
+    .typology-selected{
+        width: 50%;
+        span{
+            display: inline-block;
+            color: white;
+            margin-bottom: 8px;
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 8px;
+            border: 1.8px solid white;
+            border-radius: 10px;
+        }
+    }
+}
 </style>

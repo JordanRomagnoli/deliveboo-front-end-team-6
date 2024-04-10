@@ -131,6 +131,108 @@
 
 <style lang="scss" scoped>
 
+.container-tipology{
+
+    width: 60%;
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin: 0 auto;
+    bottom: - 170px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    button{
+
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border: none;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #6AAED7;
+    }
+    .single-typology{
+
+        width: calc((100% / 5) - 16px);
+        margin: 0px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3{
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+        
+
+        .img-container{
+
+            width: 230px;
+            height: 230px;
+            //border: 1px solid white;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 0px solid transparent;
+            transition: all .2s ease-in-out;
+            position: relative;
+            &.small{
+
+                height: 90px;
+            }
+            &.selected{
+                border: 6px solid #6AAED7;
+            }
+            &:hover{
+                transform: scale(1.05);
+            }
+            img{
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+                filter: grayscale(0.5);
+                
+            }
+            .color-layer{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #007bff;
+                background: linear-gradient(to top, #007bff, rgba(0, 123, 255, 0));
+                opacity: 0.1;
+                z-index: 4;
+            }
+        }            
+    }
+}
+
+    /* Regole CSS per dispositivi con larghezza massima di 600px */
+@media only screen and (max-width: 600px) {
+  
+}
+  
+/* Regole CSS per dispositivi con larghezza minima di 600px */
+@media only screen and (min-width: 600px) {
+
+}
+
+
+/* Regole CSS per dispositivi con larghezza minima di 768px */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Regole CSS per dispositivi con larghezza minima di 992px */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Regole CSS per dispositivi con larghezza minima di 1200px */
+@media only screen and (min-width: 1200px) {
     .container-tipology{
 
         width: 60%;
@@ -155,7 +257,7 @@
         }
         .single-typology{
 
-            width: calc((100% / 5) - 16px);
+            width: calc(100% / 5 - 16px);
             margin: 0px 8px;
             display: flex;
             flex-direction: column;
@@ -209,4 +311,5 @@
             }            
         }
     }
+}
 </style>

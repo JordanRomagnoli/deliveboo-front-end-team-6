@@ -61,7 +61,7 @@
 
                     this.store.selectedDishes = cart;
                 }
-                
+
             }
         },
         mounted(){
