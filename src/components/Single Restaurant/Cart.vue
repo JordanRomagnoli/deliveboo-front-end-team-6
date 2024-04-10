@@ -5,11 +5,40 @@
     export default {
         data() {
             return {
-                store, 
+                store,                 
             }
         },
         methods:{
+            addQuantity(dish){                
 
+                dish['quantity'] ++;
+            },
+
+            removeQuantity(dish){                
+
+                if(dish['quantity'] > 1){
+                    dish['quantity'] --;
+                }
+                else {
+                    
+                    const index = this.store.selectedDishes.indexOf(dish);
+                    if (index !== -1) {
+                        this.store.selectedDishes.splice(index, 1);
+
+                        console.log('piatti selezionati', this.store.selectedDishes)
+                    }
+                }
+            },
+        },
+        computed: {
+            totalPrice() {
+                
+                this.store.selectedDishes.forEach(dish => {
+                    
+                    //this.store.totalPrice += dish.price;
+                });
+                return this.store.totalPrice;
+            }
         },
     }
     </script>
@@ -21,20 +50,20 @@
                 <div v-for="(singleDish, i) in store.selectedDishes" class="dish">
                     <div class="left">
                         <h3>
-                            Nome Piatto
+                            {{ singleDish.name }}
                         </h3>
                     </div>
 
                     <div class="right">
                         <div class="quantity">
-                            <button class="plus">
-                                +
-                            </button>
-                            <span id="quantity_{{ i }}">
-                                1
-                            </span>
-                            <button class="minus">
+                            <button @click="removeQuantity(singleDish)" class="plus">
                                 -
+                            </button>
+                            <span v-if="singleDish.quantity">
+                                {{ singleDish.quantity }}
+                            </span>
+                            <button @click="addQuantity(singleDish)" class="minus">
+                                +
                             </button>
                         </div>
                     </div>
@@ -43,8 +72,8 @@
             
             <div class="final-price">
                 <span>
-                    <!-- Prezzo totale -->
-                    {{ store.totalPrice }}
+                    {{ totalPrice+'€' }}
+                    <!-- {{ store.totalPrice }} -->
                 </span>
             </div>
         </div>
@@ -70,11 +99,14 @@
             max-height: calc(100% - 60px);
             margin-bottom: 32px;
             width: 100%;
-            border: 1px solid black;
+            //border: 1px solid black;
             border-radius: 40px;
             display: flex;
             padding: 0 20px;
             overflow: hidden;
+            -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             .dish-list{
                 
                 overflow-y: auto;
@@ -93,7 +125,7 @@
                     width: 100%;
                     //background-color: aqua;
                     padding: 12px 24px;
-                    height: 90px;
+                    height: 80px;
                     margin-bottom: 24px;
                     border-radius: 45px;
                     display: flex;
@@ -105,21 +137,20 @@
 
                         height: 100%;
                         flex-grow: 1;
-                        //background-color: bisque;
                         display: flex;
                         flex-direction: row;
                         justify-content: start;
                         align-items: center;
                         h3{
                             margin: 0;
-                            font-size: 1.2rem;
+                            font-size: 1.1rem;
                         }
                     }
 
                     .right{
                         
                         height: 100%;
-                        width: 20%;
+                        width: 25%;
                         .quantity{
                             width: 100%;
                             height: 100%;
@@ -154,6 +185,7 @@
                 height: auto;
                 span{
 
+                    font-size: 1.9rem;
                 }
             }
         }

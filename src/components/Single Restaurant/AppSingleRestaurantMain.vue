@@ -20,12 +20,35 @@
                 Axios.get("http://127.0.0.1:8000/api/restaurant/" + this.$route.params.slug)
                 .then(response => {
                     this.currentSingleRestaurant = response.data.results;
-                    console.log(response);
-                    console.log(this.$route.params.slug);
+
+
+                    console.log(this.currentSingleRestaurant);
                 });
-            }
+            },
+
+            selectDishes(dish, i){
+
+                
+                if(!this.store.selectedDishes.includes(dish)){
+                    
+                    dish['quantity'] = 1
+                    this.store.selectedDishes.push(dish);
+
+                    console.log('piatti selezionati', this.store.selectedDishes)
+                }
+                else{
+                    const indexToRemove = this.store.selectedDishes.indexOf(dish);
+                    if (indexToRemove !== -1) {
+
+                        delete dish['quantity'];
+                        this.store.selectedDishes.splice(indexToRemove, 1);
+                    }
+                }
+
+            },
         },
         mounted(){
+
             this.getSingleRestaurant();
         }
     }
@@ -36,9 +59,10 @@
         <RestaurantListHeader/>
     </header>
     <main>
+
         <section>
-            <!-- v-if=" store.currentSingleRestaurant.img != null " -->
-            <div v-if="currentSingleRestaurant && currentSingleRestaurant.img != null" class="single-restaurant">
+
+            <div class="single-restaurant" v-if="currentSingleRestaurant && currentSingleRestaurant.img != null">
                 <div class="restaurant-img">
                     <img :src="'http://127.0.0.1:8000/storage/images/' + currentSingleRestaurant.img" :alt="currentSingleRestaurant.company_name"/>
                     <div class="img-overlay"></div>
@@ -51,37 +75,58 @@
             </div>
 
             <section class="main-page">    
-                <div class="menu-container p-3">
-                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
-                        <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
-                    </div>                    
-                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.dishes != null" class="dish-container">                     
-                        <div class="card my-card" v-for="dish in currentSingleRestaurant.dishes" :key="dish.id">
-                            <div class="dish-container-img">
-                                <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name" class="card-img-top">
+
+                <div class="menu-container">
+                    <h3>
+                        Il Nostro Menu
+                    </h3>
+
+                    <div class="dish-container">
+
+                        <div class="dish" v-for="(dish, i) in currentSingleRestaurant.dishes" v-if="currentSingleRestaurant != null">
+
+                            <div class="img-container">
+                                <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
                             </div>
+
                             <div class="card-body">
+
+                                <h4>
+                                    {{ dish.name }}
+                                </h4>
+
                                 <div>
-                                    <h4><strong>{{ dish.name }}</strong></h4>
-                                    <p class="card-text"> {{ dish.description }}</p>
+                                    <span>
+                                        {{dish.price + '€'}}
+                                    </span>
+                                </div>
+
+                                <div class="button-container">
+                                    <button @click="selectDishes(dish, i)" 
+                                    :class="{
+                                        'trash' : this.store.selectedDishes.includes(dish),
+                                    }"
+                                    >
+
+                                        <span v-if="!this.store.selectedDishes.includes(dish)">
+                                            Aggiungi al Carrello
+                                        </span>
+
+                                        <span v-else>
+                                            Rimuovi dal Carrello
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="mybuttoncontainer">
-                                    <div class="p-2 mt-1">
-                                        <h5><strong>{{ dish.price }} <span>&euro;</span> </strong></h5>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary mybutton" @click="addToCart">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
+                </div>
+
 
                 <Cart/>
             </section>
+
         </section>
 
     </main>
@@ -112,7 +157,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 60%; /* Altezza dell'overlay di sfumatura */
+            height: 60%; 
             background: linear-gradient(to top, rgb(255, 255, 255), transparent); /* Sfumatura verso l'alto */
         }
     }
@@ -133,77 +178,98 @@
 }
 
 .main-page{
-    justify-content: space-between;
+
     display: flex;
-    padding: 30px;
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    border-radius: 44px;
+    .menu-container{
 
-    .menu-container {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    box-shadow: 10px 10px 5px rgba(120, 120, 120, 0.225);
-
-    .restaurant-info {
-        padding: 20px;
-        span{
-            i{
-                color: red;
-            }
+        border-radius: 40px;
+        width: 70%;
+        padding: 40px 20px 20px 20px;
+        height: 1000px;
+        -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
+        h3{
+            font-size: 3rem;
         }
-    }
+        .dish-container{
 
-    .dish-container {
-        overflow: auto;
-        background-color: rgba(246, 245, 245, 0.252);
-        height: 100vh;
-        padding: 10px;
-        margin: 10px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+            .dish{
 
-        .my-card {
-            width: calc(100% / 2 - 20px);
-            margin: 10px;
-            border-radius: 30px;
-            overflow: hidden;
-            flex-direction: column;
-        }
-            .dish-container-img {
-                width: 100%;
-                height: 250px;
+                width: calc(100% / 3 - 60px);
+                margin: 15px 30px;
+                height: 370px;
+                border-radius: 20px;
+                position: relative;
+                overflow: hidden;
+                .img-container{
 
-                img{
+                    position: absolute;
+                    bottom: 0;
                     width: 100%;
+                    top: 0;
+                    img{
+
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .card-body{
+                    position: absolute;
                     height: 100%;
-                    object-fit: cover;
-                    object-position: center;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px; 
+                    justify-content: end;
+                    padding: 20px;
+                    color: white;
+                    background: rgb(0,0,0);
+                    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
+                    
+                    h3{
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    .button-container{
+
+                        align-items: center;
+                        display: flex;
+                        button{
+
+                            padding: 8px 0;
+                            border-radius: 20px;
+                            border: 0;
+                            background-color: #3498db;
+                            color: white;
+                            width: 100%;
+                            height: 100%;
+                            transition: all .2s ease-in;
+                            &.trash{
+
+                                color: #3498db;
+                                background-color: white;
+                            }
+                        }
+                    }
                 }
             }
-
-            .mybuttoncontainer{
-                padding: 20px;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-
-                h5{
-                    color: red;
-                }
-
-                .mybutton{
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-            }
-
-            }
+        }
     }
-}
 }
 
 

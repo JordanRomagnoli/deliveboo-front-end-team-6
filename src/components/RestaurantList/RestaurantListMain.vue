@@ -357,13 +357,14 @@ export default {
         margin: 4px 2px;
         transition-duration: 0.4s;
         cursor: pointer;
+        &:hover {
+            background-color: white;
+            color: #3498db;
+            border: 1px solid #3498db;
+        }
     }
 
-    button:hover {
-        background-color: white;
-        color: #3498db;
-        border: 1px solid #3498db;
-    }
+    
 
 }
 
