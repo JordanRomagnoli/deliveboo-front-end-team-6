@@ -93,7 +93,11 @@
         </div>
 
         <button>
-            Esegui checkout
+            <router-link :to="{ name: 'order' }">
+                    
+                Esegui checkout
+                    
+            </router-link>
         </button>
     </div>
 </template>
