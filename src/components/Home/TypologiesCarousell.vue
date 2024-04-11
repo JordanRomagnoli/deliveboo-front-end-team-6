@@ -24,8 +24,9 @@
                     }
                 }
                 
+                this.store.switchArray = !this.store.switchArray;
                 this.getRestaurantByTypology();
-                //console.log(this.store.selectedTypology)
+                console.log(this.store.switchArray)
             },
 
             getRestaurantByTypology(){
@@ -37,13 +38,13 @@
                     
                     if(this.store.selectedTypology.length > 0){
 
-                        this.store.restaurantPreview = res.data.results.data;
+                        this.store.restaurantTypology = res.data.results.data;
                         console.log(res)
-                        console.log(this.store.restaurantPreview)
+                        console.log(this.store.restaurantTypology)
 
                     }else{
 
-                        this.store.restaurantPreview = [];
+                        this.store.restaurantTypology = [];
 
                     }
                 });
