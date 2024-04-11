@@ -18,6 +18,11 @@ export default {
 
     },
     methods: {
+
+        saveCartToLocalStorage() { // *
+            localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
+        },
+
         submitOrder() {
             if(
                 this.name != null && this.name != '' && this.name.length <= 128
@@ -26,7 +31,7 @@ export default {
                 &&
                 this.address != null && this.address != '' && this.address.length <= 128
                 &&
-                toString(this.phone) != null && toString(this.phone) != '' && toString(this.phone).length <= 20
+                this.phone.toString() != null && this.phone.toString() != '' && this.phone.toString().length <= 20
                 &&
                 this.email != null && this.email != ''
             ){
@@ -34,27 +39,22 @@ export default {
                     customer_name: this.name,
                     customer_lastname: this.lastName,
                     customer_address: this.address,
-                    customer_phone: toString(this.phone),
+                    customer_phone: this.phone.toString(),
                     customer_email: this.email,
-                    customer_total_price: this.store.totalPrice
-                    //dishes: this.store.selectedDishes,
+                    customer_total_price: this.store.totalPrice,
+                    dishes: this.store.selectedDishes
                 })
                 .then(response => {
                     this.success = response.data.success;
-                    console.log(response.data);
+                    this.store.selectedDishes = [];
+                    this.saveCartToLocalStorage();
                 })
                 .catch((error) => {
                     alert('ERRORE : dati non validi');
-                    console.log(error);
                 });
             }
             else{
                 alert('Inserisci dati validi');
-                console.log(this.name);
-                console.log(this.lastName);
-                console.log(this.address);
-                console.log(this.phone);
-                console.log(this.email);
             }
         },
     }

@@ -35,7 +35,7 @@
                       parte dello stesso ristorante del piatto che si sta provando ad inserire
                     
                     - Se il piatto che si sta inserendo non è già presente,
-                      nel caso fosse presente lo rimuovo dall'array selectedDishes ù
+                      nel caso fosse presente lo rimuovo dall'array selectedDishes
 
                 In fine reimposto il localStorage con l'array selectedDishes *
             */
@@ -48,7 +48,7 @@
                 if(!this.store.selectedDishes.includes(dish)){
                     
                     dish['quantity'] = 1
-                    this.store.selectedDishes.push(dish);                    
+                    this.store.selectedDishes.push(dish);                 
 
                 }else{
 
@@ -86,7 +86,10 @@
 
                         if(cart[i].restaurant == this.currentSingleRestaurant) {
 
-                            this.store.selectedDishes = this.store.selectedDishes = cart;
+                            this.store.selectedDishes = cart;
+
+                            console.log('Local Storage', cart)
+                            console.log('Selected Dishes', this.store.selectedDishes)
 
                         }
                     }
@@ -334,7 +337,23 @@
     }
 }
 
-
+@media only screen and (max-width: 768px) {
+    .main-page{
+        display: flex;
+        flex-direction: column;
+        .menu-container{
+            width: 100%;
+            margin-bottom: 30px;
+            .dish-container{
+                flex-direction: column;
+                .dish{
+                    width: 100%;
+                    margin: 30px 0 ;
+                }
+            }
+        }
+    }
+}
 
 
 </style>

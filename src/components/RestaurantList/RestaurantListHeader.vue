@@ -61,7 +61,7 @@
             </router-link>
         </div>
 
-        <div class="input-container">
+        <!-- <div class="input-container">
             <input v-model="store.InputHome" type="text" @keyup.enter="navigateToList()" placeholder="Nome Ristorante">
             <button :class="{
                 'disable': inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0,
@@ -76,7 +76,7 @@
                     Cerca
                 </span>
             </button>
-        </div>
+        </div> -->
         
         <nav>
             <button class="cart">
@@ -100,7 +100,7 @@
     padding: 16px 32px;
     align-items: center;
     position: fixed;
-    top: 0;
+    top: 0; 
     right: 0;
     left: 0;
     background-color: #999;    

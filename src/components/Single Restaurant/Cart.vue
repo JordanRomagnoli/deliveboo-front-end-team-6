@@ -216,4 +216,14 @@
             }
         }
     }
+
+
+    @media only screen and (max-width: 768px) {
+        div {
+            width: 100%;
+            .cart {
+                height: 100%;
+            }
+        }
+    }
 </style>

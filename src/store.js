@@ -1,5 +1,4 @@
 import { reactive } from "vue";
-import RestaurantList from "./pages/RestaurantList.vue";
 
 export const store = reactive({
     typologies: [],

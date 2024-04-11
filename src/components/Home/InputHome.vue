@@ -63,9 +63,9 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
 
-                <router-link :to="{ name: 'list' }" v-else>
+                <span v-else>
                     Cerca
-                </router-link>
+                </span>
             </button>
         </div>
     </div>
@@ -194,5 +194,19 @@
         flex-direction: column;
         justify-content:end;
     }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .input{
+                
+        width: 30%;
+        height: 250px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+    }
+
 }
 </style>
