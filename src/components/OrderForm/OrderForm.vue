@@ -148,18 +148,20 @@ export default {
             </div>
             <div class="rightpart">
                 <div class="mycardorders">
-                    <h5 class="mb-2">
+                    <h5 class="mb-2 pb-3">
                         <strong>La tua ricevuta:</strong>
                     </h5>
-                    <div v-for="(singleDish, i) in store.selectedDishes" class="dish mb-2 d-flex justify-content-between">
-                        <div class="me-2">
-                            {{ singleDish.name }}
-                        </div>
-                        <div v-if="singleDish.quantity" class="" >
-                            x{{ singleDish.quantity }}
+                    <div class="container-dish-receipt">
+                        <div v-for="(singleDish, i) in store.selectedDishes" class="dish mb-2 d-flex justify-content-between">
+                            <div class="me-2">
+                                {{ singleDish.name }}
+                            </div>
+                            <div v-if="singleDish.quantity" class="" >
+                                x{{ singleDish.quantity }}
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex align-items-end">
+                    <div class="d-flex align-items-end pt-4">
                         <div v-if="this.store.selectedDishes.length > 0">
                             <strong>Totale:</strong> {{ totalPrice+'€' }}
                         </div>
@@ -213,7 +215,7 @@ export default {
 
     .rightpart{
         .mycardorders{
-            padding: 100px 100px;
+            padding: 50px 100px;
             height: calc(60% - 20px);
             margin-bottom: 20px ;
             background-color: rgb(240, 240, 240); // (240,240,240) rgb(235, 204, 204);
@@ -221,6 +223,11 @@ export default {
             -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
             box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+
+            .container-dish-receipt {
+                height: 200px;
+                overflow: auto;
+            }
             
             h5{
                 color:rgb(71, 71, 71);
