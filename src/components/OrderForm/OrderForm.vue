@@ -12,6 +12,25 @@ export default {
             phone: '',
             email: '',
             success: false,
+
+            formValidation: [
+                {
+                    'name': 'nameInput',
+                    'check': false
+                },
+                {
+                    'name': 'lastNameInput',
+                    'check': true
+                },
+                {
+                    'name': 'addressInput',
+                    'check': true
+                },
+                {
+                    'name': 'phoneInput',
+                    'check': true
+                },
+            ]
         }
     },
     components: {
@@ -51,20 +70,45 @@ export default {
             else{
                 alert('Inserisci dati validi');
             }
+
+            this.validationCheck();
         },
-        validationForm(){
-            let max_letters = document.querySelector(".max-letters");
-            let warning = document.querySelector(".warning");
+        // validationForm(){
+        //     let max_letters = document.querySelector(".max-letters");
+        //     //let phone_max_letters = document.querySelector(".phone_max_letters");
+        //     let warning = document.querySelector(".warning");
 
-            max_letters.addEventListener("input", function(){
-                if (max_letters.value.length > 128) {
-                    warning.classList.remove('d-none');
-                }
-                else{
-                    warning.classList.add('d-none'); 
-                }
-            })
+        //     max_letters.addEventListener("input", function(){
+        //         if (max_letters.value.length > 128 && max_letters.value.length < 3) {
+        //             warning.classList.remove('d-none');
+        //         }
+        //         else{
+        //             warning.classList.add('d-none'); 
+        //         }
+        //     });
 
+        //     // phone_max_letters.addEventListener("input", function(){
+        //     //     if (phone.length > 20 && max_letters.value.length < 6) {
+        //     //         warning.classList.remove('d-none');
+        //     //     }
+        //     //     else{
+        //     //         warning.classList.add('d-none'); 
+        //     //     }
+        //     // })
+        // },
+        validationCheck(){
+            if (this.name > 128 && this.name < 3) {
+                this.formValidation[0].check = true
+            }
+            if (this.lastName > 128 && this.lastName < 3) {
+                this.formValidation[1].check = true
+            }
+            if (this.address > 128 && this.address < 3) {
+                this.formValidation[2].check = true
+            }
+            if (this.phone > 20 && this.phone < 6) {
+                this.formValidation[3].check = true
+            }
         }
     }
     
@@ -80,10 +124,10 @@ export default {
                     <label for="name" class="form-label">
                         Nome
                     </label>
-                    <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" required class="max-letters form-control">
-                    <div class="warning d-none">
+                    <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" minlength="3" required class="max-letters form-control">
+                    <div v-if="name.length > 128" class="warning">
                         <span>
-                        Inserisci almeno 8 caratteri
+                            Inserisci un minimo di 3 caratteri e un massimo di 128 caratteri
                         </span>
                     </div>
                 </div>
@@ -91,10 +135,10 @@ export default {
                     <label for="lastname" class="form-label">
                         Cognome
                     </label>
-                    <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" required class="max-letters form-control">
+                    <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" minlength="3" required class="max-letters form-control">
                     <div class="warning d-none">
                         <span>
-                            Inserisci meno di 128 caratteri
+                            Inserisci un minimo di 3 caratteri e un massimo di 128 caratteri
                         </span>
                     </div>
                 </div>
@@ -102,10 +146,10 @@ export default {
                     <label for="address" class="form-label">
                         Indirizzo
                     </label>
-                    <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" required class="max-letters form-control">
+                    <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" minlength="3" required class="max-letters form-control">
                     <div class="warning d-none">
                         <span>
-                            Inserisci meno di 128 caratteri
+                            Inserisci un minimo di 3 caratteri e un massimo di 128 caratteri
                         </span>
                     </div>
                 </div>
@@ -113,7 +157,12 @@ export default {
                     <label for="phone" class="form-label">
                         Inserisci il tuo numero di telefono
                     </label>
-                    <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" required class="form-control">
+                    <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" minlength="6" required class="phone_max_letters form-control">
+                    <div v-if="phone.length > 20 || phone.length < 6 " class="warning">
+                        <span>
+                            Inserisci un minimo di 6 caratteri e un massimo di 20 caratteri // Inserisci un numero di telefono valido
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">
