@@ -210,6 +210,10 @@
             border: none;
             width: 100%;
             height: 60px;
+            >*{
+                text-decoration: none;
+                color: white;
+            }
         }
     }
 </style>

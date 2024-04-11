@@ -87,22 +87,126 @@
 /* Regole CSS per dispositivi con larghezza minima di 600px */
 @media only screen and (min-width: 600px) {
 
+    .container-tipology{
+
+        // DA INSERIRE UN BOTTONE CHE APRE
+        // IL CONTAINER PER SELEZIONARE LA TIPOLOGIA 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        padding: 16px;
+        border: 1px solid white;
+        border-radius: 20px;
+        background-color: #121f27a4;
+
+        .single-typology{
+            text-align: center;
+            display: block;
+            color: white;
+            margin: 10px 4px;
+            border: 1px solid white;
+            border-radius: 21px;
+            padding: 8px 10px;
+            cursor: pointer;
+            &.selected{
+                
+                background-color: white;
+                color: rgb(20, 20, 36);
+            }
+        }
+    }
+
 }
 
 
 /* Regole CSS per dispositivi con larghezza minima di 768px */
 @media only screen and (min-width: 768px) {
 
+    .container-tipology{
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 85%;
+        border: none;
+        background-color: transparent;
+        .single-typology{
+            text-align: center;
+            display: block;
+            color: white;
+            margin: 10px 4px;
+            border: 1px solid white;
+            border-radius: 21px;
+            padding: 8px 10px;
+            cursor: pointer;
+            &.selected{
+                
+                background-color: white;
+                color: rgb(20, 20, 36);
+            }
+        }
+    }
+
 }
 
 /* Regole CSS per dispositivi con larghezza minima di 992px */
 @media only screen and (min-width: 992px) {
+
+    .container-tipology{
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        .single-typology{
+            text-align: center;
+            display: block;
+            color: white;
+            margin: 16px 4px;
+            border: 1px solid white;
+            border-radius: 21px;
+            padding: 8px 16px;
+            cursor: pointer;
+            &.selected{
+                
+                background-color: white;
+                color: rgb(20, 20, 36);
+            }
+        }
+    }
 
 }
 
 /* Regole CSS per dispositivi con larghezza minima di 1200px */
 @media only screen and (min-width: 1200px) {
 
+    .container-tipology{
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        .single-typology{
+            text-align: center;
+            display: block;
+            color: white;
+            margin: 16px 6px;
+            border: 1px solid white;
+            border-radius: 21px;
+            padding: 8px 16px;
+            cursor: pointer;
+            &.selected{
+                
+                background-color: white;
+                color: rgb(20, 20, 36);
+            }
+        }
+    }
 }
 
 @media only screen and (min-width: 1400px) {
@@ -122,8 +226,11 @@
             border: 1px solid white;
             border-radius: 21px;
             padding: 8px 16px;
+            cursor: pointer;
             &.selected{
                 
+                background-color: white;
+                color: rgb(20, 20, 36);
             }
         }
     }

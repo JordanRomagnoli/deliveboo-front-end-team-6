@@ -1,8 +1,10 @@
 <script>
+    import { store } from '../../store.js';
+
     export default {
         data() {
             return { 
-                 
+                store
             }
         },
     }
@@ -19,7 +21,7 @@
 
             <button class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <div class="notify">
+                <div v-if="store.selectedDishes.length > 0" class="notify">
                 </div>
             </button>
 

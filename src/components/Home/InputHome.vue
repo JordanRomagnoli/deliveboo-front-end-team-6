@@ -69,13 +69,7 @@
             </button>
         </div>
     </div>
-    <!-- <div class="typology-selected">
-        <span v-for="(elem, i) in store.selectedTypology">
-            {{ elem }}
-        </span>
-    </div> -->
     <TypologiesCarousell/>
-
                 
 </template>
 
@@ -137,20 +131,6 @@
 
 }
 
-.typology-selected{
-    width: 25%;
-    span{
-        display: inline-block;
-        color: white;
-        margin-bottom: 8px;
-        margin-left: 4px;
-        margin-right: 4px;
-        padding: 8px;
-        border: 1.8px solid white;
-        border-radius: 10px;
-    }
-}
-
 
 /* Regole CSS per dispositivi con larghezza massima di 600px */
 @media only screen and (max-width: 600px) {
@@ -159,6 +139,16 @@
   
 /* Regole CSS per dispositivi con larghezza minima di 600px */
 @media only screen and (min-width: 600px) {
+
+    .input{
+                
+        width: 75%;
+        height: 250px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+    }
 
 }
 
@@ -175,20 +165,6 @@
         flex-direction: column;
         justify-content:end;
     }
-    
-    .typology-selected{
-        width: 60%;
-        span{
-            display: inline-block;
-            color: white;
-            margin-bottom: 8px;
-            margin-left: 4px;
-            margin-right: 4px;
-            padding: 8px;
-            border: 1.8px solid white;
-            border-radius: 10px;
-        }
-    }
 
 }
 
@@ -204,20 +180,6 @@
         flex-direction: column;
         justify-content:end;
     }
-    
-    .typology-selected{
-        width: 50%;
-        span{
-            display: inline-block;
-            color: white;
-            margin-bottom: 8px;
-            margin-left: 4px;
-            margin-right: 4px;
-            padding: 8px;
-            border: 1.8px solid white;
-            border-radius: 10px;
-        }
-    }
 
 }
 
@@ -231,20 +193,6 @@
         display: flex;
         flex-direction: column;
         justify-content:end;
-    }
-    
-    .typology-selected{
-        width: 50%;
-        span{
-            display: inline-block;
-            color: white;
-            margin-bottom: 8px;
-            margin-left: 4px;
-            margin-right: 4px;
-            padding: 8px;
-            border: 1.8px solid white;
-            border-radius: 10px;
-        }
     }
 }
 </style>

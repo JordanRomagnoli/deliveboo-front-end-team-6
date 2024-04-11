@@ -41,7 +41,6 @@
                 Axios.get('http://127.0.0.1:8000/api/typology')
                 .then(res => {
                     this.store.typologies = res.data.results;
-                    //console.log(store.typologies);
 
                 });
             },
@@ -78,9 +77,9 @@
         </div>
     </section>
     <section class="bottom-main">
-        <div class="restaurant-result">
 
-            
+        
+        <div class="restaurant-result">
             <div v-for="(restaurant, i) in store.restaurantPreview" :key="i" class="mycardcontainer">
                 <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
                     <div class="myrestaurantcard">

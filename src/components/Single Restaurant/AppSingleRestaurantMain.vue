@@ -16,28 +16,45 @@
             Cart,
         },
         methods: {
-            getSingleRestaurant() {
+            /*
+                Al mounted del componente eseguo una chiamata API per recuperare
+                il ristorante interessato, richiamando lo slug, presente all'interno della rotta
+            */
+            getSingleRestaurant(){
                 Axios.get("http://127.0.0.1:8000/api/restaurant/" + this.$route.params.slug)
                 .then(response => {
                     this.currentSingleRestaurant = response.data.results;
-
-
-                    console.log(this.currentSingleRestaurant);
                 });
             },
 
-            selectDishes(dish, i){
+            /*
+                Funzione che inserisce un piatto all'array selectedDishes in store,
+                secondo alcuni controlli:
 
-                
+                    - Se l'array contiene già almeno un elemento e quest'ultimo fà
+                      parte dello stesso ristorante del piatto che si sta provando ad inserire
+                    
+                    - Se il piatto che si sta inserendo non è già presente,
+                      nel caso fosse presente lo rimuovo dall'array selectedDishes ù
+
+                In fine reimposto il localStorage con l'array selectedDishes *
+            */
+            selectDishes(dish){
+                if(this.store.selectedDishes.length > 0 && this.store.selectedDishes[0].restaurant_id !== dish.restaurant_id) {
+                    alert("Non puoi aggiungere piatti di ristoranti diversi nel carrello");
+                    return;
+                }
+
                 if(!this.store.selectedDishes.includes(dish)){
                     
                     dish['quantity'] = 1
-                    this.store.selectedDishes.push(dish);
-                    console.log('piatti selezionati', this.store.selectedDishes)
-                }
-                else{
+                    this.store.selectedDishes.push(dish);                    
+
+                }else{
+
                     const indexToRemove = this.store.selectedDishes.indexOf(dish);
-                    if (indexToRemove !== -1) {
+
+                    if(indexToRemove !== -1){
 
                         delete dish['quantity'];
                         this.store.selectedDishes.splice(indexToRemove, 1);
@@ -45,28 +62,40 @@
                 }
 
                 this.saveCartToLocalStorage()
-
             },
 
-            saveCartToLocalStorage() {
-                
+
+            saveCartToLocalStorage() { // *
                 localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
-            },
-
+            },                
+            
+            /*
+                Al mounted del componente assegno all'array dello store selectedDishes,
+                il valore del localStorage, secondo alcuni controlli:
+                    - Se esiste la struttura dati 'cart' all'interno del localStorage,
+                      allora lo assegno.
+                    - Se i piatti all'interno della struttura 'cart' fanno parte del ristorante
+                      dal quale si sta provando ad aggiungere piatti. 
+            */
             getFromLocalStorage(){
-
-                if(localStorage.getItem('cart')){
+                if(localStorage.getItem('cart')) {
 
                     const cart = JSON.parse(localStorage.getItem('cart'));
 
-                    this.store.selectedDishes = cart;
-                }
+                    for(let i = 0; i < cart.length; i++) {
 
+                        if(cart[i].restaurant == this.currentSingleRestaurant) {
+
+                            this.store.selectedDishes = this.store.selectedDishes = cart;
+
+                        }
+                    }
+                }
             }
         },
         mounted(){
-            this.getSingleRestaurant();
             this.getFromLocalStorage();
+            this.getSingleRestaurant();
         }
     }
 </script>
@@ -118,7 +147,7 @@
 
                                     <div class="button-container">
 
-                                        <button @click="selectDishes(dish, i)" 
+                                        <button @click="selectDishes(dish)" 
                                         :class="{
                                             'trash' : this.store.selectedDishes.includes(dish),
                                         }"
