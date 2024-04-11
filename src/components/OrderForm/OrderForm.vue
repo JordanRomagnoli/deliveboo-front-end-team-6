@@ -65,7 +65,7 @@ export default {
 <template>
 
     <main>
-        <div class="myordercontainer">
+        <div class="myordercontainer leftpart">
             <div class="form-container">
                 <form v-if="success != true" method="POST" @submit.prevent="submitOrder()">
                     <div class="mb-3">
@@ -132,7 +132,7 @@ export default {
                     </div>
                 </div>
             </div>
-            <div>
+            <div class="rightpart">
                 <div class="mycardorders">
                     ricevuta
                 </div>
@@ -160,22 +160,26 @@ export default {
     margin-top: 100px;
 
     .form-container {
-        padding: 100px 50px;
+        padding: 100px 100px;
         background-color: aqua;
-    }
 
-    .warning {
-        color: red;
+            .warning {
+            color: red;
+        }
     }
 
     .mycardorders{
         border: 2px solid black;
+        padding: 100px 100px;
+        background-color: violet;
+        height: 60%;
     }
     
-
     .cardbraintree{
         border: 2px solid black;
-
+        padding: 100px 100px;
+        background-color: blue;
+        height: 40%;
     }
 }
 </style>
