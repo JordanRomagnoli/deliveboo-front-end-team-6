@@ -183,6 +183,7 @@ export default {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 100px;
     display: flex;
     justify-content: space-between;
     padding: 30px;
