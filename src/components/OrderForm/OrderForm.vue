@@ -50,13 +50,22 @@ export default {
             }
             else{
                 alert('Inserisci dati validi');
-                console.log(this.name);
-                console.log(this.lastName);
-                console.log(this.address);
-                console.log(this.phone);
-                console.log(this.email);
             }
         },
+        validationForm(){
+            let max_letters = document.querySelector(".max-letters");
+            let warning = document.querySelector(".warning");
+
+            max_letters.addEventListener("input", function(){
+                if (max_letters.value.length > 128) {
+                    warning.classList.remove('d-none');
+                }
+                else{
+                    warning.classList.add('d-none'); 
+                }
+            })
+
+        }
     }
     
 }
@@ -71,19 +80,34 @@ export default {
                     <label for="name" class="form-label">
                         Nome
                     </label>
-                    <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" required class="form-control">
+                    <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" required class="max-letters form-control">
+                    <div class="warning d-none">
+                        <span>
+                        Inserisci almeno 8 caratteri
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="lastname" class="form-label">
                         Cognome
                     </label>
-                    <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" required class="form-control">
+                    <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" required class="max-letters form-control">
+                    <div class="warning d-none">
+                        <span>
+                            Inserisci meno di 128 caratteri
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">
                         Indirizzo
                     </label>
-                    <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" required class="form-control">
+                    <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" required class="max-letters form-control">
+                    <div class="warning d-none">
+                        <span>
+                            Inserisci meno di 128 caratteri
+                        </span>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">
@@ -119,5 +143,9 @@ export default {
 <style lang="scss">
     .form-container {
         padding: 100px 50px;
+    }
+
+    .warning {
+        color: red;
     }
 </style>
