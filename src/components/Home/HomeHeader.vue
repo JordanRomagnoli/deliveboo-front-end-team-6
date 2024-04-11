@@ -38,4 +38,5 @@
 
 <style lang="scss" scoped>
     @use '../../assets/scss/Home/home-header.scss' as *;
+
 </style>
