@@ -149,15 +149,15 @@ export default {
             </div>
             <div class="rightpart">
                 <div class="mycardorders">
-                    <div class="mb-2">
-                        La tua ricevuta:
-                    </div>
-                    <div v-for="(singleDish, i) in store.selectedDishes" class="d-flex justify-content-between mb-2">
-                        <div class="me-4">
+                    <h5 class="mb-2">
+                        <strong>La tua ricevuta:</strong>
+                    </h5>
+                    <div v-for="(singleDish, i) in store.selectedDishes" class="dish mb-2 d-flex justify-content-between">
+                        <div class="me-2">
                             {{ singleDish.name }}
                         </div>
-                        <div v-if="singleDish.quantity">
-                            X {{ singleDish.quantity }}
+                        <div v-if="singleDish.quantity" class="justify-content-end" >
+                            x{{ singleDish.quantity }}
                         </div>
                     </div>
 
@@ -174,8 +174,6 @@ export default {
                         braintree
                 </div>
             </div>
-
-
         </div>
     </main>
 
@@ -218,18 +216,42 @@ export default {
 
     }
 
-    .mycardorders{
-        border: 2px solid black;
-        padding: 100px 100px;
-        background-color: violet;
-        height: 60%;
-    }
-    
-    .cardbraintree{
-        border: 2px solid black;
-        padding: 100px 100px;
-        background-color: blue;
-        height: 40%;
+    .rightpart{
+        .mycardorders{
+            padding: 100px 100px;
+            height: calc(60% - 20px);
+            margin-bottom: 20px ;
+            background-color: rgb(240, 240, 240); // (240,240,240) rgb(235, 204, 204);
+            border-radius: 30px; //50%; //30px
+            -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            
+            h5{
+                color:rgb(71, 71, 71);
+            }
+
+            .dish{
+                background-color: rgba(196, 196, 196, 0.333);
+                border-radius: 45px;
+                padding: 12px 24px;
+
+            }
+
+
+        }
+        
+        .cardbraintree{
+            padding: 100px 100px;
+            height: 40%;
+            background-color: rgb(240, 240, 240); // (240,240,240) rgb(235, 204, 204);
+            border-radius: 30px; //50%; //30px
+            -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+
+        }
+
     }
 }
 </style>
