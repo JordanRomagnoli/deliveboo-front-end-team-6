@@ -56,18 +56,7 @@ export default {
             else{
                 alert('Inserisci dati validi');
             }
-
-            this.validationCheck();
         },
-
-        validationName(){
-
-            const error = document.getElementById('name_error');
-            console.log('ciao')
-            if(this.name > 128){
-                error.classList.remove('d-none');
-            }
-        }
     }
     
 }
@@ -106,7 +95,7 @@ export default {
                         Indirizzo
                     </label>
                     <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" minlength="3" required class="max-letters form-control">
-                    <div class="warning d-none">
+                    <div v-if="!!address && (address.length < 3 || address.length > 128)" class="warning">
                         <span>
                             Inserisci un minimo di 3 caratteri e un massimo di 128 caratteri
                         </span>
@@ -117,7 +106,7 @@ export default {
                         Inserisci il tuo numero di telefono
                     </label>
                     <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" minlength="6" required class="phone_max_letters form-control">
-                    <div class="warning d-none">
+                    <div v-if="!!phone && (phone.length < 6 || phone.length > 20)" class="warning">
                         <span>
                             Inserisci un minimo di 6 caratteri e un massimo di 20 caratteri // Inserisci un numero di telefono valido
                         </span>
