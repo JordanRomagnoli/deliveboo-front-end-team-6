@@ -72,7 +72,7 @@ export default {
                         Nome
                     </label>
                     <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" minlength="3" required class="max-letters form-control">
-                    <!-- :class="{ 'warning': name.length > 128 || name.length < 3, 'd-none': !(name.length > 128 || name.length < 3) }" -->
+                    <!-- DA TENERE PER FAVORE :class="{ 'warning': name.length > 128 && name.length < 3, 'd-none': !(name.length > 128 && name.length < 3) }" -->
                     <div v-if="!!name && (name.length < 3 || name.length > 128)" class="warning">
                         <span>
                             Inserisci un minimo di 3 caratteri e un massimo di 128 caratteri
