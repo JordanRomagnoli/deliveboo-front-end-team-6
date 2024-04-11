@@ -12,9 +12,9 @@
 
 <template>
     <div class="header"> 
-        <div class="img-container">
-             <img src="..\..\assets\img\logo-header-home-page.png" alt="">
-        </div>
+        <router-link :to="{ name: 'home' }" class="img-container">
+                <img src="..\..\assets\img\logo-header-home-page.png" alt="">
+        </router-link>
         
         <nav>
 

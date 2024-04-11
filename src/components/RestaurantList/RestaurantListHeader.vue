@@ -3,6 +3,8 @@
     import { store } from '../../store.js';
     import Axios from 'axios';
 
+    
+   
 
 
     export default {
@@ -47,6 +49,13 @@
                     console.log(res)
                 });
                 next()
+            },
+            // Logo Carello reindirizzamento al cart
+            scrollToCart(){
+                const sezioneCarrello = document.querySelector('.dish-list');
+                    if (sezioneCarrello) {
+                        sezioneCarrello.scrollIntoView({ behavior: 'smooth' });
+                    }
             }
         }
     }
@@ -79,15 +88,15 @@
         </div> -->
         
         <nav>
-            <button class="cart">
+            <button class="cart" @click="scrollToCart()">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="notify">
                 </div>
             </button>
 
-            <a href="http://127.0.0.1:8000" target="_blank">
+            <!-- <a href="http://127.0.0.1:8000" target="_blank">
                 Accedi come membro
-            </a>
+            </a> -->
         </nav>
     </div>
 </template>
