@@ -119,6 +119,17 @@
                 </div>
             </div>
 
+            <!-- 
+                    Se sto mostrando i risultati ottenuti dalla ricerca effettuata 
+                    attraverso il filtraggio della tipologia dei ristoranti e 
+                    l'array contenente i risultati è vuoto, mostro il seguente messaggio...
+             -->
+            <div class="no-restaurants-found" v-if="store.restaurantTypology.length <= 0 && store.switchArray == false">
+                <h3>
+                    Nessun ristorante trovato
+                </h3>
+            </div>
+
         </div>
         
         <div class="bg">

@@ -117,6 +117,15 @@
                     }
                 }
             }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    font-weight: 400;
+                    color: #b1b1b1;
+                }
+            }
         }
 
         margin-bottom: 220px;
@@ -259,6 +268,15 @@
                         font-size: 0.8rem;
                         color: gray;
                     }
+                }
+            }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    font-weight: 400;
+                    color: #b1b1b1;
                 }
             }
         }
@@ -405,6 +423,15 @@
                     }
                 }
             }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    font-weight: 400;
+                    color: #b1b1b1;
+                }
+            }
         }
 
         margin-bottom: 220px;
@@ -539,6 +566,15 @@
                             transition: all 0.3s ease-in-out;
                         }
                     }
+                }
+            }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    font-weight: 400;
+                    color: #b1b1b1;
                 }
             }
         }
@@ -676,6 +712,16 @@
                         }
                     }
                 }
+
+            }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    font-weight: 400;
+                    color: #b1b1b1;
+                }
             }
         }
 
@@ -809,6 +855,17 @@
                             transition: all 0.3s ease-in-out;
                         }
                     }
+                }
+                
+            }
+
+            .no-restaurants-found{
+                width: 100%;
+                text-align: center;
+                h3{
+                    //text-transform: uppercase;
+                    font-weight: 400;
+                    color: #b1b1b1;
                 }
             }
         }
