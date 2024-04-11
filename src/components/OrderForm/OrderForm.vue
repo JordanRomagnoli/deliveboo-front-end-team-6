@@ -22,7 +22,6 @@ export default {
         saveCartToLocalStorage() { // *
             localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
         },
-
         submitOrder() {
             if(
                 this.name != null && this.name != '' && this.name.length <= 128
@@ -57,6 +56,22 @@ export default {
                 alert('Inserisci dati validi');
             }
         },
+    },
+    computed: {
+        totalPrice() {
+            
+            let totalPrice = 0;
+
+            this.store.selectedDishes.forEach(dish => {
+                
+                const quantity = dish.quantity || 1;
+                
+                totalPrice += parseFloat(dish.price) * quantity;
+            });
+            
+            this.store.totalPrice = totalPrice;
+            return totalPrice.toFixed(2);
+        },
     }
     
 }
@@ -70,7 +85,7 @@ export default {
                 <form v-if="success != true" method="POST" @submit.prevent="submitOrder()">
                     <div class="mb-3">
                         <label for="name" class="form-label">
-                            Nome
+                            Nome <span class="mandatory">*</span>
                         </label>
                         <input type="text" id="name" v-model="name" name="name" placeholder="Inserisci il tuo nome" maxlength="128" minlength="3" required class="max-letters form-control">
                         <!-- DA TENERE PER FAVORE :class="{ 'warning': name.length > 128 && name.length < 3, 'd-none': !(name.length > 128 && name.length < 3) }" -->
@@ -82,7 +97,7 @@ export default {
                     </div>
                     <div class="mb-3">
                         <label for="lastname" class="form-label">
-                            Cognome
+                            Cognome <span class="mandatory">*</span>
                         </label>
                         <input type="text" id="lastname" v-model="lastName" name="lastName" placeholder="Inserisci il tuo cognome" maxlength="128" minlength="3" required class="max-letters form-control">
                         <div v-if="!!lastName && (lastName.length < 3 || lastName.length > 128)" class="warning">
@@ -93,7 +108,7 @@ export default {
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">
-                            Indirizzo
+                            Indirizzo <span class="mandatory">*</span>
                         </label>
                         <input type="text" id="address" v-model="address" name="address" placeholder="Inserisci il tuo indirizzo" maxlength="128" minlength="3" required class="max-letters form-control">
                         <div v-if="!!address && (address.length < 3 || address.length > 128)" class="warning">
@@ -104,7 +119,7 @@ export default {
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">
-                            Inserisci il tuo numero di telefono
+                            Inserisci il tuo numero di telefono <span class="mandatory">*</span>
                         </label>
                         <input type="number" id="phone" v-model="phone" name="phone" placeholder="Inserisci il tuo numero di telefono" maxlength="20" minlength="6" required class="phone_max_letters form-control">
                         <div v-if="!!phone && (phone.length < 6 || phone.length > 20)" class="warning">
@@ -115,14 +130,14 @@ export default {
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">
-                            Indirizzo email
+                            Indirizzo email <span class="mandatory">*</span>
                         </label>
                         <input type="email" id="email" v-model="email" name="email" placeholder="Inserisci la tua eamil" required class="form-control" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">
                             Non condivideremo la tua email con nessuno
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="my-order-button btn">
                         Esegui il checkout
                     </button>
                 </form>
@@ -134,7 +149,26 @@ export default {
             </div>
             <div class="rightpart">
                 <div class="mycardorders">
-                    ricevuta
+                    <div class="mb-2">
+                        La tua ricevuta:
+                    </div>
+                    <div v-for="(singleDish, i) in store.selectedDishes" class="d-flex mb-2">
+                        <div class="me-4">
+                            {{ singleDish.name }}
+                        </div>
+                        <div v-if="singleDish.quantity">
+                            X {{ singleDish.quantity }}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            Totale:
+                        </div>
+                        <span v-if="this.store.selectedDishes.length > 0">
+                            {{ totalPrice+'€' }}
+                        </span>
+                    </div>
                 </div>
                 <div class="cardbraintree">
                         braintree
@@ -161,11 +195,27 @@ export default {
 
     .form-container {
         padding: 100px 100px;
-        background-color: aqua;
+        background-color: rgb(240, 240, 240); // (240,240,240) rgb(235, 204, 204);
+        border-radius: 30px; //50%; //30px
+        -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
 
-            .warning {
+        .mandatory {
             color: red;
         }
+
+        .warning {
+            color: red;
+        }
+        .my-order-button {
+            background-color: #3498db;
+            color: white;
+        }
+        .my-order-button:hover {
+            background-color: #1d5d88;
+        }  
+
     }
 
     .mycardorders{
