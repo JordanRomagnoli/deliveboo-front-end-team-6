@@ -1,6 +1,7 @@
 <script>
     import Axios from 'axios';
     import InputHome from './InputHome.vue';
+    import TypologiesCarousell from './TypologiesCarousell.vue';
     import { store } from '../../store.js';
 
     export default {
@@ -19,6 +20,16 @@
             }
         },
         methods:{
+
+            getRestaurant(){
+                Axios.get("http://127.0.0.1:8000/api/restaurant")
+                .then((res) => {
+                    
+                    this.store.allRestaurants = res.data.results.data;
+                    
+                });
+
+            },
 
             getImagePath: function (imgPath) {
                 return new URL(imgPath, import.meta.url).href;
@@ -45,16 +56,27 @@
                 });
             },
 
+            switchArray(){
+                if(this.store.switchArray != true){
+                    return this.store.restaurantTypology;
+                }
+                else{
+                    return this.store.allRestaurants;
+                }
+            }
+
         },
         components:{
             InputHome,
+            TypologiesCarousell
         },
         created(){
             this.autoPlay();
             this.getTypologies();
+            this.getRestaurant();
         },
         updated(){
-            
+
         }
     }
     </script>
@@ -65,22 +87,18 @@
 
             <div class="color-layer">
                 <InputHome/>
+                <TypologiesCarousell/>
             </div>
 
-            <transition name="fade" mode="out-in"> 
-
-                <img :src="getImagePath('../../assets/img/food-home-carousell/' + carousell[JumbotronCounter])" alt="">
+            <img :src="getImagePath('../../assets/img/food-home-carousell/' + carousell[JumbotronCounter])" alt="">
             
-            </transition>
-
-
         </div>
     </section>
     <section class="bottom-main">
 
         
         <div class="restaurant-result">
-            <div v-for="(restaurant, i) in store.restaurantPreview" :key="i" class="mycardcontainer">
+            <div v-for="(restaurant, i) in switchArray()" :key="i" class="mycardcontainer">
                 <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
                     <div class="myrestaurantcard">
                         <div v-if="restaurant.img != null" class="myrestaurantimg">
@@ -95,6 +113,10 @@
                         </div>
                     </div>
                 </router-link>
+
+                <div>
+                    <span><i class="fa-solid fa-location-dot"></i> {{restaurant.address}}</span>
+                </div>
             </div>
 
         </div>

@@ -1,7 +1,6 @@
 <script>
     import Axios from 'axios';
     import { store } from '../../store.js';
-    import TypologiesCarousell from './TypologiesCarousell.vue';
 
 
     export default {
@@ -18,7 +17,7 @@
             }
         },
         components:{
-            TypologiesCarousell,
+            //TypologiesCarousell,
         },
         computed: {
             inputHomeWithoutSpaces: function() {
@@ -69,7 +68,6 @@
             </button>
         </div>
     </div>
-    <TypologiesCarousell/>
                 
 </template>
 
