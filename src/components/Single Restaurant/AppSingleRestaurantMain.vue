@@ -337,7 +337,32 @@
     }
 }
 
+
+@media only screen and (max-width: 1200px) {
+    .main-page{
+        
+        .menu-container{
+           
+            .dish-container{
+                
+                .dish{
+                   width: calc(100% / 2 -  60px);
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 768px) {
+    
+    .single-restaurant{
+        .info-container{
+            .company-name{
+                font-size: 70px;
+            }
+        }
+    }
+    
     .main-page{
         display: flex;
         flex-direction: column;
