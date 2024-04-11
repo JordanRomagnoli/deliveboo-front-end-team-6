@@ -79,46 +79,72 @@
 
 <style lang="scss" scoped>
 
-/* Regole CSS per dispositivi con larghezza massima di 600px */
-@media only screen and (max-width: 600px) {
-  
+@media only screen and (max-width: 767px) {
+
+.container-tipology{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    padding: 16px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: #121f27a4;
+
+    .single-typology{
+        text-align: center;
+        display: block;
+        color: white;
+        margin: 10px 4px;
+        border: 1px solid white;
+        border-radius: 21px;
+        padding: 8px 10px;
+        cursor: pointer;
+        &.selected{
+            
+            background-color: white;
+            color: rgb(20, 20, 36);
+        }
+    }
+}
+
 }
   
 /* Regole CSS per dispositivi con larghezza minima di 600px */
-@media only screen and (min-width: 600px) {
+// @media only screen and (min-width: 600px) {
 
-    .container-tipology{
+//     .container-tipology{
 
-        // DA INSERIRE UN BOTTONE CHE APRE
-        // IL CONTAINER PER SELEZIONARE LA TIPOLOGIA 
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        width: 400px;
-        padding: 16px;
-        border: 1px solid white;
-        border-radius: 20px;
-        background-color: #121f27a4;
+//         display: flex;
+//         flex-wrap: wrap;
+//         justify-content: center;
+//         align-items: center;
+//         width: 400px;
+//         padding: 16px;
+//         border: 1px solid white;
+//         border-radius: 20px;
+//         background-color: #121f27a4;
 
-        .single-typology{
-            text-align: center;
-            display: block;
-            color: white;
-            margin: 10px 4px;
-            border: 1px solid white;
-            border-radius: 21px;
-            padding: 8px 10px;
-            cursor: pointer;
-            &.selected{
+//         .single-typology{
+//             text-align: center;
+//             display: block;
+//             color: white;
+//             margin: 10px 4px;
+//             border: 1px solid white;
+//             border-radius: 21px;
+//             padding: 8px 10px;
+//             cursor: pointer;
+//             &.selected{
                 
-                background-color: white;
-                color: rgb(20, 20, 36);
-            }
-        }
-    }
+//                 background-color: white;
+//                 color: rgb(20, 20, 36);
+//             }
+//         }
+//     }
 
-}
+// }
 
 
 /* Regole CSS per dispositivi con larghezza minima di 768px */
@@ -131,8 +157,10 @@
         justify-content: center;
         align-items: center;
         width: 85%;
-        border: none;
-        background-color: transparent;
+        padding: 16px;
+        // border: 1px solid white;
+        // border-radius: 20px;
+        // background-color: #121f27a4;
         .single-typology{
             text-align: center;
             display: block;
@@ -162,6 +190,10 @@
         justify-content: center;
         align-items: center;
         width: 80%;
+        padding: 16px;
+        // border: 1px solid white;
+        // border-radius: 20px;
+        // background-color: #121f27a4;
         .single-typology{
             text-align: center;
             display: block;
@@ -191,6 +223,10 @@
         justify-content: center;
         align-items: center;
         width: 70%;
+        padding: 16px;
+        // border: 1px solid white;
+        // border-radius: 20px;
+        // background-color: #121f27a4;
         .single-typology{
             text-align: center;
             display: block;
@@ -217,7 +253,11 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        width: 40%;
+        width: 70%;
+        padding: 16px;
+        // border: 1px solid white;
+        // border-radius: 20px;
+        // background-color: #121f27a4;
         .single-typology{
             text-align: center;
             display: block;

@@ -130,12 +130,20 @@
 
 
 }
-
-
-/* Regole CSS per dispositivi con larghezza massima di 600px */
 @media only screen and (max-width: 600px) {
-  
+
+.input{
+            
+    width: 55%;
+    height: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
 }
+
+}
+
   
 /* Regole CSS per dispositivi con larghezza minima di 600px */
 @media only screen and (min-width: 600px) {

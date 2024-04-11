@@ -114,7 +114,7 @@ export default {
                             </ul>
                         </div>
                         <div class="col p-3">
-                            <h4 class="mb-3">Porta Deliveboo con te</h4>
+                            <h4 class="mb-3 text-center">Porta Deliveboo con te</h4>
                             <div class="buttons-container">
                                 <div class="single-button">
                                     <a href="#nogo">
@@ -174,6 +174,7 @@ export default {
             flex-direction: column;
             width: 100%;
             padding-top: 25px;
+            align-items:center;
             .single-button {
                 width: 180px;
                 margin-bottom: 10px;
