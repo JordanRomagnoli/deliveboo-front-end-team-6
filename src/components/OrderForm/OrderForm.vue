@@ -152,7 +152,7 @@ export default {
                     <div class="mb-2">
                         La tua ricevuta:
                     </div>
-                    <div v-for="(singleDish, i) in store.selectedDishes" class="d-flex mb-2">
+                    <div v-for="(singleDish, i) in store.selectedDishes" class="d-flex justify-content-between mb-2">
                         <div class="me-4">
                             {{ singleDish.name }}
                         </div>
