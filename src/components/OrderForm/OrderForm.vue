@@ -18,7 +18,6 @@ export default {
 
     },
     methods: {
-
         saveCartToLocalStorage() { // *
             localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
         },
@@ -156,22 +155,18 @@ export default {
                         <div class="me-2">
                             {{ singleDish.name }}
                         </div>
-                        <div v-if="singleDish.quantity" class="justify-content-end" >
+                        <div v-if="singleDish.quantity" class="" >
                             x{{ singleDish.quantity }}
                         </div>
                     </div>
-
-                    <div>
-                        <div>
-                            Totale:
+                    <div class="d-flex align-items-end">
+                        <div v-if="this.store.selectedDishes.length > 0">
+                            <strong>Totale:</strong> {{ totalPrice+'€' }}
                         </div>
-                        <span v-if="this.store.selectedDishes.length > 0">
-                            {{ totalPrice+'€' }}
-                        </span>
                     </div>
                 </div>
                 <div class="cardbraintree">
-                        braintree
+                    braintree
                 </div>
             </div>
         </div>
