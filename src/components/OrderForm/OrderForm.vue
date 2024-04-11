@@ -19,6 +19,16 @@ export default {
     },
     methods: {
 
+        getFromLocalStorage(){
+            if(localStorage.getItem('cart')) {
+
+                const cart = JSON.parse(localStorage.getItem('cart'));
+
+                this.store.selectedDishes = cart;
+
+            }
+        },
+
         saveCartToLocalStorage() { // *
             localStorage.setItem('cart', JSON.stringify(this.store.selectedDishes));
         },

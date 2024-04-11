@@ -1,118 +1,102 @@
 <script>
-    import { store } from '../../store.js';
-    import Axios from 'axios';
+import { store } from "../../store.js";
+import Axios from "axios";
 
-
-    export default {
-        data() {
-            return {
-                store,   
+export default {
+    data() {
+        return {
+            store,
+        };
+    },
+    methods: {
+        selectTypology(typology, i) {
+            if (!this.store.selectedTypology.includes(typology)) {
+                this.store.selectedTypology.push(typology);
+            } else {
+                const indexToRemove =
+                    this.store.selectedTypology.indexOf(typology);
+                if (indexToRemove !== -1) {
+                    // Assicurati che l'elemento sia stato trovato
+                    this.store.selectedTypology.splice(indexToRemove, 1); // Rimuovi l'elemento dall'array
+                }
             }
+
+            this.getRestaurantByTypology();
+            console.log(this.store.switchArray);
         },
-        methods:{
 
-            selectTypology(typology, i){
-
-                if(!this.store.selectedTypology.includes(typology)){
-
-                    this.store.selectedTypology.push(typology);
-                }
-                else{
-                    const indexToRemove = this.store.selectedTypology.indexOf(typology);
-                    if (indexToRemove !== -1) { // Assicurati che l'elemento sia stato trovato
-                        this.store.selectedTypology.splice(indexToRemove, 1); // Rimuovi l'elemento dall'array
-                    }
-                }
-                
-                this.store.switchArray = !this.store.switchArray;
-                this.getRestaurantByTypology();
-                console.log(this.store.switchArray)
-            },
-
-            getRestaurantByTypology(){
-                Axios.get("http://127.0.0.1:8000/api/restaurant", {
-                    params: {
-                        typologies: this.store.selectedTypology,
-                    },
-                }).then((res) => {
+        getRestaurantByTypology() {
+            Axios.get("http://127.0.0.1:8000/api/restaurant", {
+                params: {
+                    typologies: this.store.selectedTypology,
+                },
+            }).then((res) => {
+                if (this.store.selectedTypology.length > 0) {
+                    this.store.restaurantTypology = res.data.results.data;
+                    this.store.switchArray = false;
                     
-                    if(this.store.selectedTypology.length > 0){
+                }else {
 
-                        this.store.restaurantTypology = res.data.results.data;
-                        console.log(res)
-                        console.log(this.store.restaurantTypology)
-
-                    }else{
-
-                        this.store.restaurantTypology = [];
-
-                    }
-                });
-
-            },
-
+                    this.store.switchArray = true;
+                    this.store.restaurantTypology = [];
+                }
+            });
         },
-        components:{
-           
-        },
-        setup() {
-            return {
-                
-            };
-        },
-        mounted(){
-            
-        }
-    }
-    </script>
+    },
+    components: {},
+    setup() {
+        return {};
+    },
+    mounted() {},
+};
+</script>
 
 <template>
-    
     <div class="container-tipology">
-        <span class="single-typology"  @click="selectTypology(elem.name, i)" v-for="(elem, i) in store.typologies" :key="i" :class="{
-            'selected' : store.selectedTypology.includes(elem.name),
-        }">
+        <span
+            class="single-typology"
+            @click="selectTypology(elem.name, i)"
+            v-for="(elem, i) in store.typologies"
+            :key="i"
+            :class="{
+                selected: store.selectedTypology.includes(elem.name),
+            }"
+        >
             {{ elem.name }}
         </span>
     </div>
-
 </template>
 
 <style lang="scss" scoped>
-
 @media only screen and (max-width: 767px) {
-
-.container-tipology{
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 350px;
-    padding: 16px;
-    border: 1px solid white;
-    border-radius: 20px;
-    background-color: #121f27a4;
-
-    .single-typology{
-        text-align: center;
-        display: block;
-        color: white;
-        margin: 10px 4px;
+    .container-tipology {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        padding: 16px;
         border: 1px solid white;
-        border-radius: 21px;
-        padding: 8px 10px;
-        cursor: pointer;
-        &.selected{
-            
-            background-color: white;
-            color: rgb(20, 20, 36);
+        border-radius: 20px;
+        background-color: #121f27a4;
+
+        .single-typology {
+            text-align: center;
+            display: block;
+            color: white;
+            margin: 10px 4px;
+            border: 1px solid white;
+            border-radius: 21px;
+            padding: 8px 10px;
+            cursor: pointer;
+            &.selected {
+                background-color: white;
+                color: rgb(20, 20, 36);
+            }
         }
     }
 }
 
-}
-  
 /* Regole CSS per dispositivi con larghezza minima di 600px */
 // @media only screen and (min-width: 600px) {
 
@@ -138,7 +122,7 @@
 //             padding: 8px 10px;
 //             cursor: pointer;
 //             &.selected{
-                
+
 //                 background-color: white;
 //                 color: rgb(20, 20, 36);
 //             }
@@ -147,12 +131,9 @@
 
 // }
 
-
 /* Regole CSS per dispositivi con larghezza minima di 768px */
 @media only screen and (min-width: 768px) {
-
-    .container-tipology{
-
+    .container-tipology {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -162,7 +143,7 @@
         // border: 1px solid white;
         // border-radius: 20px;
         // background-color: #121f27a4;
-        .single-typology{
+        .single-typology {
             text-align: center;
             display: block;
             color: white;
@@ -171,21 +152,17 @@
             border-radius: 21px;
             padding: 8px 10px;
             cursor: pointer;
-            &.selected{
-                
+            &.selected {
                 background-color: white;
                 color: rgb(20, 20, 36);
             }
         }
     }
-
 }
 
 /* Regole CSS per dispositivi con larghezza minima di 992px */
 @media only screen and (min-width: 992px) {
-
-    .container-tipology{
-
+    .container-tipology {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -195,7 +172,7 @@
         // border: 1px solid white;
         // border-radius: 20px;
         // background-color: #121f27a4;
-        .single-typology{
+        .single-typology {
             text-align: center;
             display: block;
             color: white;
@@ -204,21 +181,17 @@
             border-radius: 21px;
             padding: 8px 16px;
             cursor: pointer;
-            &.selected{
-                
+            &.selected {
                 background-color: white;
                 color: rgb(20, 20, 36);
             }
         }
     }
-
 }
 
 /* Regole CSS per dispositivi con larghezza minima di 1200px */
 @media only screen and (min-width: 1200px) {
-
-    .container-tipology{
-
+    .container-tipology {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -228,7 +201,7 @@
         // border: 1px solid white;
         // border-radius: 20px;
         // background-color: #121f27a4;
-        .single-typology{
+        .single-typology {
             text-align: center;
             display: block;
             color: white;
@@ -237,8 +210,7 @@
             border-radius: 21px;
             padding: 8px 16px;
             cursor: pointer;
-            &.selected{
-                
+            &.selected {
                 background-color: white;
                 color: rgb(20, 20, 36);
             }
@@ -247,19 +219,17 @@
 }
 
 @media only screen and (min-width: 1400px) {
-
-    .container-tipology{
-
+    .container-tipology {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        width: 70%;
+        width: 50%;
         padding: 16px;
         // border: 1px solid white;
         // border-radius: 20px;
         // background-color: #121f27a4;
-        .single-typology{
+        .single-typology {
             text-align: center;
             display: block;
             color: white;
@@ -268,13 +238,11 @@
             border-radius: 21px;
             padding: 8px 16px;
             cursor: pointer;
-            &.selected{
-                
+            &.selected {
                 background-color: white;
                 color: rgb(20, 20, 36);
             }
         }
     }
-
 }
 </style>

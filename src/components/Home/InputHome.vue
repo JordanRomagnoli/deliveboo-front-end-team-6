@@ -26,13 +26,26 @@
         },
         methods:{
 
+            getRestaurantByName(){
+
+                Axios.get("http://127.0.0.1:8000/api/restaurant",{
+                    params:{
+                        name : this.store.InputHome
+                    }
+                })
+                .then(response => {
+                    this.allRestaurants = response.data.results
+                })                
+
+            },
+
             getImagePath: function (imgPath) {
                 return new URL(imgPath, import.meta.url).href;
             },
 
             navigateToList() {
                 
-                if (this.inputHomeWithoutSpaces === '' && this.store.selectedTypology.length === 0) {
+                if (this.inputHomeWithoutSpaces === '') {
 
                 } else {
                     
@@ -54,15 +67,15 @@
         <div class="input-container">
             <input v-model="store.InputHome" type="text" @keyup.enter="navigateToList()" placeholder="Nome Ristorante">
             <button :class="{
-                'disable': inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0,
+                'disable': inputHomeWithoutSpaces == '',
             }"
             >
                 
-                <span v-if=" inputHomeWithoutSpaces == '' && store.selectedTypology.length === 0">
+                <span v-if=" inputHomeWithoutSpaces == ''">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
 
-                <span v-else>
+                <span @click="getRestaurantByName()" v-else>
                     Cerca
                 </span>
             </button>
@@ -130,15 +143,15 @@
 }
 @media only screen and (max-width: 600px) {
 
-.input{
-            
-    width: 55%;
-    height: 250px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content:end;
-}
+    .input{
+                
+        width: 80%;
+        height: 250px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+    }
 
 }
 

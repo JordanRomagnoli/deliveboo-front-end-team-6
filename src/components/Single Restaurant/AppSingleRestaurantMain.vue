@@ -94,7 +94,23 @@
                         }
                     }
                 }
-            }
+            },
+
+            descriptionVisible(index){
+                const descriptionClass = 'description_' + index;
+                const descriptionElement = document.querySelector('.' + descriptionClass);
+                if (descriptionElement) {
+                    descriptionElement.classList.remove('d-none');
+                }
+            },
+
+            hideDescription(index) {
+                const descriptionClass = '.description_' + index;
+                const descriptionElement = document.querySelector(descriptionClass);
+                if (descriptionElement) {
+                    descriptionElement.classList.add('d-none');
+                }
+            },
         },
         mounted(){
             this.getFromLocalStorage();
@@ -133,6 +149,14 @@
                     <div class="mycontainerinoverflow">
                         <div class="dish-container">
                             <div class="dish" v-for="(dish, i) in currentSingleRestaurant.dishes" v-if="currentSingleRestaurant != null">
+
+                                <button class="info" @mouseenter="descriptionVisible(i)" @mouseleave="hideDescription(i)">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+
+                                <p :class="'description_'+i" class="description d-none">
+                                    {{ dish.description }}
+                                </p>
 
                                 <div class="img-container">
                                     <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
@@ -264,6 +288,29 @@
             border-radius: 20px;
             position: relative;
             overflow: hidden;
+            .info{
+                position: absolute;
+                top: 4px;
+                right: 4px;
+                z-index: 2;
+                color: white;
+                background-color: transparent;
+                border: none;
+                font-size: 1.3rem;
+            }
+            .description{
+                position: absolute;
+                top: 50px;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                background: rgb(0, 0, 0);
+                background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.591) 48%, rgba(0,0,0,0) 100%);
+                color: white;
+                padding: 16px;
+                margin: 0;
+                z-index: 3;
+            }
             .img-container{
 
                 position: absolute;
