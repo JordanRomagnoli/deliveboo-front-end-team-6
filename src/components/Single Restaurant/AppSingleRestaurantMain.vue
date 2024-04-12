@@ -427,6 +427,7 @@
     .main-page{
         display: flex;
         flex-direction: column;
+        position: relative;
         .menu-container{
             width: 100%;
             margin-bottom: 30px;
@@ -440,6 +441,5 @@
         }
     }
 }
-
 
 </style>
