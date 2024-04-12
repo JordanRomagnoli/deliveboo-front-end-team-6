@@ -110,13 +110,16 @@
                             <h2 class="text-h2">
                                 {{ restaurant.company_name }}
                             </h2>
+                            <span><i class="fa-solid fa-location-dot"></i> {{restaurant.address}}</span>
+                        </div>
+                        <div class="d-flex justify-content-end p-3">
+                            <div class="badge text-bg-primary">Primary</div>
                         </div>
                     </div>
                 </router-link>
-
-                <div>
+                <!-- <div>
                     <span><i class="fa-solid fa-location-dot"></i> {{restaurant.address}}</span>
-                </div>
+                </div> -->
             </div>
 
             <!-- 
