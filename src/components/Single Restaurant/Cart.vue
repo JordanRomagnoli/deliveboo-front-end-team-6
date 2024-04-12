@@ -88,9 +88,10 @@
                 Non hai nessun piatto nel carrello
             </span>
             <div class="final-price">
-                <span v-if="this.store.selectedDishes.length > 0">
+                <div v-if="this.store.selectedDishes.length > 0">
                     {{ totalPrice+'€' }}
-                </span>
+                    <span><i class="fa-solid fa-trash"></i></span>
+                </div>
             </div>
         </div>
 
@@ -200,10 +201,6 @@
                 padding: 16px;
                 height: auto;
                 width: 100%;
-                span{
-
-                    font-size: 1.5rem;
-                }
             }
         }
 
