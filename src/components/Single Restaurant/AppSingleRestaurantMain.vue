@@ -156,8 +156,15 @@
             <section class="main-page">    
 
                 <div class="menu-container">
-                    <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
-                        <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
+                    <div class="d-flex justify-content-between align-items-center p-4">
+                        <div v-if="currentSingleRestaurant && currentSingleRestaurant.address != null" class="restaurant-info">
+                            <span><i class="fa-solid fa-location-dot"></i></span> <strong>{{ currentSingleRestaurant.address }}</strong>
+                        </div>
+                        <div class="homebadge">
+                            <router-link :to="{ name: 'home' }" class="text-decoration-none">
+                                <i class="fa-solid fa-house"></i>
+                            </router-link>
+                        </div>
                     </div>
                     
                     <div class="mycontainerinoverflow">
@@ -283,11 +290,22 @@
         -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
             .restaurant-info{
-            padding: 25px;
             i{
                 color:red;
             }
+
         }
+
+        .homebadge{
+            padding: 5px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 20px;
+            i{
+                color: white;
+            }
+        }
+
             
         .dish-container{
             width: 100%;
