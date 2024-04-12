@@ -16,7 +16,7 @@ export default {
     },
     components: {},
     methods: {
-        goback(){
+        goback() {
             this.$router.go(-1);
         },
 
@@ -28,8 +28,9 @@ export default {
             }
         },
 
-        saveCartToLocalStorage() {// *
-            
+        saveCartToLocalStorage() {
+            // *
+
             localStorage.setItem(
                 "cart",
                 JSON.stringify(this.store.selectedDishes)
@@ -96,13 +97,12 @@ export default {
 
 <template>
     <main>
-
         <div class="myordercontainer leftpart">
             <div class="myhomebadge mb-3 d-inline ms-3">
                 <span @click="goback()" class="p-1">Torna al menu</span>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="flex mt-3">
                 <div class="form-container">
                     <form
                         v-if="success != true"
@@ -127,13 +127,14 @@ export default {
                             <!-- DA TENERE PER FAVORE :class="{ 'warning': name.length > 128 && name.length < 3, 'd-none': !(name.length > 128 && name.length < 3) }" -->
                             <div
                                 v-if="
-                                    !!name && (name.length < 3 || name.length > 128)
+                                    !!name &&
+                                    (name.length < 3 || name.length > 128)
                                 "
                                 class="warning"
                             >
                                 <span>
-                                    Inserisci un minimo di 3 caratteri e un massimo
-                                    di 128 caratteri
+                                    Inserisci un minimo di 3 caratteri e un
+                                    massimo di 128 caratteri
                                 </span>
                             </div>
                         </div>
@@ -155,13 +156,14 @@ export default {
                             <div
                                 v-if="
                                     !!lastName &&
-                                    (lastName.length < 3 || lastName.length > 128)
+                                    (lastName.length < 3 ||
+                                        lastName.length > 128)
                                 "
                                 class="warning"
                             >
                                 <span>
-                                    Inserisci un minimo di 3 caratteri e un massimo
-                                    di 128 caratteri
+                                    Inserisci un minimo di 3 caratteri e un
+                                    massimo di 128 caratteri
                                 </span>
                             </div>
                         </div>
@@ -188,8 +190,8 @@ export default {
                                 class="warning"
                             >
                                 <span>
-                                    Inserisci un minimo di 3 caratteri e un massimo
-                                    di 128 caratteri
+                                    Inserisci un minimo di 3 caratteri e un
+                                    massimo di 128 caratteri
                                 </span>
                             </div>
                         </div>
@@ -217,9 +219,9 @@ export default {
                                 class="warning"
                             >
                                 <span>
-                                    Inserisci un minimo di 6 caratteri e un massimo
-                                    di 20 caratteri // Inserisci un numero di
-                                    telefono valido
+                                    Inserisci un minimo di 6 caratteri e un
+                                    massimo di 20 caratteri // Inserisci un
+                                    numero di telefono valido
                                 </span>
                             </div>
                         </div>
@@ -238,12 +240,20 @@ export default {
                                 aria-describedby="emailHelp"
                             />
                             <div id="emailHelp" class="form-text">
-                                <span class="nb">Non condivideremo la tua email con nessuno</span>
+                                <span class="nb"
+                                    >Non condivideremo la tua email con
+                                    nessuno</span
+                                >
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-2"
+                        >
                             <div class="homebadge">
-                                <button type="submit" class="my-order-button btn">
+                                <button
+                                    type="submit"
+                                    class="my-order-button btn"
+                                >
                                     Esegui il checkout
                                 </button>
                             </div>
@@ -272,7 +282,10 @@ export default {
                             </div>
                         </div>
                         <div class="d-flex align-items-end pt-4">
-                            <div v-if="this.store.selectedDishes.length > 0" class="">
+                            <div
+                                v-if="this.store.selectedDishes.length > 0"
+                                class=""
+                            >
                                 <strong>Totale:</strong> {{ totalPrice + "€" }}
                             </div>
                         </div>
@@ -281,7 +294,6 @@ export default {
                 </div>
             </div>
         </div>
-
     </main>
 </template>
 
@@ -292,7 +304,7 @@ export default {
     padding-bottom: 200px;
     margin-top: 130px;
 
-    .myhomebadge{
+    .myhomebadge {
         padding: 2px 10px;
         background-color: #3498db;
         color: white;
@@ -300,15 +312,10 @@ export default {
         cursor: pointer;
     }
 
-
     .form-container {
         padding: 32px;
         width: 50%;
-        background-color: rgb(
-            240,
-            240,
-            240
-        );
+        background-color: rgb(240, 240, 240);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -317,9 +324,7 @@ export default {
         -moz-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
 
-
-
-        input{
+        input {
             width: 100%;
             padding: 8px 16px;
             border-radius: 20px;
@@ -343,22 +348,15 @@ export default {
         .my-order-button:hover {
             background-color: #1d5d88;
         }
-
-
     }
 
     .rightpart {
-
         width: 30%;
         .mycardorders {
             // padding: 32px;
             height: calc(60% - 20px);
             margin-bottom: 20px;
-            background-color: rgb(
-                240,
-                240,
-                240
-            );
+            background-color: rgb(240, 240, 240);
             border-radius: 30px;
             -webkit-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
             -moz-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
@@ -379,7 +377,7 @@ export default {
                 padding: 12px 24px;
                 width: 100%;
                 height: 60px;
-                .left{
+                .left {
                     width: 80%;
                     font-size: 0.8rem;
                     overflow: hidden;
@@ -387,7 +385,7 @@ export default {
                     align-items: center;
                     text-overflow: ellipsis;
                 }
-                .right{
+                .right {
                     width: 10%;
                     display: flex;
                     justify-content: center;
@@ -413,15 +411,63 @@ export default {
     }
 }
 
-
 @media only screen and (max-width: 992px) {
     .myordercontainer {
-        flex-direction: column;
+        max-width: none;
+        width: 80%;
+        .flex {
+            display: flex;
+            flex-direction: column-reverse;
+            .form-container {
+                margin-top: 20px;
+                form {
+                    width: 100%;
+                    &>*{
+                        width: 80%;
+                        margin: 0  auto;
+                    }
+                }
+            }
+        }
         .form-container {
-            padding: 50px 50px;
+            width: 100%;
+            padding: 10px 10px;
         }
         .rightpart {
+            width: 100%;
+            min-height: 200px;
             margin-top: 30px;
+            .mycardorders {
+                padding: 30px 30px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .myordercontainer {
+        max-width: none;
+        width: 80%;
+        .flex {
+            display: flex;
+            flex-direction: row;    
+            justify-content: space-between; 
+            .form-container {
+                width: 50%;
+                form {
+                    width: 100%;
+                    &>*{
+                        width: 80%;
+                        margin: 0  auto;
+                    }
+                }
+            }
+        }
+
+        .rightpart {
+            width: 30%;
+            min-height: 200px;
             .mycardorders {
                 padding: 30px 30px;
                 text-align: center;
