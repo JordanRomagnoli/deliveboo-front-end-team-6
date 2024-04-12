@@ -22,11 +22,20 @@
         methods:{
 
             getRestaurant(){
-                Axios.get("http://127.0.0.1:8000/api/restaurant")
+                Axios.get("http://127.0.0.1:8000/api/restaurant",{
+                    params: {
+                        slug: this.inputHomeWithoutSpaces
+                    }
+                })
                 .then((res) => {
                     
                     this.store.allRestaurants = res.data.results.data;
-                    
+                    console.log('risposta della chiamata API')
+                    console.log(res)
+
+                    console.log('Input')
+                    console.log('Input')
+
                 });
 
             },
@@ -75,9 +84,11 @@
             this.getTypologies();
             this.getRestaurant();
         },
-        updated(){
-
-        }
+        computed: {
+            inputHomeWithoutSpaces: function() {
+                return this.store.InputHome.replace(/\s/g, "");
+            }
+        },
     }
     </script>
 
@@ -86,7 +97,7 @@
         <div class="carousell">
 
             <div class="color-layer">
-                <InputHome/>
+                <InputHome @search="getRestaurant()"/>
                 <TypologiesCarousell/>
             </div>
 
@@ -112,11 +123,11 @@
                             </h2>
                             <span><i class="fa-solid fa-location-dot"></i> {{restaurant.address}}</span>
                         </div>
-                        <div class="d-flex justify-content-end p-3">
-                            <div class="badge text-bg-primary">Primary</div>
-                        </div>
                     </div>
                 </router-link>
+                <div class="typology-tag">
+                    <span v-for="(typology, i) in restaurant.typologies">{{ typology.name }}</span>
+                </div>
                 <!-- <div>
                     <span><i class="fa-solid fa-location-dot"></i> {{restaurant.address}}</span>
                 </div> -->

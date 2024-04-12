@@ -222,18 +222,5 @@
     }
 
 
-    @media only screen and (max-width: 768px) {
-        div {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            width: 100%;
-            .cart {
-                height: 100%;
-
-                
-            }
-        }
-    }
+    
 </style>

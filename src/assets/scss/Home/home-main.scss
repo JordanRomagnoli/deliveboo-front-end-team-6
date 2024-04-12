@@ -105,13 +105,26 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+
+                        span {
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-size: 0.8rem;
+                            color: white;
+                        }
                     }
                 }
-                span {
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    font-size: 0.8rem;
-                    color: gray;
+
+                .typology-tag{
+                    text-align: end;
+                    span{
+                        font-size: 0.8rem;
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
+                    }
                 }
             
             }
@@ -257,14 +270,25 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+
+                        span {
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-size: 0.8rem;
+                            color: white;
+                        }
                     }
                 }
-                div {
-                    span {
-                        text-overflow: ellipsis;
-                        overflow: hidden;
+
+                .typology-tag{
+                    text-align: end;
+                    span{
                         font-size: 0.8rem;
-                        color: gray;
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
                     }
                 }
             }
@@ -411,15 +435,25 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+
+                        span {
+                            font-size: 0.8rem;
+                            color: white;
+                        }
                     }
                 }
 
-                div {
-                    span {
-                        font-size: 0.8rem;
-                        color: gray;
+                .typology-tag{
+                    text-align: end;
+                    span{
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
                     }
                 }
+
             }
 
             .no-restaurants-found{
@@ -563,6 +597,21 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+
+                        span{
+                            color: white;
+                        }
+                    }
+                }
+
+                .typology-tag{
+                    text-align: end;
+                    span{
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
                     }
                 }
             }
@@ -708,6 +757,21 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+
+                        span{
+                            color: white;
+                        }
+                    }
+                }
+
+                .typology-tag{
+                    text-align: end;
+                    span{
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
                     }
                 }
 
@@ -839,9 +903,10 @@
                     }
                     .myrestaurantcardbody {
                         position: absolute;
-                        bottom: 40px;
+                        bottom: 0;
                         left: 0;
                         right: 0;
+                        padding: 16px;
                         h2 {
                             color: white;
                             font-size: 1.6rem;
@@ -850,6 +915,23 @@
                             overflow: hidden;
                             transition: all 0.3s ease-in-out;
                         }
+                        span{
+                            color: white;
+                            //white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+
+                .typology-tag{
+                    text-align: end;
+                    span{
+                        padding: 4px 8px;
+                        border-radius: 16px;
+                        background-color: #4e5253;
+                        color: white;
+                        margin: 0 4px;
                     }
                 }
                 

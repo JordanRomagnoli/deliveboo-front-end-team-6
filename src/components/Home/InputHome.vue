@@ -26,17 +26,8 @@
         },
         methods:{
 
-            getRestaurantByName(){
-
-                Axios.get("http://127.0.0.1:8000/api/restaurant",{
-                    params:{
-                        name : this.store.InputHome
-                    }
-                })
-                .then(response => {
-                    this.allRestaurants = response.data.results
-                })                
-
+            getRestaurantByName() {
+                this.$emit('search');
             },
 
             getImagePath: function (imgPath) {
@@ -65,8 +56,8 @@
             Cerca il tuo ristorante ...
         </h1>
         <div class="input-container">
-            <input v-model="store.InputHome" type="text" @keyup.enter="navigateToList()" placeholder="Nome Ristorante">
-            <button :class="{
+            <input v-model="store.InputHome" type="text" placeholder="Nome Ristorante">
+            <button @click="getRestaurantByName()" :class="{
                 'disable': inputHomeWithoutSpaces == '',
             }"
             >
@@ -75,7 +66,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
 
-                <span @click="getRestaurantByName()" v-else>
+                <span v-else>
                     Cerca
                 </span>
             </button>

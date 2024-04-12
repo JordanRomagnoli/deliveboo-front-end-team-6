@@ -416,30 +416,30 @@
 
 @media only screen and (max-width: 768px) {
     
-    .single-restaurant{
-        .info-container{
-            .company-name{
-                font-size: 70px;
-            }
-        }
-    }
+    // .single-restaurant{
+    //     .info-container{
+    //         .company-name{
+    //             font-size: 70px;
+    //         }
+    //     }
+    // }
     
-    .main-page{
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        .menu-container{
-            width: 100%;
-            margin-bottom: 30px;
-            .dish-container{
-                flex-direction: column;
-                .dish{
-                    width: 100%;
-                    margin: 30px 0 ;
-                }
-            }
-        }
-    }
+    // .main-page{
+    //     display: flex;
+    //     flex-direction: column;
+    //     position: relative;
+    //     .menu-container{
+    //         width: 100%;
+    //         margin-bottom: 30px;
+    //         .dish-container{
+    //             flex-direction: column;
+    //             .dish{
+    //                 width: 100%;
+    //                 margin: 30px 0 ;
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 </style>
