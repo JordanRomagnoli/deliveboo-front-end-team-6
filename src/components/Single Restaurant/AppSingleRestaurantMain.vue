@@ -58,12 +58,18 @@
                 In fine reimposto il localStorage con l'array selectedDishes *
             */
             selectDishes(dish) {
-                
                 if (this.isDishInCart(dish)) {
-                    
                     const indexToRemove = this.store.selectedDishes.findIndex(selectedDish => selectedDish.name === dish.name);
                     this.store.selectedDishes.splice(indexToRemove, 1);
                 } else {
+                    // Verifica se ci sono piatti nel carrello
+                    if (this.store.selectedDishes.length > 0) {
+                        
+                        if (this.store.selectedDishes[0].restaurant_id !== dish.restaurant_id) {
+                            
+                            return;
+                        }
+                    }
                     
                     dish.quantity = 1;
                     this.store.selectedDishes.push(dish);
