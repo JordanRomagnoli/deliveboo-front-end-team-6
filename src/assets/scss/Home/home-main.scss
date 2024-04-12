@@ -151,9 +151,13 @@
                     margin: 0 8px;
                     font-weight: bolder;
                     font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
                     &.enable{
                         background-color: rgb(22, 22, 33);
                         color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
                     }
                 }
             }
@@ -335,9 +339,13 @@
                     margin: 0 16px;
                     font-weight: bolder;
                     font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
                     &.enable{
                         background-color: rgb(22, 22, 33);
                         color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
                     }
                 }
             }
@@ -502,6 +510,30 @@
                 h3{
                     font-weight: 400;
                     color: #b1b1b1;
+                }
+            }
+
+            .buttons-container{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                button{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 20px;
+                    background-color: transparent;
+                    border: 1px solid rgb(22, 22, 33);
+                    margin: 0 16px;
+                    font-weight: bolder;
+                    font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
+                    &.enable{
+                        background-color: rgb(22, 22, 33);
+                        color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
+                    }
                 }
             }
         }
@@ -678,9 +710,13 @@
                     margin: 0 16px;
                     font-weight: bolder;
                     font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
                     &.enable{
                         background-color: rgb(22, 22, 33);
                         color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
                     }
                 }
             }
@@ -859,9 +895,13 @@
                     margin: 0 16px;
                     font-weight: bolder;
                     font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
                     &.enable{
                         background-color: rgb(22, 22, 33);
                         color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
                     }
                 }
             }
@@ -1040,9 +1080,13 @@
                     margin: 0 16px;
                     font-weight: bolder;
                     font-size: 1.1rem;
+                    transition: all .2s ease-in-out;
                     &.enable{
                         background-color: rgb(22, 22, 33);
                         color: white;
+                    }
+                    &.hidden{
+                        opacity: 0;
                     }
                 }
             }

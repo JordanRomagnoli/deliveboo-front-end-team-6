@@ -58,9 +58,6 @@
 
                     // mi imposta la mia ultima pagina come la last page data in risposta dall'API
                     this.lastPage = res.data.results.last_page;
-
-                    console.log(this.page)
-                    console.log(this.lastPage)
                 });
 
             },
@@ -170,7 +167,9 @@
             </div>
 
             <div class="buttons-container" v-if="store.switchArray == true">
-                <button v-if="page > 1" @click="prevPage()">
+                <button :class="{
+                    'hidden' : page == 1
+                }" @click="prevPage()">
                     <
                 </button>
 
@@ -180,7 +179,9 @@
                     {{ i+1 }}
                 </button>
 
-                <button v-if="page < lastPage" @click="nextPage()">
+                <button @click="nextPage()" :class="{
+                    'hidden' : page == lastPage
+                }">
                     >
                 </button>
             </div>

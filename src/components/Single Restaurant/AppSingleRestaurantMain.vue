@@ -9,6 +9,7 @@
             return { 
                 store,
                 currentSingleRestaurant: null,
+                modal: false
             }
         },
         components: {
@@ -16,6 +17,19 @@
             Cart,
         },
         methods: {
+
+            clearCart(){
+                this.store.selectedDishes = [];
+                this.saveCartToLocalStorage();
+                setTimeout(()=> {
+                    this.modal = false;
+                }, 1000)
+            },
+
+            closeModal(){
+                this.modal = false
+            },
+
             /*
                 Al mounted del componente eseguo una chiamata API per recuperare
                 il ristorante interessato, richiamando lo slug, presente all'interno della rotta
@@ -66,7 +80,9 @@
                     if (this.store.selectedDishes.length > 0) {
                         
                         if (this.store.selectedDishes[0].restaurant_id !== dish.restaurant_id) {
+
                             
+                            this.modal = true
                             return;
                         }
                     }
@@ -142,6 +158,21 @@
         <section>
 
             <div class="single-restaurant" v-if="currentSingleRestaurant && currentSingleRestaurant.img != null">
+
+                <div v-if="modal == true">
+                    <div class="warning-modal">
+                        <button @click="closeModal()" class="close">
+                            x
+                        </button>
+                        <span>
+                            Puoi ordinare solo da un ristorante
+                        </span>
+                        <button @click="clearCart()" class="clean">
+                            Svuota il carrello
+                        </button>
+                    </div>
+                </div>
+
                 <div class="restaurant-img">
                     <img :src="'http://127.0.0.1:8000/storage/images/' + currentSingleRestaurant.img" :alt="currentSingleRestaurant.company_name"/>
                     <div class="img-overlay"></div>
@@ -218,7 +249,7 @@
                 </div>
 
 
-                <Cart/>
+                <Cart @clear="clearCart()"/>
             </section>
 
         </section>
@@ -227,11 +258,58 @@
 </template>
 
 <style lang="scss" scoped>
+
+
+
 .single-restaurant {
     width: 100%;
     height: 400px;
     position: relative;
     overflow: hidden;
+    .warning-modal{
+        margin: 0 auto;
+        position: fixed;
+        top: 15%;
+        left: 0;
+        right: 0;
+        z-index: 100000;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        min-height: 130px;
+        background-color: white;
+        border-radius: 25px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 32px 20px 32px;
+        -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+        box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
+        button{
+            border: none;
+            background-color: transparent;
+        }
+        .close{
+            width: 30px;
+            align-self: end;
+            font-size: 1.3rem;
+        }
+        span{
+
+            font-size: 1.1rem;
+            color: gray;
+            margin-bottom: 16px;
+        }
+        .clean{
+
+            background-color: #3498db;
+            width: 60%;
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: white;
+        }
+    }
+    
 
     .restaurant-img {
         width: 100%;
