@@ -229,12 +229,21 @@ export default {
                             aria-describedby="emailHelp"
                         />
                         <div id="emailHelp" class="form-text">
-                            Non condivideremo la tua email con nessuno
+                            <span class="nb">Non condivideremo la tua email con nessuno</span>
                         </div>
                     </div>
-                    <button type="submit" class="my-order-button btn">
-                        Esegui il checkout
-                    </button>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="homebadge">
+                            <button type="submit" class="my-order-button btn">
+                                Esegui il checkout
+                            </button>
+                        </div>
+                        <div class="myhomebadge">
+                            <router-link :to="{ name: 'restaurant', params: { slug: restaurantslug } } " class="text-decoration-none">
+                                <i class="fa-solid fa-utensils"></i>
+                            </router-link>
+                        </div>
+                    </div>
                 </form>
                 <div v-else>
                     <div>Ordire inviato correttamente</div>
@@ -295,6 +304,17 @@ export default {
         -moz-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
 
+        .myhomebadge{
+            padding: 5px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 20px;
+            i{
+                color: white;
+            }
+        }
+
+
         input{
             width: 100%;
             padding: 8px 16px;
@@ -312,8 +332,6 @@ export default {
             width: 100%;
         }
         .my-order-button {
-            margin-top: 24px;
-            padding: 16px 32px;
             border-radius: 30px;
             background-color: #3498db;
             color: white;
@@ -321,6 +339,8 @@ export default {
         .my-order-button:hover {
             background-color: #1d5d88;
         }
+
+
     }
 
     .rightpart {
