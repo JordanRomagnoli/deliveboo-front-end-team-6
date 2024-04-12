@@ -23,6 +23,11 @@
         },
         methods:{
 
+            setPage(indexPage){
+                this.page = indexPage;
+                this.getRestaurant(this.page);
+            },
+
             nextPage() {
                 if (this.page < this.lastPage){
                     this.page++;
@@ -164,12 +169,18 @@
                 </h3>
             </div>
 
-            <div class="buttons-container">
-                <button @click="prevPage()">
+            <div class="buttons-container" v-if="store.switchArray == true">
+                <button v-if="page > 1" @click="prevPage()">
                     <
                 </button>
 
-                <button @click="nextPage()">
+                <button @click="setPage(i+1)" v-for="(elem, i) in this.lastPage" :class="{
+                    'enable' : page == i+1
+                }">
+                    {{ i+1 }}
+                </button>
+
+                <button v-if="page < lastPage" @click="nextPage()">
                     >
                 </button>
             </div>
