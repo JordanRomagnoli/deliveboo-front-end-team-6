@@ -84,7 +84,9 @@
                     </div>
                 </div>
             </div>
-            
+            <span class="no-dish-cart" v-if="this.store.selectedDishes.length == 0">
+                Non hai nessun piatto nel carrello
+            </span>
             <div class="final-price">
                 <span v-if="this.store.selectedDishes.length > 0">
                     {{ totalPrice+'€' }}
@@ -92,7 +94,7 @@
             </div>
         </div>
 
-        <button>
+        <button v-if="store.selectedDishes.length > 0">
             <router-link :to="{ name: 'order' }">
                     
                 Esegui checkout
@@ -189,7 +191,9 @@
                     }
                 }
             }
-            
+            .no-dish-cart{
+                color: gray;
+            }
             .final-price{
 
                 padding: 16px;
