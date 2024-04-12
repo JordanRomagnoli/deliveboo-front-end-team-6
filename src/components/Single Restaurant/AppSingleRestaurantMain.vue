@@ -28,41 +28,49 @@
             },
 
             /*
+                Funzione che restituisce una variabile con valore:
+                  - 'true' se nel carrello è già presente un piatto con lo stesso
+                    nome di quello che si sta provando ad aggiungere;
+
+                  - 'false' se non è presente nessun piatto con quel nome;
+            */
+            isDishInCart(dish) {
+                    
+                let dishFound = false;
+                this.store.selectedDishes.forEach(selectedDish => {
+                    if (selectedDish.name === dish.name) {
+                        dishFound = true;
+                    }
+                });
+                return dishFound;
+            },
+
+            /*
                 Funzione che inserisce un piatto all'array selectedDishes in store,
                 secondo alcuni controlli:
 
                     - Se l'array contiene già almeno un elemento e quest'ultimo fà
                       parte dello stesso ristorante del piatto che si sta provando ad inserire
                     
-                    - Se il piatto che si sta inserendo non è già presente,
+                    - Se non è già presente un piatto con lo stesso nome,
                       nel caso fosse presente lo rimuovo dall'array selectedDishes
 
                 In fine reimposto il localStorage con l'array selectedDishes *
             */
-            selectDishes(dish){
-                if(this.store.selectedDishes.length > 0 && this.store.selectedDishes[0].restaurant_id !== dish.restaurant_id) {
-                    alert("Non puoi aggiungere piatti di ristoranti diversi nel carrello");
-                    return;
-                }
-
-                if(!this.store.selectedDishes.includes(dish)){
+            selectDishes(dish) {
+                
+                if (this.isDishInCart(dish)) {
                     
-                    dish['quantity'] = 1
-                    this.store.selectedDishes.push(dish);                 
-
-                }else{
-
-                    const indexToRemove = this.store.selectedDishes.indexOf(dish);
-
-                    if(indexToRemove !== -1){
-
-                        delete dish['quantity'];
-                        this.store.selectedDishes.splice(indexToRemove, 1);
-                    }
+                    const indexToRemove = this.store.selectedDishes.findIndex(selectedDish => selectedDish.name === dish.name);
+                    this.store.selectedDishes.splice(indexToRemove, 1);
+                } else {
+                    
+                    dish.quantity = 1;
+                    this.store.selectedDishes.push(dish);
                 }
-
-                this.saveCartToLocalStorage()
+                this.saveCartToLocalStorage();
             },
+
 
 
             saveCartToLocalStorage() { // *
@@ -176,10 +184,10 @@
 
                                         <button @click="selectDishes(dish)" 
                                         :class="{
-                                            'trash' : this.store.selectedDishes.includes(dish),
+                                            'trash' : isDishInCart(dish),
                                         }"
                                         >
-                                            <span v-if="!this.store.selectedDishes.includes(dish)">
+                                            <span v-if="!isDishInCart(dish)">
                                                 <i class="fa-solid fa-plus"></i>
                                             </span>
 
