@@ -144,6 +144,7 @@
                     margin-bottom: 24px;
                     border-radius: 45px;
                     display: flex;
+                    justify-content: start;
                     flex-direction: row;
                     background-color: rgba(196, 196, 196, 0.333);
                     .left{
@@ -224,16 +225,47 @@
 
     @media only screen and (max-width: 768px) {
         div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             position: absolute;
             top: 0;
-            right: 0;
-            left: 0;
+            bottom: 0;
             width: 100%;
             .cart {
-                height: 100%;
+                position: relative;
+                height: 400px;
+                background-color: white;
+                .dish-list {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    height: 100%;
+                    .dish{
+                        display: block; 
+        //                width: 100%;
+        //                height: 80px;
+        //                .left {
+        //                    width: 60%;
+        //                }
+        //                .right {
+        //                    width: 30%;
+        //                }
+                    }
+                }
+                .final-price {
+                    position: absolute;
+                    bottom: 0;
 
+                }
                 
             }
+            // button {
+            //     width: 50%;
+            //     position: absolute;
+            //     top: 300px;
+            // }
+
         }
     }
 </style>
