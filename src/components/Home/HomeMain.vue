@@ -17,25 +17,45 @@
                     'soup.jpg',
                     'taco.jpg',
                 ], 
+                page: 1,
+                lastPage: 1,
             }
         },
         methods:{
 
-            getRestaurant(){
+            nextPage() {
+                if (this.page < this.lastPage){
+                    this.page++;
+                    this.getRestaurant(this.page);
+                }
+            },
+
+            prevPage(){
+                if (this.page > 1) {
+                    this.page--;
+                    this.getRestaurant(this.page);
+                }
+            },
+            
+            getRestaurant(page){
                 Axios.get("http://127.0.0.1:8000/api/restaurant",{
                     params: {
+                        page: page,
                         slug: this.inputHomeWithoutSpaces
                     }
                 })
                 .then((res) => {
-                    
-                    this.store.allRestaurants = res.data.results.data;
-                    console.log('risposta della chiamata API')
                     console.log(res)
+                    this.store.allRestaurants = res.data.results.data;
 
-                    console.log('Input')
-                    console.log('Input')
+                    // mi imposta la mia page come la current page data in risposta dall'API
+                    this.page = res.data.results.current_page;
 
+                    // mi imposta la mia ultima pagina come la last page data in risposta dall'API
+                    this.lastPage = res.data.results.last_page;
+
+                    console.log(this.page)
+                    console.log(this.lastPage)
                 });
 
             },
@@ -82,11 +102,11 @@
         created(){
             this.autoPlay();
             this.getTypologies();
-            this.getRestaurant();
+            this.getRestaurant(this.page);
         },
         computed: {
             inputHomeWithoutSpaces: function() {
-                return this.store.InputHome.replace(/\s/g, "");
+                return this.store.InputHome.replace(/\s/g, "-");
             }
         },
     }
@@ -142,6 +162,16 @@
                 <h3>
                     Nessun ristorante trovato
                 </h3>
+            </div>
+
+            <div class="buttons-container">
+                <button @click="prevPage()">
+                    <
+                </button>
+
+                <button @click="nextPage()">
+                    >
+                </button>
             </div>
 
         </div>
