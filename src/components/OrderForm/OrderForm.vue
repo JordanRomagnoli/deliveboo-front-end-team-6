@@ -16,6 +16,9 @@ export default {
     },
     components: {},
     methods: {
+        goback(){
+            this.$router.go(-1);
+        },
 
         getFromLocalStorage() {
             if (localStorage.getItem("cart")) {
@@ -93,189 +96,192 @@ export default {
 
 <template>
     <main>
+
         <div class="myordercontainer leftpart">
-            <div class="form-container">
-                <form
-                    v-if="success != true"
-                    method="POST"
-                    @submit.prevent="submitOrder()"
-                >
-                    <div class="mb-3">
-                        <label for="name" class="form-label">
-                            Nome <span class="mandatory">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            v-model="name"
-                            name="name"
-                            placeholder="Inserisci il tuo nome"
-                            maxlength="128"
-                            minlength="3"
-                            required
-                            class="max-letters form-control"
-                        />
-                        <!-- DA TENERE PER FAVORE :class="{ 'warning': name.length > 128 && name.length < 3, 'd-none': !(name.length > 128 && name.length < 3) }" -->
-                        <div
-                            v-if="
-                                !!name && (name.length < 3 || name.length > 128)
-                            "
-                            class="warning"
-                        >
-                            <span>
-                                Inserisci un minimo di 3 caratteri e un massimo
-                                di 128 caratteri
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastname" class="form-label">
-                            Cognome <span class="mandatory">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="lastname"
-                            v-model="lastName"
-                            name="lastName"
-                            placeholder="Inserisci il tuo cognome"
-                            maxlength="128"
-                            minlength="3"
-                            required
-                            class="max-letters form-control"
-                        />
-                        <div
-                            v-if="
-                                !!lastName &&
-                                (lastName.length < 3 || lastName.length > 128)
-                            "
-                            class="warning"
-                        >
-                            <span>
-                                Inserisci un minimo di 3 caratteri e un massimo
-                                di 128 caratteri
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">
-                            Indirizzo <span class="mandatory">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="address"
-                            v-model="address"
-                            name="address"
-                            placeholder="Inserisci il tuo indirizzo"
-                            maxlength="128"
-                            minlength="3"
-                            required
-                            class="max-letters form-control"
-                        />
-                        <div
-                            v-if="
-                                !!address &&
-                                (address.length < 3 || address.length > 128)
-                            "
-                            class="warning"
-                        >
-                            <span>
-                                Inserisci un minimo di 3 caratteri e un massimo
-                                di 128 caratteri
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">
-                            Inserisci il tuo numero di telefono
-                            <span class="mandatory">*</span>
-                        </label>
-                        <input
-                            type="number"
-                            id="phone"
-                            v-model="phone"
-                            name="phone"
-                            placeholder="Inserisci il tuo numero di telefono"
-                            maxlength="20"
-                            minlength="6"
-                            required
-                            class="phone_max_letters form-control"
-                        />
-                        <div
-                            v-if="
-                                !!phone &&
-                                (phone.length < 6 || phone.length > 20)
-                            "
-                            class="warning"
-                        >
-                            <span>
-                                Inserisci un minimo di 6 caratteri e un massimo
-                                di 20 caratteri // Inserisci un numero di
-                                telefono valido
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">
-                            Indirizzo email <span class="mandatory">*</span>
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            v-model="email"
-                            name="email"
-                            placeholder="Inserisci la tua eamil"
-                            required
-                            class="form-control"
-                            aria-describedby="emailHelp"
-                        />
-                        <div id="emailHelp" class="form-text">
-                            <span class="nb">Non condivideremo la tua email con nessuno</span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="homebadge">
-                            <button type="submit" class="my-order-button btn">
-                                Esegui il checkout
-                            </button>
-                        </div>
-                        <div class="myhomebadge">
-                            <router-link :to="{ name: 'restaurant', params: { slug: restaurantslug } } " class="text-decoration-none">
-                                <i class="fa-solid fa-utensils"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                </form>
-                <div v-else>
-                    <div>Ordire inviato correttamente</div>
-                </div>
+            <div class="myhomebadge mb-3 d-inline ms-3">
+                <span @click="goback()" class="p-1">Torna al menu</span>
             </div>
-            <div class="rightpart">
-                <div class="mycardorders">
-                    <h5 class="mb-2 pb-3">
-                        <strong>La tua ricevuta:</strong>
-                    </h5>
-                    <div class="container-dish-receipt">
-                        <div
-                            v-for="(singleDish, i) in store.selectedDishes"
-                            class="dish mb-2 d-flex justify-content-between"
-                        >
-                            <div class="left">
-                                {{ singleDish.name }}
-                            </div>
-                            <div v-if="singleDish.quantity" class="right">
-                                x{{ singleDish.quantity }}
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="form-container">
+                    <form
+                        v-if="success != true"
+                        method="POST"
+                        @submit.prevent="submitOrder()"
+                    >
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                Nome <span class="mandatory">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                v-model="name"
+                                name="name"
+                                placeholder="Inserisci il tuo nome"
+                                maxlength="128"
+                                minlength="3"
+                                required
+                                class="max-letters form-control"
+                            />
+                            <!-- DA TENERE PER FAVORE :class="{ 'warning': name.length > 128 && name.length < 3, 'd-none': !(name.length > 128 && name.length < 3) }" -->
+                            <div
+                                v-if="
+                                    !!name && (name.length < 3 || name.length > 128)
+                                "
+                                class="warning"
+                            >
+                                <span>
+                                    Inserisci un minimo di 3 caratteri e un massimo
+                                    di 128 caratteri
+                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-end pt-4">
-                        <div v-if="this.store.selectedDishes.length > 0">
-                            <strong>Totale:</strong> {{ totalPrice + "€" }}
+                        <div class="mb-3">
+                            <label for="lastname" class="form-label">
+                                Cognome <span class="mandatory">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="lastname"
+                                v-model="lastName"
+                                name="lastName"
+                                placeholder="Inserisci il tuo cognome"
+                                maxlength="128"
+                                minlength="3"
+                                required
+                                class="max-letters form-control"
+                            />
+                            <div
+                                v-if="
+                                    !!lastName &&
+                                    (lastName.length < 3 || lastName.length > 128)
+                                "
+                                class="warning"
+                            >
+                                <span>
+                                    Inserisci un minimo di 3 caratteri e un massimo
+                                    di 128 caratteri
+                                </span>
+                            </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">
+                                Indirizzo <span class="mandatory">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="address"
+                                v-model="address"
+                                name="address"
+                                placeholder="Inserisci il tuo indirizzo"
+                                maxlength="128"
+                                minlength="3"
+                                required
+                                class="max-letters form-control"
+                            />
+                            <div
+                                v-if="
+                                    !!address &&
+                                    (address.length < 3 || address.length > 128)
+                                "
+                                class="warning"
+                            >
+                                <span>
+                                    Inserisci un minimo di 3 caratteri e un massimo
+                                    di 128 caratteri
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">
+                                Inserisci il tuo numero di telefono
+                                <span class="mandatory">*</span>
+                            </label>
+                            <input
+                                type="number"
+                                id="phone"
+                                v-model="phone"
+                                name="phone"
+                                placeholder="Inserisci il tuo numero di telefono"
+                                maxlength="20"
+                                minlength="6"
+                                required
+                                class="phone_max_letters form-control"
+                            />
+                            <div
+                                v-if="
+                                    !!phone &&
+                                    (phone.length < 6 || phone.length > 20)
+                                "
+                                class="warning"
+                            >
+                                <span>
+                                    Inserisci un minimo di 6 caratteri e un massimo
+                                    di 20 caratteri // Inserisci un numero di
+                                    telefono valido
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                Indirizzo email <span class="mandatory">*</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                v-model="email"
+                                name="email"
+                                placeholder="Inserisci la tua eamil"
+                                required
+                                class="form-control"
+                                aria-describedby="emailHelp"
+                            />
+                            <div id="emailHelp" class="form-text">
+                                <span class="nb">Non condivideremo la tua email con nessuno</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="homebadge">
+                                <button type="submit" class="my-order-button btn">
+                                    Esegui il checkout
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div v-else>
+                        <div>Ordire inviato correttamente</div>
                     </div>
                 </div>
-                <div class="cardbraintree">braintree</div>
+                <div class="rightpart">
+                    <div class="mycardorders p-4">
+                        <h5 class="mb-2 pb-3">
+                            <strong>La tua ricevuta:</strong>
+                        </h5>
+                        <div class="container-dish-receipt">
+                            <div
+                                v-for="(singleDish, i) in store.selectedDishes"
+                                class="dish mb-2 d-flex justify-content-between"
+                            >
+                                <div class="left">
+                                    {{ singleDish.name }}
+                                </div>
+                                <div v-if="singleDish.quantity" class="right">
+                                    x{{ singleDish.quantity }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end pt-4">
+                            <div v-if="this.store.selectedDishes.length > 0" class="">
+                                <strong>Totale:</strong> {{ totalPrice + "€" }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardbraintree">braintree</div>
+                </div>
             </div>
         </div>
+
     </main>
 </template>
 
@@ -283,10 +289,17 @@ export default {
 .myordercontainer {
     max-width: 50%;
     margin: 0 auto;
-    padding-bottom: 300px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 100px;
+    padding-bottom: 200px;
+    margin-top: 130px;
+
+    .myhomebadge{
+        padding: 2px 10px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
 
     .form-container {
         padding: 32px;
@@ -304,15 +317,6 @@ export default {
         -moz-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
         box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
 
-        .myhomebadge{
-            padding: 5px 12px;
-            background-color: #3498db;
-            color: white;
-            border-radius: 20px;
-            i{
-                color: white;
-            }
-        }
 
 
         input{
@@ -347,7 +351,7 @@ export default {
 
         width: 30%;
         .mycardorders {
-            padding: 32px;
+            // padding: 32px;
             height: calc(60% - 20px);
             margin-bottom: 20px;
             background-color: rgb(
@@ -408,6 +412,7 @@ export default {
         }
     }
 }
+
 
 @media only screen and (max-width: 992px) {
     .myordercontainer {
