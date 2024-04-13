@@ -46,7 +46,8 @@
                 Axios.get("http://127.0.0.1:8000/api/restaurant",{
                     params: {
                         page: page,
-                        slug: this.inputHomeWithoutSpaces
+                        slug: this.inputHomeWithoutSpaces,
+                        typologies: this.store.selectedTypology,
                     }
                 })
                 .then((res) => {
@@ -87,15 +88,6 @@
                 });
             },
 
-            switchArray(){
-                if(this.store.switchArray != true){
-                    return this.store.restaurantTypology;
-                }
-                else{
-                    return this.store.allRestaurants;
-                }
-            }
-
         },
         components:{
             InputHome,
@@ -120,7 +112,7 @@
 
             <div class="color-layer">
                 <InputHome @search="getRestaurant()"/>
-                <TypologiesCarousell/>
+                <TypologiesCarousell @search="getRestaurant()"/>
             </div>
 
             <img :src="getImagePath('../../assets/img/food-home-carousell/' + carousell[JumbotronCounter])" alt="">
@@ -131,7 +123,7 @@
 
         
         <div class="restaurant-result">
-            <div v-for="(restaurant, i) in switchArray()" :key="i" class="mycardcontainer">
+            <div v-for="(restaurant, i) in this.store.allRestaurants" :key="i" class="mycardcontainer">
                 <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
                     <div class="myrestaurantcard">
                         <div v-if="restaurant.img != null" class="myrestaurantimg">
@@ -160,13 +152,13 @@
                     attraverso il filtraggio della tipologia dei ristoranti e 
                     l'array contenente i risultati è vuoto, mostro il seguente messaggio...
              -->
-            <div class="no-restaurants-found" v-if="store.restaurantTypology.length <= 0 && store.switchArray == false">
+            <div class="no-restaurants-found" v-if="store.allRestaurants.length <= 0">
                 <h3>
                     Nessun ristorante trovato
                 </h3>
             </div>
 
-            <div class="buttons-container" v-if="store.switchArray == true">
+            <div class="buttons-container" v-if=" lastPage > 1">
                 <button :class="{
                     'hidden' : page == 1
                 }" @click="prevPage()">

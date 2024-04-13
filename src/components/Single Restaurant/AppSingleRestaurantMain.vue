@@ -1,6 +1,6 @@
 <script>
     import Axios from 'axios';
-    import RestaurantListHeader from '../RestaurantList/RestaurantListHeader.vue';
+    import HomeHeader from '../Home/HomeHeader.vue';
     import Cart from './Cart.vue';
     import { store } from '../../store.js'
 
@@ -13,7 +13,7 @@
             }
         },
         components: {
-            RestaurantListHeader,
+            HomeHeader,
             Cart,
         },
         methods: {
@@ -151,7 +151,7 @@
 
 <template>
     <header>
-        <RestaurantListHeader/>
+        <HomeHeader/>
     </header>
     <main>
 
@@ -211,7 +211,8 @@
                                 </p>
 
                                 <div class="img-container">
-                                    <img :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                                    <img v-if="dish.img != null"  :src="'http://127.0.0.1:8000/storage/' + dish.img" :alt="dish.name">
+                                    <img v-else src="..\..\assets\img\no-img-dish.jpg" alt="">
                                 </div>
 
                                 <div class="card-body">
@@ -317,12 +318,14 @@
         opacity: 0.9;
         filter: blur(2px);
         position: relative;
+        background-color: #172127;
         
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
+            filter: saturate(0) contrast(1.5) opacity(0.4);
         }
         .img-overlay {
             position: absolute;
@@ -497,13 +500,145 @@
 
 @media only screen and (max-width: 1200px) {
     .main-page{
-        
+
+        display: flex;
+        max-width: 1400px;
+        margin: 0 auto;
+        justify-content: space-between;
+        margin-bottom: 100px;
+        border-radius: 44px;
         .menu-container{
-           
-            .dish-container{
+
+            border-radius: 40px;
+            width: 100%;
+            padding: 40px 20px 20px 20px;
+            height: 1000px;
+            overflow-y: auto;
+            -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
+                .restaurant-info{
+                i{
+                    color:red;
+                }
+
+            }
+
+            .homebadge{
+                padding: 5px 12px;
+                background-color: #3498db;
+                color: white;
+                border-radius: 20px;
+                i{
+                    color: white;
+                }
+            }
+
                 
-                .dish{
-                   width: calc(100% / 2 -  60px);
+            .dish-container{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+
+            .dish{
+
+                width: calc(100% / 2 - 60px);
+                margin: 15px 30px;
+                height: 370px;
+                border-radius: 20px;
+                position: relative;
+                overflow: hidden;
+                .info{
+                    position: absolute;
+                    top: 4px;
+                    right: 4px;
+                    z-index: 2;
+                    color: white;
+                    background-color: transparent;
+                    border: none;
+                    font-size: 1.3rem;
+                }
+                .description{
+                    position: absolute;
+                    top: 50px;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    background: rgb(0, 0, 0);
+                    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.591) 48%, rgba(0,0,0,0) 100%);
+                    color: white;
+                    padding: 16px;
+                    margin: 0;
+                    z-index: 3;
+                }
+                .img-container{
+
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    top: 0;
+                    img{
+
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .card-body{
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px; 
+                    justify-content: end;
+                    padding: 20px;
+                    color: white;
+                    background: rgb(0,0,0);
+                    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
+                    
+                    h4{
+                        text-align: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    h6{
+                        text-align: center;
+                    }
+
+                    .button-container{
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        button{
+
+                            border-radius: 25px;
+                            border: 0;
+                            background-color: #3498db;
+                            color: white;
+                            width: 50px;
+                            height: 50px;
+                            overflow: hidden;
+                            transition: all .3s ease-in-out;
+                            &.trash{
+                                width: 100%;
+                                border-radius: 15px;
+                                color: #3498db;
+                                background-color: white;
+                            }
+                            >span{
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    }
                 }
             }
         }
@@ -512,30 +647,150 @@
 
 @media only screen and (max-width: 768px) {
     
-    // .single-restaurant{
-    //     .info-container{
-    //         .company-name{
-    //             font-size: 70px;
-    //         }
-    //     }
-    // }
-    
-    // .main-page{
-    //     display: flex;
-    //     flex-direction: column;
-    //     position: relative;
-    //     .menu-container{
-    //         width: 100%;
-    //         margin-bottom: 30px;
-    //         .dish-container{
-    //             flex-direction: column;
-    //             .dish{
-    //                 width: 100%;
-    //                 margin: 30px 0 ;
-    //             }
-    //         }
-    //     }
-    // }
+    .main-page{
+
+        display: flex;
+        max-width: 1400px;
+        margin: 0 auto;
+        justify-content: space-between;
+        margin-bottom: 100px;
+        border-radius: 44px;
+        .menu-container{
+
+            border-radius: 40px;
+            width: 100%;
+            padding: 40px 20px 20px 20px;
+            height: 1000px;
+            overflow-y: auto;
+            -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
+            box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
+                .restaurant-info{
+                i{
+                    color:red;
+                }
+
+            }
+
+            .homebadge{
+                padding: 5px 12px;
+                background-color: #3498db;
+                color: white;
+                border-radius: 20px;
+                i{
+                    color: white;
+                }
+            }
+
+                
+            .dish-container{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+
+            .dish{
+
+                width: calc(100% / 2 - 60px);
+                margin: 15px 30px;
+                height: 370px;
+                border-radius: 20px;
+                position: relative;
+                overflow: hidden;
+                .info{
+                    position: absolute;
+                    top: 4px;
+                    right: 4px;
+                    z-index: 2;
+                    color: white;
+                    background-color: transparent;
+                    border: none;
+                    font-size: 1.3rem;
+                }
+                .description{
+                    position: absolute;
+                    top: 50px;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    background: rgb(0, 0, 0);
+                    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.591) 48%, rgba(0,0,0,0) 100%);
+                    color: white;
+                    padding: 16px;
+                    margin: 0;
+                    z-index: 3;
+                }
+                .img-container{
+
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    top: 0;
+                    img{
+
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .card-body{
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px; 
+                    justify-content: end;
+                    padding: 20px;
+                    color: white;
+                    background: rgb(0,0,0);
+                    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
+                    
+                    h4{
+                        text-align: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    h6{
+                        text-align: center;
+                    }
+
+                    .button-container{
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        button{
+
+                            border-radius: 25px;
+                            border: 0;
+                            background-color: #3498db;
+                            color: white;
+                            width: 50px;
+                            height: 50px;
+                            overflow: hidden;
+                            transition: all .3s ease-in-out;
+                            &.trash{
+                                width: 100%;
+                                border-radius: 15px;
+                                color: #3498db;
+                                background-color: white;
+                            }
+                            >span{
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    }
+                }
+            }
+        }
+    }
 }
 
 </style>

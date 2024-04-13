@@ -1,6 +1,5 @@
 <script>
 import { store } from "../../store.js";
-import Axios from "axios";
 
 export default {
     data() {
@@ -16,38 +15,18 @@ export default {
                 const indexToRemove =
                     this.store.selectedTypology.indexOf(typology);
                 if (indexToRemove !== -1) {
-                    // Assicurati che l'elemento sia stato trovato
+                    
                     this.store.selectedTypology.splice(indexToRemove, 1); // Rimuovi l'elemento dall'array
                 }
             }
 
             this.getRestaurantByTypology();
-            console.log(this.store.switchArray);
         },
 
         getRestaurantByTypology() {
-            Axios.get("http://127.0.0.1:8000/api/restaurant", {
-                params: {
-                    typologies: this.store.selectedTypology,
-                },
-            }).then((res) => {
-                if (this.store.selectedTypology.length > 0) {
-                    this.store.restaurantTypology = res.data.results.data;
-                    this.store.switchArray = false;
-                    
-                }else {
-
-                    this.store.switchArray = true;
-                    this.store.restaurantTypology = [];
-                }
-            });
+            this.$emit('search');
         },
     },
-    components: {},
-    setup() {
-        return {};
-    },
-    mounted() {},
 };
 </script>
 

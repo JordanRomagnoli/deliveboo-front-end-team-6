@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from './pages/HomePage.vue';
-//import RestaurantList from './pages/RestaurantList.vue';
 import SingleRestaurant from './pages/SingleRestaurant.vue';
 import OrderPage from './pages/OrderPage.vue'
 import NotFoundPage from './pages/NotFoundPage.vue';

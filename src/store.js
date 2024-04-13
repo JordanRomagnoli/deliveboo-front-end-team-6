@@ -9,6 +9,6 @@ export const store = reactive({
     selectedDishes: [],
     totalPrice: 0,
     restaurantTypology: [],
-    switchArray: true,
+    modalCart: false,
 
 });

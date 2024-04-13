@@ -132,7 +132,6 @@ div {
         max-height: calc(100vh - 245px);
         margin-bottom: 32px;
         width: 100%;
-        //border: 1px solid black;
         border-radius: 40px;
         padding: 0 20px;
         -webkit-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
@@ -230,46 +229,15 @@ div {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 993px) {
     div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        .cart {
-            position: relative;
-            height: 400px;
-            background-color: white;
-            .dish-list {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                height: 100%;
-                .dish {
-                    display: block;
-                    //                width: 100%;
-                    //                height: 80px;
-                    //                .left {
-                    //                    width: 60%;
-                    //                }
-                    //                .right {
-                    //                    width: 30%;
-                    //                }
-                }
-            }
-            .final-price {
-                position: absolute;
-                bottom: 0;
-            }
-        }
-        // button {
-        //     width: 50%;
-        //     position: absolute;
-        //     top: 300px;
-        // }
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    div {
+        display: none;
     }
 }
 </style>
