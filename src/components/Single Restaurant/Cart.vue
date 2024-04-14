@@ -125,7 +125,6 @@ div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    //justify-content: space-between;
     width: 25%;
     .cart {
         min-height: 200px;
@@ -141,16 +140,12 @@ div {
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            // flex-grow: 1;
-            // justify-content: start;
             width: 100%;
             height: 100%;
-            //max-height: 800px;
             padding: 8px;
             padding-top: 32px;
             .dish {
                 width: 100%;
-                //background-color: aqua;
                 padding: 12px 24px;
                 height: 80px;
                 margin-bottom: 24px;
@@ -235,9 +230,11 @@ div {
     }
 }
 
-@media only screen and (max-width: 993px) {
+@media only screen and (max-width: 768px) {
     div {
         display: none;
     }
 }
+
+
 </style>

@@ -66,14 +66,16 @@
 <template>
     <div class="header"> 
         <router-link :to="{ name: 'home' }" class="img-container">
-                <img v-if="$route.name == 'home' " src="..\..\assets\img\logo-header-home-page.png" alt="">
+                <img v-if="$route.name == 'home' || $route.name == 'restaurant'" src="..\..\assets\img\logo-header-home-page.png" alt="">
                 <img v-else src="..\..\assets\img\logo-restaurant-list-page.png" alt="">
         </router-link>
         
         <nav>
 
 
-            <button @click="openCartModal()" class="cart">
+            <button @click="openCartModal()" class="cart"  :class="{
+                'd-lg-none' : $route.name == 'restaurant'
+            }">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div v-if="store.selectedDishes.length > 0" class="notify">
                 </div>
