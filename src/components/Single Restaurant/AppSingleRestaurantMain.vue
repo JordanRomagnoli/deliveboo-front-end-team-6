@@ -253,7 +253,7 @@ export default {
 
                                 <div class="img-container">
                                     <img
-                                        v-if="dish.img != null"
+                                        v-if="dish.img != 'images/'"
                                         :src="
                                             'http://127.0.0.1:8000/storage/' +
                                             dish.img
