@@ -18,7 +18,18 @@ export default {
     methods: {
 
         initBraintree(){
-            let mirko = this;
+
+            /*
+                Al mounted del componente andremo a creare ( tramite un istanza resa accessibile grazie a Braintree )
+                un elemento nel DOM che permetterà all'utente di inserire il proiprio metodo di pagamento
+                con il quale potrà effettuare l'ordine
+            */
+
+            let self = this; 
+            /*
+                Per via della gestione del contesto del 'this' all'interno di function normali,
+                valorizziamo una variabile con all'interno il 'this'
+            */    
 
             braintree.dropin.create({
                 authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
@@ -31,6 +42,10 @@ export default {
 
                     let button = document.querySelector('#submit-button');
 
+                    /*
+                        Associamo all'elemento button, un addEventListener,
+                        il quale, al click scatenerà la funzione 'submitOrder()'
+                    */
                     button.addEventListener('click', function() {
                         instance.requestPaymentMethod(function(err) {
                             if (err) {
@@ -38,7 +53,7 @@ export default {
                                 return;
                             }
 
-                            mirko.submitOrder();
+                            self.submitOrder();
                         });
                     });
             });
@@ -349,7 +364,7 @@ export default {
 
     .form-container {
         padding: 32px;
-        width: 50%;
+        width: 55%;
         background-color: rgb(240, 240, 240);
         display: flex;
         align-items: center;
@@ -534,7 +549,7 @@ export default {
         }
 
         .rightpart {
-            width: 30%;
+            width: 40%;
             min-height: 200px;
             .mycardorders {
                 padding: 30px 30px;
