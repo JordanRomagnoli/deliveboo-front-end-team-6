@@ -162,10 +162,10 @@
                 <div v-if="modal == true">
                     <div class="warning-modal">
                         <button @click="closeModal()" class="close">
-                            x
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
                         <span>
-                            Puoi ordinare solo da un ristorante
+                            Puoi ordinare solo da un ristorante alla volta.
                         </span>
                         <button @click="clearCart()" class="clean">
                             Svuota il carrello
@@ -294,12 +294,19 @@
             width: 30px;
             align-self: end;
             font-size: 1.3rem;
+            color: gray;
+            transition: all .2s ease-in-out;
+            &:hover{
+                color: rgb(22, 22, 22);
+            }
         }
         span{
 
             font-size: 1.1rem;
             color: gray;
-            margin-bottom: 16px;
+            margin: 16px 0 24px 0;
+            text-align: center;
+            font-size: 0.9rem;
         }
         .clean{
 
@@ -308,6 +315,10 @@
             padding: 8px 16px;
             border-radius: 25px;
             color: white;
+            transition: all .2s ease-in-out;
+            &:hover{
+                transform: scale(1.1);
+            }
         }
     }
     
@@ -793,152 +804,6 @@
     }
 }
 
-// @media only screen and (min-width: 992px) {
-//     .main-page{
-
-//         display: flex;
-//         max-width: 1400px;
-//         margin: 0 auto;
-//         justify-content: space-between;
-//         margin-bottom: 100px;
-//         border-radius: 44px;
-//         .menu-container{
-
-//             border-radius: 40px;
-//             width: 100%;
-//             padding: 40px 20px 20px 20px;
-//             height: 1000px;
-//             overflow-y: auto;
-//             -webkit-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
-//             -moz-box-shadow: 0px 22px 54px -11px rgba(0,0,0,0.56);
-//             box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.473);
-//                 .restaurant-info{
-//                 i{
-//                     color:red;
-//                 }
-
-//             }
-
-//             .homebadge{
-//                 padding: 5px 12px;
-//                 background-color: #3498db;
-//                 color: white;
-//                 border-radius: 20px;
-//                 i{
-//                     color: white;
-//                 }
-//             }
-
-                
-//             .dish-container{
-//                 width: 100%;
-//                 display: flex;
-//                 flex-wrap: wrap;
-
-//             .dish{
-
-//                 width: 100%;
-//                 margin: 15px 30px;
-//                 height: 370px;
-//                 border-radius: 20px;
-//                 position: relative;
-//                 overflow: hidden;
-//                 .info{
-//                     position: absolute;
-//                     top: 4px;
-//                     right: 4px;
-//                     z-index: 2;
-//                     color: white;
-//                     background-color: transparent;
-//                     border: none;
-//                     font-size: 1.3rem;
-//                 }
-//                 .description{
-//                     position: absolute;
-//                     top: 50px;
-//                     bottom: 0;
-//                     right: 0;
-//                     left: 0;
-//                     background: rgb(0, 0, 0);
-//                     background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.591) 48%, rgba(0,0,0,0) 100%);
-//                     color: white;
-//                     padding: 16px;
-//                     margin: 0;
-//                     z-index: 3;
-//                 }
-//                 .img-container{
-
-//                     position: absolute;
-//                     bottom: 0;
-//                     width: 100%;
-//                     top: 0;
-//                     img{
-
-//                         width: 100%;
-//                         height: 100%;
-//                         object-fit: cover;
-//                         object-position: center;
-//                     }
-//                 }
-
-//                 .card-body{
-//                     position: absolute;
-//                     height: 100%;
-//                     width: 100%;
-//                     display: flex;
-//                     flex-direction: column;
-//                     gap: 8px; 
-//                     justify-content: end;
-//                     padding: 20px;
-//                     color: white;
-//                     background: rgb(0,0,0);
-//                     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0, 0, 0, 0.471) 48%, rgba(0, 0, 0, 0) 100%);
-                    
-//                     h4{
-//                         text-align: center;
-//                         text-overflow: ellipsis;
-//                         overflow: hidden;
-//                     }
-
-//                     h6{
-//                         text-align: center;
-//                     }
-
-//                     .button-container{
-
-//                         display: flex;
-//                         justify-content: center;
-//                         align-items: center;
-//                         button{
-
-//                             border-radius: 25px;
-//                             border: 0;
-//                             background-color: #3498db;
-//                             color: white;
-//                             width: 50px;
-//                             height: 50px;
-//                             overflow: hidden;
-//                             transition: all .3s ease-in-out;
-//                             &.trash{
-//                                 width: 100%;
-//                                 border-radius: 15px;
-//                                 color: #3498db;
-//                                 background-color: white;
-//                             }
-//                             >span{
-//                                 white-space: nowrap;
-//                                 text-overflow: ellipsis;
-//                                 overflow: hidden;
-//                                 text-align: center;
-//                             }
-//                         }
-//                     }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
 
 @media only screen and (max-width: 600px) {
 

@@ -16,15 +16,37 @@
                 ],
             }
         },
-        components:{
-            //TypologiesCarousell,
-        },
         computed: {
             inputHomeWithoutSpaces: function() {
                 return this.store.InputHome.replace(/\s/g, "");
             }
         },
         methods:{
+
+            setDinamicPLaceholder(){
+                const input = document.getElementById('restaurant_name');
+                const restaurantsNameArray = [];
+
+                if(this.store.allRestaurants.length > 0){
+                    this.store.allRestaurants.forEach(restaurant => {
+                        restaurantsNameArray.push(restaurant.company_name);
+    
+                        console.log(restaurantsNameArray);
+                    });
+                    
+                    function impostaPlaceholder() {
+                        
+                        let randomIndex = Math.floor(Math.random() * restaurantsNameArray.length);
+                        let randomPlaceholder = restaurantsNameArray[randomIndex];
+                        
+                        input.placeholder = randomPlaceholder;
+                    }
+                    
+                    setInterval(impostaPlaceholder, 5000);
+                }
+                console.log(restaurantsNameArray)
+
+            },
 
             getRestaurantByName() {
                 this.$emit('search');
@@ -45,6 +67,9 @@
                 
             },
 
+        },
+        mounted(){
+            this.setDinamicPLaceholder();
         }
     }
     </script>
@@ -56,7 +81,7 @@
             Cerca il tuo ristorante ...
         </h1>
         <div class="input-container">
-            <input v-model="store.InputHome" type="text" placeholder="Nome Ristorante">
+            <input v-model="store.InputHome" id="restaurant_name" type="text" placeholder="Nome Ristorante">
             <button @click="getRestaurantByName()" :class="{
                 'disable': inputHomeWithoutSpaces == '',
             }"
