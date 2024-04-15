@@ -121,15 +121,19 @@
     </section>
     <section class="bottom-main">
 
-        
         <div class="restaurant-result">
             <div v-for="(restaurant, i) in this.store.allRestaurants" :key="i" class="mycardcontainer">
                 <router-link :to="{ name: 'restaurant', params: { slug: restaurant.slug } }">
                     <div class="myrestaurantcard">
-                        <div v-if="restaurant.img != null" class="myrestaurantimg">
+                        <div class="myrestaurantimg">
                             <div class="color-layer">
                             </div>
-                            <img :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name">
+                            <img v-if="restaurant.img != null" :src="'http://127.0.0.1:8000/storage/images/' + restaurant.img" :alt="restaurant.company_name">
+                            <img
+                                v-else
+                                src="..\..\assets\img\no-img-dish2.png"
+                                alt=""
+                            />
                         </div>
                         <div class="myrestaurantcardbody">
                             <h2 class="text-h2">
