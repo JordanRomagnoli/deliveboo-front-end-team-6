@@ -16,6 +16,35 @@ export default {
     },
     components: {},
     methods: {
+
+        initBraintree(){
+            let mirko = this;
+
+            braintree.dropin.create({
+                authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+                selector: '#dropin-container'
+                }, function(err, instance) {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    let button = document.querySelector('#submit-button');
+
+                    button.addEventListener('click', function() {
+                        instance.requestPaymentMethod(function(err) {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+
+                            mirko.submitOrder();
+                        });
+                    });
+            });
+
+        },    
+
         goback() {
             this.$router.go(-1);
         },
@@ -66,11 +95,13 @@ export default {
                         this.success = response.data.success;
                         this.store.selectedDishes = [];
                         this.saveCartToLocalStorage();
+
+                        console.log('ordine effettuato')
                     })
                     .catch((error) => {
                         alert("ERRORE : dati non validi");
                     });
-            } else {
+            }else {
                 alert("Inserisci dati validi");
             }
         },
@@ -91,6 +122,7 @@ export default {
     },
     mounted() {
         this.getFromLocalStorage();
+        this.initBraintree();
     },
 };
 </script>
@@ -107,7 +139,6 @@ export default {
                     <form
                         v-if="success != true"
                         method="POST"
-                        @submit.prevent="submitOrder()"
                     >
                         <div class="mb-3">
                             <label for="name" class="form-label">
@@ -251,8 +282,9 @@ export default {
                         >
                             <div class="homebadge">
                                 <button
-                                    type="submit"
+                                    type="button"
                                     class="my-order-button btn"
+                                    id="submit-button"
                                 >
                                     Esegui il checkout
                                 </button>
@@ -290,7 +322,10 @@ export default {
                             </div>
                         </div>
                     </div>
-                    <div class="cardbraintree">braintree</div>
+                    <div class="cardbraintree">
+                        <div id="dropin-container"></div>
+                        <!-- <button  class="button button--small button--green">Purchase</button> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -397,7 +432,6 @@ export default {
         .cardbraintree {
             padding: 32px;
             width: 100%;
-            height: 40%;
             background-color: rgb(
                 240,
                 240,
@@ -407,6 +441,40 @@ export default {
             -webkit-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
             -moz-box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
             box-shadow: 0px 22px 54px -11px rgba(0, 0, 0, 0.56);
+
+            .button {
+                cursor: pointer;
+                font-weight: 500;
+                left: 3px;
+                line-height: inherit;
+                position: relative;
+                text-decoration: none;
+                text-align: center;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 3px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                display: inline-block;
+                }
+
+                .button--small {
+                padding: 10px 20px;
+                font-size: 0.875rem;
+                }
+
+                .button--green {
+                outline: none;
+                background-color: #64d18a;
+                border-color: #64d18a;
+                color: white;
+                transition: all 200ms ease;
+                }
+
+                .button--green:hover {
+                background-color: #8bdda8;
+                color: white;
+                }
         }
     }
 }
