@@ -1,6 +1,5 @@
 <script>
 import Axios from "axios";
-import HomeHeader from "../Home/HomeHeader.vue";
 import Cart from "./Cart.vue";
 import { store } from "../../store.js";
 
@@ -13,7 +12,6 @@ export default {
         };
     },
     components: {
-        HomeHeader,
         Cart,
     },
     methods: {
@@ -155,16 +153,11 @@ export default {
 </script>
 
 <template>
-    <header>
-        <HomeHeader />
-    </header>
-    <main>
         <section>
             <div
                 class="single-restaurant"
                 v-if="
-                    currentSingleRestaurant &&
-                    currentSingleRestaurant.img != null
+                    currentSingleRestaurant
                 "
             >
                 <div v-if="modal == true">
@@ -183,11 +176,17 @@ export default {
 
                 <div class="restaurant-img">
                     <img
+                        v-if="currentSingleRestaurant.img != null"
                         :src="
                             'http://127.0.0.1:8000/storage/images/' +
                             currentSingleRestaurant.img
                         "
                         :alt="currentSingleRestaurant.company_name"
+                    />
+                    <img
+                        v-else
+                        src="..\..\assets\img\no-img-dish2.png"
+                        alt=""
                     />
                     <div class="img-overlay"></div>
                 </div>
@@ -253,7 +252,7 @@ export default {
 
                                 <div class="img-container">
                                     <img
-                                        v-if="dish.img != 'images/'"
+                                        v-if="dish.img != null"
                                         :src="
                                             'http://127.0.0.1:8000/storage/' +
                                             dish.img
@@ -262,7 +261,7 @@ export default {
                                     />
                                     <img
                                         v-else
-                                        src="..\..\assets\img\no-img-dish.jpg"
+                                        src="..\..\assets\img\no-img-dish2.png"
                                         alt=""
                                     />
                                 </div>
@@ -282,6 +281,7 @@ export default {
                                             :class="{
                                                 trash: isDishInCart(dish),
                                             }"
+                                             v-if="dish.visible == 1"
                                         >
                                             <span v-if="!isDishInCart(dish)">
                                                 <i class="fa-solid fa-plus"></i>
@@ -291,6 +291,10 @@ export default {
                                                 Rimuovi dal carrello
                                             </span>
                                         </button>
+
+                                        <span v-else>
+                                            Non disponibile
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +305,6 @@ export default {
                 <Cart @clear="clearCart()" />
             </section>
         </section>
-    </main>
 </template>
 
 <style lang="scss" scoped>

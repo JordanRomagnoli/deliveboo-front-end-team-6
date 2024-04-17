@@ -13,6 +13,17 @@
             OrderForm
 
         },
+        methods: {
+            scrollToTop(){
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            },
+        },
+        mounted(){
+            this.scrollToTop();
+        }
     }
     </script>
 
