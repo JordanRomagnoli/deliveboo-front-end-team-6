@@ -116,12 +116,6 @@ export default {
                 for (let i = 0; i < cart.length; i++) {
                     if (cart[i].restaurant == this.currentSingleRestaurant) {
                         this.store.selectedDishes = cart;
-
-                        console.log("Local Storage", cart);
-                        console.log(
-                            "Selected Dishes",
-                            this.store.selectedDishes
-                        );
                     }
                 }
             }

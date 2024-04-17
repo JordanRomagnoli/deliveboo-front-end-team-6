@@ -11,6 +11,8 @@
 
             openCartModal(){
                 this.store.modalCart = !this.store.modalCart;
+
+                console.log(this.store.selectedDishes)
             },
 
             addQuantity(dish) {

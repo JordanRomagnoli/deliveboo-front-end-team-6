@@ -88,6 +88,18 @@
                 });
             },
 
+            getFromLocalStorage() {
+                if (localStorage.getItem("cart")) {
+                    const cart = JSON.parse(localStorage.getItem("cart"));
+
+                    for (let i = 0; i < cart.length; i++) {
+                        if (cart[i].restaurant == this.currentSingleRestaurant) {
+                            this.store.selectedDishes = cart;
+                        }
+                    }
+                }
+            },
+
         },
         components:{
             InputHome,
@@ -97,6 +109,7 @@
             this.autoPlay();
             this.getTypologies();
             this.getRestaurant(this.page);
+            this.getFromLocalStorage();
         },
         computed: {
             inputHomeWithoutSpaces: function() {
