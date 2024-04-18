@@ -161,9 +161,12 @@ div {
                     flex-direction: row;
                     justify-content: start;
                     align-items: center;
+                    white-space: nowrap;
                     h3 {
                         margin: 0;
-                        font-size: 1.1rem;
+                        font-size: 0.9rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
 

@@ -77,7 +77,7 @@
 
             <button @click="openCartModal()" class="cart"  :class="{
                 'd-lg-none' : $route.name == 'restaurant'
-            }">
+            }" v-if="$route.name != 'order'">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div v-if="store.selectedDishes.length > 0" class="notify">
                 </div>
@@ -86,7 +86,7 @@
                     <ul class="dish-container">
                         <li v-for="(dish, i) in store.selectedDishes" class="dish">
                             <div class="left">
-                                {{ dish.name }}
+                                <span>{{ dish.name }}</span>
                             </div>
                             <div class="right">
                                 <button @click.stop="removeQuantity(dish)">

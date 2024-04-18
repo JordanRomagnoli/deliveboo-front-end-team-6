@@ -84,12 +84,14 @@
                         .left{
                             width: 65%;
                             text-align: start;
-                            overflow: hidden;
                             padding: 0 8px;
                             display: flex;
                             align-items: center;    
-                            text-wrap: nowrap;
-                            text-overflow: ellipsis;        
+                            white-space: nowrap;
+                            span{
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }        
                         }
     
                         .right{
