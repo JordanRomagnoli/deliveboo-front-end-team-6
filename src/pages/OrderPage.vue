@@ -1,6 +1,6 @@
 <script>
     import HomeHeader from '../components/Home/HomeHeader.vue';
-    import HomeMain from '../components/Home/HomeMain.vue';
+    import OrderForm from '../components/OrderForm/OrderForm.vue';
 
     export default {
         data() {
@@ -9,9 +9,9 @@
             }
         },
         components: {
-
             HomeHeader,
-            HomeMain,
+            OrderForm
+
         },
         methods: {
             scrollToTop(){
@@ -32,7 +32,7 @@
         <HomeHeader/>
     </header>
     <main>
-        <HomeMain/>
+        <OrderForm/>
     </main>
     
 </template>

@@ -1,7 +1,6 @@
 <script>
-    import HomeHeader from '../components/Home/HomeHeader.vue';
-    import HomeMain from '../components/Home/HomeMain.vue';
-
+    import HomeHeader from "../components/Home/HomeHeader.vue";
+    import AppSingleRestaurantMain from '../components/Single Restaurant/AppSingleRestaurantMain.vue';
     export default {
         data() {
             return { 
@@ -9,9 +8,8 @@
             }
         },
         components: {
-
             HomeHeader,
-            HomeMain,
+            AppSingleRestaurantMain
         },
         methods: {
             scrollToTop(){
@@ -32,9 +30,8 @@
         <HomeHeader/>
     </header>
     <main>
-        <HomeMain/>
+        <AppSingleRestaurantMain/>
     </main>
-    
 </template>
 
 <style lang="scss" scoped>

@@ -1,50 +1,48 @@
 <script>
-
-/*
-    Importazione componente
-*/
-import AppHeader from './components/AppHeader.vue';
-import AppMain from './components/AppMain.vue';
 import AppFooter from './components/AppFooter.vue';
-import Axios from 'axios';
-import { store } from './store';
 
 export default {
     data() {
         return { 
             
-            store
-            
         }
     },
-    /*
-        Dichiarazione dei componenti all'interno dell'oggetto
-    */
     components: {
-
-        AppHeader,
-        AppMain,
-        AppFooter
+        AppFooter,
     },
+    
 }
 </script>
 
 <template>
-    <div>
-        
-        <header>
-            <AppHeader/>
-        </header>
-        <main>
-            <AppMain/>
-        </main>
-        <footer>
-            <AppFooter/>
-        </footer>
-        
-    </div>
+    <router-view></router-view>
+    <footer>
+        <AppFooter/>
+    </footer>
 </template>
 
 <style lang="scss">
     @import "bootstrap/scss/bootstrap";
+
+    *{
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background-color: #cccccc00;
+
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: #00000083;
+            border-radius: 40px;
+        }
+
+    }
+
+
 </style>
